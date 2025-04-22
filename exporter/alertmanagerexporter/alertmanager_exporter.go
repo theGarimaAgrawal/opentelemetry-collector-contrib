@@ -19,6 +19,7 @@ import (
 	"go.opentelemetry.io/collector/exporter"
 	"go.opentelemetry.io/collector/exporter/exporterhelper"
 	"go.opentelemetry.io/collector/pdata/pcommon"
+	"go.opentelemetry.io/collector/pdata/plog"
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	"go.uber.org/zap"
 )
@@ -68,6 +69,38 @@ func (s *alertmanagerExporter) convertEventSliceToArray(eventSlice ptrace.SpanEv
 	return nil
 }
 
+func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordSlice) []*alertmanagerEvent {
+	if logs.Len() > 0 {
+		events := make([]*alertmanagerEvent, logs.Len())
+
+		for i := 0; i < logs.Len(); i++ {
+			log := logs.At(i)
+			var severity string
+			severityAttrValue, ok := log.Attributes().Get(s.severityAttribute)
+			if ok {
+				severity = severityAttrValue.AsString()
+			} else {
+				severity = s.defaultSeverity
+			}
+
+			event := alertmanagerEvent{
+				spanEvent: ptrace.NewSpanEvent(), // dummy SpanEvent just to use its structure
+				traceID:   "",                    // Logs don't have trace/ span IDs unless embedded
+				spanID:    "",
+				severity:  severity,
+			}
+
+			// Add log attributes as if they were spanEvent attributes
+			event.spanEvent.Attributes().FromRaw(log.Attributes().AsRaw())
+			event.spanEvent.SetName(log.Body().AsString()) // use log body as event name
+
+			events[i] = &event
+		}
+		return events
+	}
+	return nil
+}
+
 func (s *alertmanagerExporter) extractEvents(td ptrace.Traces) []*alertmanagerEvent {
 	// Stitch parent trace ID and span ID
 	rss := td.ResourceSpans()
@@ -91,6 +124,20 @@ func (s *alertmanagerExporter) extractEvents(td ptrace.Traces) []*alertmanagerEv
 				spanID := spans.At(k).SpanID()
 				events = append(events, s.convertEventSliceToArray(spans.At(k).Events(), traceID, spanID)...)
 			}
+		}
+	}
+	return events
+}
+
+func (s *alertmanagerExporter) extractLogEvents(ld plog.Logs) []*alertmanagerEvent {
+	var events []*alertmanagerEvent
+
+	resourceLogs := ld.ResourceLogs()
+	for i := 0; i < resourceLogs.Len(); i++ {
+		scopeLogs := resourceLogs.At(i).ScopeLogs()
+		for j := 0; j < scopeLogs.Len(); j++ {
+			logRecords := scopeLogs.At(j).LogRecords()
+			events = append(events, s.convertLogRecordSliceToArray(logRecords)...)
 		}
 	}
 	return events
@@ -188,6 +235,22 @@ func (s *alertmanagerExporter) pushTraces(ctx context.Context, td ptrace.Traces)
 	return nil
 }
 
+func (s *alertmanagerExporter) pushLogs(ctx context.Context, ld plog.Logs) error {
+	events := s.extractLogEvents(ld) //check
+
+	if len(events) == 0 {
+		return nil
+	}
+
+	alert := s.convertEventsToAlertPayload(events)
+	err := s.postAlert(ctx, alert)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (s *alertmanagerExporter) start(ctx context.Context, host component.Host) error {
 	client, err := s.config.ToClient(ctx, host, s.settings)
 	if err != nil {
@@ -227,6 +290,25 @@ func newTracesExporter(ctx context.Context, cfg component.Config, set exporter.S
 		set,
 		cfg,
 		s.pushTraces,
+		exporterhelper.WithCapabilities(consumer.Capabilities{MutatesData: false}),
+		exporterhelper.WithStart(s.start),
+		exporterhelper.WithTimeout(config.TimeoutSettings),
+		exporterhelper.WithRetry(config.BackoffConfig),
+		exporterhelper.WithQueue(config.QueueSettings),
+		exporterhelper.WithShutdown(s.shutdown),
+	)
+}
+
+func newLogsExporter(ctx context.Context, cfg component.Config, set exporter.Settings) (exporter.Logs, error) {
+	config := cfg.(*Config)
+
+	s := newAlertManagerExporter(config, set.TelemetrySettings) //check
+
+	return exporterhelper.NewLogs(
+		ctx,
+		set,
+		cfg,
+		s.pushLogs, //check
 		exporterhelper.WithCapabilities(consumer.Capabilities{MutatesData: false}),
 		exporterhelper.WithStart(s.start),
 		exporterhelper.WithTimeout(config.TimeoutSettings),
