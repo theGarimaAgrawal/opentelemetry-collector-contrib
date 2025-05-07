@@ -97,9 +97,10 @@ func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordS
 			}
 
 			event := alertmanagerLogEvent{
-				traceID:  "", // Logs don't have trace/ span IDs unless embedded
-				spanID:   "",
-				severity: severity,
+				LogRecord: log,
+				traceID:   "", // Logs don't have trace/ span IDs unless embedded
+				spanID:    "",
+				severity:  severity,
 			}
 
 			events[i] = &event
@@ -156,20 +157,21 @@ func (s *alertmanagerExporter) extractLogEvents(ld plog.Logs) []*alertmanagerEve
 			logs := scopeLogs.At(j).LogRecords()
 			for k := 0; k < logs.Len(); k++ {
 				logRecords := logs.At(k)
-			if logRecords.TraceID().IsEmpty() {
-				traceID := " "
-			} else {
-				traceID := logRecords.TraceID().String()
+				if logRecords.TraceID().IsEmpty() {
+					traceID := " "
+				} else {
+					traceID := logRecords.TraceID().String()
+				}
+				if logRecords.SpanID().IsEmpty() {
+					spanID := " "
+				} else {
+					spanID := logRecords.SpanID().String()
+				}
+				events = append(events, &events)
 			}
-			if logRecords.SpanID().IsEmpty() {
-				spanID := " "
-			} else {
-				spanID := logRecords.SpanID().String()
-			}
-			events = append(events, s.convertLogRecordSliceToArray(logRecords)...)
 		}
+		return events
 	}
-	return events
 }
 
 func createAnnotations(event *alertmanagerEvent) model.LabelSet {
