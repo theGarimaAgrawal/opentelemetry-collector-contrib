@@ -29,6 +29,7 @@ type alertmanagerExporter struct {
 	client            *http.Client
 	tracesMarshaler   ptrace.Marshaler
 	settings          component.TelemetrySettings
+	logsMarshaler     plog.Marshaler
 	endpoint          string
 	generatorURL      string
 	defaultSeverity   string
@@ -38,6 +39,15 @@ type alertmanagerExporter struct {
 
 type alertmanagerEvent struct {
 	spanEvent ptrace.SpanEvent
+	traceID   string
+	spanID    string
+	severity  string
+}
+
+// Convert LogRecord to alertmanagerEvent
+
+type alertmanagerLogEvent struct {
+	LogRecord plog.LogRecord
 	traceID   string
 	spanID    string
 	severity  string
@@ -55,6 +65,8 @@ func (s *alertmanagerExporter) convertEventSliceToArray(eventSlice ptrace.SpanEv
 			} else {
 				severity = s.defaultSeverity
 			}
+
+			// create a new alertmanagerEvent
 			event := alertmanagerEvent{
 				spanEvent: eventSlice.At(i),
 				traceID:   traceID.String(),
@@ -64,14 +76,15 @@ func (s *alertmanagerExporter) convertEventSliceToArray(eventSlice ptrace.SpanEv
 
 			events[i] = &event
 		}
+		// return the array of alertmanagerEvent
 		return events
 	}
 	return nil
 }
 
-func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordSlice) []*alertmanagerEvent {
+func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordSlice) []*alertmanagerLogEvent {
 	if logs.Len() > 0 {
-		events := make([]*alertmanagerEvent, logs.Len())
+		events := make([]*alertmanagerLogEvent, logs.Len())
 
 		for i := 0; i < logs.Len(); i++ {
 			log := logs.At(i)
@@ -83,16 +96,11 @@ func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordS
 				severity = s.defaultSeverity
 			}
 
-			event := alertmanagerEvent{
-				spanEvent: ptrace.NewSpanEvent(), // dummy SpanEvent just to use its structure
-				traceID:   "",                    // Logs don't have trace/ span IDs unless embedded
-				spanID:    "",
-				severity:  severity,
+			event := alertmanagerLogEvent{
+				traceID:  "", // Logs don't have trace/ span IDs unless embedded
+				spanID:   "",
+				severity: severity,
 			}
-
-			// Add log attributes as if they were spanEvent attributes
-			event.spanEvent.Attributes().FromRaw(log.Attributes().AsRaw())
-			event.spanEvent.SetName(log.Body().AsString()) // use log body as event name
 
 			events[i] = &event
 		}
@@ -302,13 +310,13 @@ func newTracesExporter(ctx context.Context, cfg component.Config, set exporter.S
 func newLogsExporter(ctx context.Context, cfg component.Config, set exporter.Settings) (exporter.Logs, error) {
 	config := cfg.(*Config)
 
-	s := newAlertManagerExporter(config, set.TelemetrySettings) //check
+	s := newAlertManagerExporter(config, set.TelemetrySettings)
 
 	return exporterhelper.NewLogs(
 		ctx,
 		set,
 		cfg,
-		s.pushLogs, //check
+		s.pushLogs,
 		exporterhelper.WithCapabilities(consumer.Capabilities{MutatesData: false}),
 		exporterhelper.WithStart(s.start),
 		exporterhelper.WithTimeout(config.TimeoutSettings),
