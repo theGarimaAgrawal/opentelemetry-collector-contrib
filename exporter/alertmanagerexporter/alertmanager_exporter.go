@@ -139,12 +139,33 @@ func (s *alertmanagerExporter) extractEvents(td ptrace.Traces) []*alertmanagerEv
 
 func (s *alertmanagerExporter) extractLogEvents(ld plog.Logs) []*alertmanagerEvent {
 	var events []*alertmanagerEvent
-
 	resourceLogs := ld.ResourceLogs()
+
+	if resourceLogs.Len() == 0 {
+		return nil
+	}
 	for i := 0; i < resourceLogs.Len(); i++ {
+		resource := resourceLogs.At(i).Resource()
 		scopeLogs := resourceLogs.At(i).ScopeLogs()
+
+		if resource.Attributes().Len() == 0 && scopeLogs.Len() == 0 {
+			return nil
+		}
+
 		for j := 0; j < scopeLogs.Len(); j++ {
-			logRecords := scopeLogs.At(j).LogRecords()
+			logs := scopeLogs.At(j).LogRecords()
+			for k := 0; k < logs.Len(); k++ {
+				logRecords := logs.At(k)
+			if logRecords.TraceID().IsEmpty() {
+				traceID := " "
+			} else {
+				traceID := logRecords.TraceID().String()
+			}
+			if logRecords.SpanID().IsEmpty() {
+				spanID := " "
+			} else {
+				spanID := logRecords.SpanID().String()
+			}
 			events = append(events, s.convertLogRecordSliceToArray(logRecords)...)
 		}
 	}
@@ -161,7 +182,7 @@ func createAnnotations(event *alertmanagerEvent) model.LabelSet {
 	return labelMap
 }
 
-func (s *alertmanagerExporter) createLabels(event *alertmanagerEvent) model.LabelSet {
+func (s *alertmanagerExporter) createLogLabels(event *alertmanagerEvent) model.LabelSet {
 	labelMap := model.LabelSet{}
 	for key, attr := range event.spanEvent.Attributes().All() {
 		if slices.Contains(s.config.EventLabels, key) {
@@ -178,7 +199,7 @@ func (s *alertmanagerExporter) convertEventsToAlertPayload(events []*alertmanage
 
 	for i, event := range events {
 		annotations := createAnnotations(event)
-		labels := s.createLabels(event)
+		labels := s.createLogLabels(event)
 
 		alert := model.Alert{
 			StartsAt:     time.Now(),
