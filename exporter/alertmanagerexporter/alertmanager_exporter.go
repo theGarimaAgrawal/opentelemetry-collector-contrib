@@ -182,12 +182,20 @@ func createAnnotations(event *alertmanagerEvent) model.LabelSet {
 }
 
 func createLogAnnotations(event *alertmanagerLogEvent) model.LabelSet {
-	labelMap := make(model.LabelSet, event.spanEvent.Attributes().Len()+2)
-	for key, attr := range event.spanEvent.Attributes().All() {
+	labelMap := make(model.LabelSet, event.LogRecord.Attributes().Len()+4)
+	for key, attr := range event.LogRecord.Attributes().All() {
 		labelMap[model.LabelName(key)] = model.LabelValue(attr.AsString())
 	}
-	labelMap["TraceID"] = model.LabelValue(event.traceID)
-	labelMap["SpanID"] = model.LabelValue(event.spanID)
+	if event.traceID != "" {
+		labelMap["TraceID"] = model.LabelValue(event.traceID)
+
+	}
+	if event.spanID != "" {
+		labelMap["SpanID"] = model.LabelValue(event.spanID)
+	}
+	labelMap["Body"] = model.LabelValue(event.LogRecord.Body().AsString())
+	labelMap["Timestamp"] = model.LabelValue(event.LogRecord.Timestamp().String())
+
 	return labelMap
 }
 
@@ -203,15 +211,16 @@ func (s *alertmanagerExporter) createLabels(event *alertmanagerEvent) model.Labe
 	return labelMap
 }
 
-func (s *alertmanagerExporter) createLogLabels(event *alertmanagerEvent) model.LabelSet {
+func (s *alertmanagerExporter) createLogLabels(event *alertmanagerLogEvent) model.LabelSet {
 	labelMap := model.LabelSet{}
-	for key, attr := range event.spanEvent.Attributes().All() {
+	for key, attr := range event.LogRecord.Attributes().All() {
 		if slices.Contains(s.config.EventLabels, key) {
 			labelMap[model.LabelName(key)] = model.LabelValue(attr.AsString())
 		}
 	}
 	labelMap["severity"] = model.LabelValue(event.severity)
-	labelMap["event_name"] = model.LabelValue(event.spanEvent.Name())
+	labelMap["event_name"] = model.LabelValue(event.LogRecord.SeverityText())
+
 	return labelMap
 }
 
@@ -220,7 +229,7 @@ func (s *alertmanagerExporter) convertEventsToAlertPayload(events []*alertmanage
 
 	for i, event := range events {
 		annotations := createAnnotations(event)
-		labels := s.createLogLabels(event)
+		labels := s.createLabels(event)
 
 		alert := model.Alert{
 			StartsAt:     time.Now(),
@@ -238,7 +247,7 @@ func (s *alertmanagerExporter) convertLogEventsToAlertPayload(events []*alertman
 	payload := make([]model.Alert, len(events))
 
 	for i, event := range events {
-		annotations := createAnnotations(event)
+		annotations := createLogAnnotations(event)
 		labels := s.createLogLabels(event)
 
 		alert := model.Alert{
@@ -305,7 +314,7 @@ func (s *alertmanagerExporter) pushTraces(ctx context.Context, td ptrace.Traces)
 }
 
 func (s *alertmanagerExporter) pushLogs(ctx context.Context, ld plog.Logs) error {
-	events := s.extractLogEvents(ld) //check
+	events := s.extractLogEvents(ld)
 
 	if len(events) == 0 {
 		return nil
