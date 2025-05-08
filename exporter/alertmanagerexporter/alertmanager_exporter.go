@@ -90,12 +90,12 @@ func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordS
 			logRecords := logs.At(i)
 
 			if logRecords.TraceID().IsEmpty() { // Logs don't have trace/ span IDs unless embedded
-				traceId = " "
+				traceId = ""
 			} else {
 				traceId = logRecords.TraceID().String()
 			}
 			if logRecords.SpanID().IsEmpty() {
-				spanid = " "
+				spanid = ""
 			} else {
 				spanid = logRecords.SpanID().String()
 			}
