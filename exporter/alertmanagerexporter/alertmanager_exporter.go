@@ -191,6 +191,18 @@ func createLogAnnotations(event *alertmanagerLogEvent) model.LabelSet {
 	return labelMap
 }
 
+func (s *alertmanagerExporter) createLabels(event *alertmanagerEvent) model.LabelSet {
+	labelMap := model.LabelSet{}
+	for key, attr := range event.spanEvent.Attributes().All() {
+		if slices.Contains(s.config.EventLabels, key) {
+			labelMap[model.LabelName(key)] = model.LabelValue(attr.AsString())
+		}
+	}
+	labelMap["severity"] = model.LabelValue(event.severity)
+	labelMap["event_name"] = model.LabelValue(event.spanEvent.Name())
+	return labelMap
+}
+
 func (s *alertmanagerExporter) createLogLabels(event *alertmanagerEvent) model.LabelSet {
 	labelMap := model.LabelSet{}
 	for key, attr := range event.spanEvent.Attributes().All() {
