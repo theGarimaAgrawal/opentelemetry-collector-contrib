@@ -85,11 +85,21 @@ func (s *alertmanagerExporter) convertEventSliceToArray(eventSlice ptrace.SpanEv
 func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordSlice) []*alertmanagerLogEvent {
 	if logs.Len() > 0 {
 		events := make([]*alertmanagerLogEvent, logs.Len())
-
+		var severity, traceId, spanid string
 		for i := 0; i < logs.Len(); i++ {
-			log := logs.At(i)
-			var severity string
-			severityAttrValue, ok := log.Attributes().Get(s.severityAttribute)
+			logRecords := logs.At(i)
+
+			if logRecords.TraceID().IsEmpty() { // Logs don't have trace/ span IDs unless embedded
+				traceId = " "
+			} else {
+				traceId = logRecords.TraceID().String()
+			}
+			if logRecords.SpanID().IsEmpty() {
+				spanid = " "
+			} else {
+				spanid = logRecords.SpanID().String()
+			}
+			severityAttrValue, ok := logRecords.Attributes().Get(s.severityAttribute)
 			if ok {
 				severity = severityAttrValue.AsString()
 			} else {
@@ -97,9 +107,9 @@ func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordS
 			}
 
 			event := alertmanagerLogEvent{
-				LogRecord: log,
-				traceID:   "", // Logs don't have trace/ span IDs unless embedded
-				spanID:    "",
+				LogRecord: logRecords,
+				traceID:   traceId,
+				spanID:    spanid,
 				severity:  severity,
 			}
 
@@ -138,8 +148,8 @@ func (s *alertmanagerExporter) extractEvents(td ptrace.Traces) []*alertmanagerEv
 	return events
 }
 
-func (s *alertmanagerExporter) extractLogEvents(ld plog.Logs) []*alertmanagerEvent {
-	var events []*alertmanagerEvent
+func (s *alertmanagerExporter) extractLogEvents(ld plog.Logs) []*alertmanagerLogEvent {
+	var events []*alertmanagerLogEvent
 	resourceLogs := ld.ResourceLogs()
 
 	if resourceLogs.Len() == 0 {
@@ -155,26 +165,23 @@ func (s *alertmanagerExporter) extractLogEvents(ld plog.Logs) []*alertmanagerEve
 
 		for j := 0; j < scopeLogs.Len(); j++ {
 			logs := scopeLogs.At(j).LogRecords()
-			for k := 0; k < logs.Len(); k++ {
-				logRecords := logs.At(k)
-				if logRecords.TraceID().IsEmpty() {
-					traceID := " "
-				} else {
-					traceID := logRecords.TraceID().String()
-				}
-				if logRecords.SpanID().IsEmpty() {
-					spanID := " "
-				} else {
-					spanID := logRecords.SpanID().String()
-				}
-				events = append(events, &events)
-			}
+			events = append(events, s.convertLogRecordSliceToArray(logs)...)
 		}
-		return events
 	}
+	return events
 }
 
 func createAnnotations(event *alertmanagerEvent) model.LabelSet {
+	labelMap := make(model.LabelSet, event.spanEvent.Attributes().Len()+2)
+	for key, attr := range event.spanEvent.Attributes().All() {
+		labelMap[model.LabelName(key)] = model.LabelValue(attr.AsString())
+	}
+	labelMap["TraceID"] = model.LabelValue(event.traceID)
+	labelMap["SpanID"] = model.LabelValue(event.spanID)
+	return labelMap
+}
+
+func createLogAnnotations(event *alertmanagerLogEvent) model.LabelSet {
 	labelMap := make(model.LabelSet, event.spanEvent.Attributes().Len()+2)
 	for key, attr := range event.spanEvent.Attributes().All() {
 		labelMap[model.LabelName(key)] = model.LabelValue(attr.AsString())
@@ -197,6 +204,25 @@ func (s *alertmanagerExporter) createLogLabels(event *alertmanagerEvent) model.L
 }
 
 func (s *alertmanagerExporter) convertEventsToAlertPayload(events []*alertmanagerEvent) []model.Alert {
+	payload := make([]model.Alert, len(events))
+
+	for i, event := range events {
+		annotations := createAnnotations(event)
+		labels := s.createLogLabels(event)
+
+		alert := model.Alert{
+			StartsAt:     time.Now(),
+			Labels:       labels,
+			Annotations:  annotations,
+			GeneratorURL: s.generatorURL,
+		}
+
+		payload[i] = alert
+	}
+	return payload
+}
+
+func (s *alertmanagerExporter) convertLogEventsToAlertPayload(events []*alertmanagerLogEvent) []model.Alert {
 	payload := make([]model.Alert, len(events))
 
 	for i, event := range events {
@@ -273,7 +299,7 @@ func (s *alertmanagerExporter) pushLogs(ctx context.Context, ld plog.Logs) error
 		return nil
 	}
 
-	alert := s.convertEventsToAlertPayload(events)
+	alert := s.convertLogEventsToAlertPayload(events)
 	err := s.postAlert(ctx, alert)
 	if err != nil {
 		return err
@@ -330,6 +356,7 @@ func newTracesExporter(ctx context.Context, cfg component.Config, set exporter.S
 	)
 }
 
+// right
 func newLogsExporter(ctx context.Context, cfg component.Config, set exporter.Settings) (exporter.Logs, error) {
 	config := cfg.(*Config)
 
