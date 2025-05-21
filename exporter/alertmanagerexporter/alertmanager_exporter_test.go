@@ -21,6 +21,7 @@ import (
 	"go.opentelemetry.io/collector/config/configtls"
 	"go.opentelemetry.io/collector/exporter/exportertest"
 	"go.opentelemetry.io/collector/pdata/pcommon"
+	"go.opentelemetry.io/collector/pdata/plog"
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	conventions "go.opentelemetry.io/collector/semconv/v1.27.0"
 
@@ -464,4 +465,90 @@ func TestClientConfig(t *testing.T) {
 			})
 		})
 	}
+}
+
+// check
+
+func TestConvertEventSliceToArray(t *testing.T) {
+	factory := NewFactory()
+	cfg := factory.CreateDefaultConfig().(*Config)
+	cfg.DefaultSeverity = "info"
+	cfg.SeverityAttribute = "severity"
+	set := exportertest.NewNopSettings(metadata.Type)
+	am := newAlertManagerExporter(cfg, set.TelemetrySettings)
+	require.NotNil(t, am)
+
+	traceID := pcommon.TraceID([16]byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16})
+	spanID := pcommon.SpanID([8]byte{1, 2, 3, 4, 5, 6, 7, 8})
+
+	eventSlice := ptrace.NewSpanEventSlice()
+	event := eventSlice.AppendEmpty()
+	event.SetName("test-event")
+	event.Attributes().PutStr("severity", "debug")
+	event.Attributes().PutStr("key", "value")
+
+	events := am.convertEventSliceToArray(eventSlice, traceID, spanID)
+	require.Len(t, events, 1)
+	assert.Equal(t, "test-event", events[0].spanEvent.Name())
+	assert.Equal(t, "debug", events[0].severity)
+	assert.Equal(t, traceID.String(), events[0].traceID)
+	assert.Equal(t, spanID.String(), events[0].spanID)
+}
+
+func TestConvertLogRecordSliceToArray(t *testing.T) {
+	factory := NewFactory()
+	cfg := factory.CreateDefaultConfig().(*Config)
+	cfg.DefaultSeverity = "info"
+	cfg.SeverityAttribute = "severity"
+	set := exportertest.NewNopSettings(metadata.Type)
+	am := newAlertManagerExporter(cfg, set.TelemetrySettings)
+	require.NotNil(t, am)
+
+	logSlice := plog.NewLogRecordSlice()
+	logRecord := logSlice.AppendEmpty()
+	logRecord.Attributes().PutStr("severity", "error")
+	logRecord.Attributes().PutStr("key", "value")
+	logRecord.SetTraceID(pcommon.TraceID([16]byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}))
+	logRecord.SetSpanID(pcommon.SpanID([8]byte{1, 2, 3, 4, 5, 6, 7, 8}))
+
+	events := am.convertLogRecordSliceToArray(logSlice)
+	require.Len(t, events, 1)
+	assert.Equal(t, "error", events[0].severity)
+	assert.Equal(t, "0102030405060708090a0b0c0d0e0f10", events[0].traceID)
+	assert.Equal(t, "0102030405060708", events[0].spanID)
+}
+
+// func TestConvertLogRecordSliceToArrayEmpty(t *testing.T) {
+// 	factory := NewFactory()
+// 	cfg := factory.CreateDefaultConfig().(*Config)
+// 	cfg.DefaultSeverity = "info"
+// 	cfg.SeverityAttribute = "severity"
+// 	set := exportertest.NewNopSettings(metadata.Type)
+// 	am := newAlertManagerExporter(cfg, set.TelemetrySettings)
+// 	require.NotNil(t, am)
+
+//		logSlice := plog.NewLogRecordSlice()
+//		events := am.convertLogRecordSliceToArray(logSlice)
+//		require.Len(t, events, 0)
+//	}
+func TestExtractLogEvents(t *testing.T) {
+	factory := NewFactory()
+	cfg := factory.CreateDefaultConfig().(*Config)
+	cfg.DefaultSeverity = "info"
+	set := exportertest.NewNopSettings(metadata.Type)
+	am := newAlertManagerExporter(cfg, set.TelemetrySettings)
+	require.NotNil(t, am)
+
+	logs := plog.NewLogs()
+	resourceLogs := logs.ResourceLogs().AppendEmpty()
+	scopeLogs := resourceLogs.ScopeLogs().AppendEmpty()
+	logRecord := scopeLogs.LogRecords().AppendEmpty()
+	logRecord.Attributes().PutStr("key", "value")
+	logRecord.SetTraceID(pcommon.TraceID([16]byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}))
+	logRecord.SetSpanID(pcommon.SpanID([8]byte{1, 2, 3, 4, 5, 6, 7, 8}))
+
+	events := am.extractLogEvents(logs)
+	require.Len(t, events, 1)
+	assert.Equal(t, "0102030405060708090a0b0c0d0e0f10", events[0].traceID)
+	assert.Equal(t, "0102030405060708", events[0].spanID)
 }
