@@ -53,7 +53,7 @@ type alertmanagerLogEvent struct {
 	severity  string
 }
 
-func (s *alertmanagerExporter) convertEventSliceToArray(eventSlice ptrace.SpanEventSlice, traceID pcommon.TraceID, spanID pcommon.SpanID) []*alertmanagerEvent {
+func (s *alertmanagerExporter) convertSpanEventSliceToArray(eventSlice ptrace.SpanEventSlice, traceID pcommon.TraceID, spanID pcommon.SpanID) []*alertmanagerEvent {
 	if eventSlice.Len() > 0 {
 		events := make([]*alertmanagerEvent, eventSlice.Len())
 
@@ -120,7 +120,7 @@ func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordS
 	return nil
 }
 
-func (s *alertmanagerExporter) extractEvents(td ptrace.Traces) []*alertmanagerEvent {
+func (s *alertmanagerExporter) extractSpanEvents(td ptrace.Traces) []*alertmanagerEvent { // FIND AND RENAME ALL EVENTS TO SPAN EVENTS FOR DIFFERENTIATION FROM LOG RECORDS
 	// Stitch parent trace ID and span ID
 	rss := td.ResourceSpans()
 	var events []*alertmanagerEvent
@@ -141,7 +141,7 @@ func (s *alertmanagerExporter) extractEvents(td ptrace.Traces) []*alertmanagerEv
 			for k := 0; k < spans.Len(); k++ {
 				traceID := spans.At(k).TraceID()
 				spanID := spans.At(k).SpanID()
-				events = append(events, s.convertEventSliceToArray(spans.At(k).Events(), traceID, spanID)...)
+				events = append(events, s.convertSpanEventSliceToArray(spans.At(k).Events(), traceID, spanID)...)
 			}
 		}
 	}
@@ -155,7 +155,7 @@ func (s *alertmanagerExporter) extractLogEvents(ld plog.Logs) []*alertmanagerLog
 	if resourceLogs.Len() == 0 {
 		return nil
 	}
-	for i := 0; i < resourceLogs.Len(); i++ {
+	for i := range resourceLogs.Len() {
 		resource := resourceLogs.At(i).Resource()
 		scopeLogs := resourceLogs.At(i).ScopeLogs()
 
@@ -163,7 +163,7 @@ func (s *alertmanagerExporter) extractLogEvents(ld plog.Logs) []*alertmanagerLog
 			return nil
 		}
 
-		for j := 0; j < scopeLogs.Len(); j++ {
+		for j := range scopeLogs.Len() {
 			logs := scopeLogs.At(j).LogRecords()
 			events = append(events, s.convertLogRecordSliceToArray(logs)...)
 		}
@@ -171,7 +171,7 @@ func (s *alertmanagerExporter) extractLogEvents(ld plog.Logs) []*alertmanagerLog
 	return events
 }
 
-func createAnnotations(event *alertmanagerEvent) model.LabelSet {
+func createTraceAnnotations(event *alertmanagerEvent) model.LabelSet {
 	labelMap := make(model.LabelSet, event.spanEvent.Attributes().Len()+2)
 	for key, attr := range event.spanEvent.Attributes().All() {
 		labelMap[model.LabelName(key)] = model.LabelValue(attr.AsString())
@@ -193,13 +193,13 @@ func createLogAnnotations(event *alertmanagerLogEvent) model.LabelSet {
 	if event.spanID != "" {
 		labelMap["SpanID"] = model.LabelValue(event.spanID)
 	}
-	labelMap["Body"] = model.LabelValue(event.LogRecord.Body().AsString())
-	labelMap["Timestamp"] = model.LabelValue(event.LogRecord.Timestamp().String())
+	labelMap["Body"] = model.LabelValue(event.LogRecord.Body().AsString())         // RECHECK
+	labelMap["Timestamp"] = model.LabelValue(event.LogRecord.Timestamp().String()) // SHOULDNT BE A LABEL
 
 	return labelMap
 }
 
-func (s *alertmanagerExporter) createLabels(event *alertmanagerEvent) model.LabelSet {
+func (s *alertmanagerExporter) createTraceLabels(event *alertmanagerEvent) model.LabelSet { // SPAN EVENT LABELS
 	labelMap := model.LabelSet{}
 	for key, attr := range event.spanEvent.Attributes().All() {
 		if slices.Contains(s.config.EventLabels, key) {
@@ -211,7 +211,7 @@ func (s *alertmanagerExporter) createLabels(event *alertmanagerEvent) model.Labe
 	return labelMap
 }
 
-func (s *alertmanagerExporter) createLogLabels(event *alertmanagerLogEvent) model.LabelSet {
+func (s *alertmanagerExporter) createLogLabels(event *alertmanagerLogEvent) model.LabelSet { // LOG RECORD LABELS
 	labelMap := model.LabelSet{}
 	for key, attr := range event.LogRecord.Attributes().All() {
 		if slices.Contains(s.config.EventLabels, key) {
@@ -224,12 +224,12 @@ func (s *alertmanagerExporter) createLogLabels(event *alertmanagerLogEvent) mode
 	return labelMap
 }
 
-func (s *alertmanagerExporter) convertEventsToAlertPayload(events []*alertmanagerEvent) []model.Alert {
+func (s *alertmanagerExporter) convertSpanEventsToAlertPayload(events []*alertmanagerEvent) []model.Alert {
 	payload := make([]model.Alert, len(events))
 
 	for i, event := range events {
-		annotations := createAnnotations(event)
-		labels := s.createLabels(event)
+		annotations := createTraceAnnotations(event)
+		labels := s.createTraceLabels(event)
 
 		alert := model.Alert{
 			StartsAt:     time.Now(),
@@ -254,7 +254,7 @@ func (s *alertmanagerExporter) convertLogEventsToAlertPayload(events []*alertman
 			StartsAt:     time.Now(),
 			Labels:       labels,
 			Annotations:  annotations,
-			GeneratorURL: s.generatorURL,
+			GeneratorURL: s.generatorURL, // IDENTIFY HOW TO ADD MESSAGE BODY OF LOG RECORD
 		}
 
 		payload[i] = alert
@@ -298,13 +298,13 @@ func (s *alertmanagerExporter) postAlert(ctx context.Context, payload []model.Al
 }
 
 func (s *alertmanagerExporter) pushTraces(ctx context.Context, td ptrace.Traces) error {
-	events := s.extractEvents(td)
+	events := s.extractSpanEvents(td)
 
 	if len(events) == 0 {
 		return nil
 	}
 
-	alert := s.convertEventsToAlertPayload(events)
+	alert := s.convertSpanEventsToAlertPayload(events)
 	err := s.postAlert(ctx, alert)
 	if err != nil {
 		return err
@@ -378,7 +378,6 @@ func newTracesExporter(ctx context.Context, cfg component.Config, set exporter.S
 	)
 }
 
-// right
 func newLogsExporter(ctx context.Context, cfg component.Config, set exporter.Settings) (exporter.Logs, error) {
 	config := cfg.(*Config)
 
