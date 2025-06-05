@@ -86,7 +86,7 @@ func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordS
 	if logs.Len() > 0 {
 		events := make([]*alertmanagerLogEvent, logs.Len())
 		var severity, traceId, spanid string
-		for i := 0; i < logs.Len(); i++ {
+		for i := range logs.Len() {
 			logRecords := logs.At(i)
 
 			if logRecords.TraceID().IsEmpty() { // Logs don't have trace/ span IDs unless embedded
