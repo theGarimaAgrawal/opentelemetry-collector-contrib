@@ -12,7 +12,7 @@ import (
 	"go.opentelemetry.io/collector/component/componenttest"
 	"go.opentelemetry.io/collector/receiver/receivertest"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/kafka/configkafka"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkareceiver/internal/metadata"
 )
 
@@ -39,20 +39,20 @@ func TestWithTracesUnmarshalers(t *testing.T) {
 
 	t.Run("custom_encoding", func(t *testing.T) {
 		cfg := createDefaultConfig().(*Config)
-		cfg.Encoding = "custom"
+		cfg.Traces.Encoding = "custom"
 		receiver, err := f.CreateTraces(context.Background(), receivertest.NewNopSettings(metadata.Type), cfg, nil)
-		tracesConsumer, ok := receiver.(*kafkaTracesConsumer)
+		tracesConsumer, ok := receiver.(*saramaConsumer)
 		require.True(t, ok)
-		require.Equal(t, defaultTracesTopic, tracesConsumer.config.Topic)
+		require.Equal(t, "custom", tracesConsumer.config.Traces.Encoding)
 		require.NoError(t, err)
 		require.NotNil(t, receiver)
 	})
 	t.Run("default_encoding", func(t *testing.T) {
-		cfg := createDefaultConfig().(*Config)
+		cfg := createDefaultConfig()
 		receiver, err := f.CreateTraces(context.Background(), receivertest.NewNopSettings(metadata.Type), cfg, nil)
-		tracesConsumer, ok := receiver.(*kafkaTracesConsumer)
+		tracesConsumer, ok := receiver.(*saramaConsumer)
 		require.True(t, ok)
-		require.Equal(t, defaultTracesTopic, tracesConsumer.config.Topic)
+		require.Equal(t, defaultTracesEncoding, tracesConsumer.config.Traces.Encoding)
 		require.NoError(t, err)
 		assert.NotNil(t, receiver)
 	})
@@ -73,20 +73,20 @@ func TestWithMetricsUnmarshalers(t *testing.T) {
 
 	t.Run("custom_encoding", func(t *testing.T) {
 		cfg := createDefaultConfig().(*Config)
-		cfg.Encoding = "custom"
+		cfg.Metrics.Encoding = "custom"
 		receiver, err := f.CreateMetrics(context.Background(), receivertest.NewNopSettings(metadata.Type), cfg, nil)
-		metricsConsumer, ok := receiver.(*kafkaMetricsConsumer)
+		metricsConsumer, ok := receiver.(*saramaConsumer)
 		require.True(t, ok)
-		require.Equal(t, defaultMetricsTopic, metricsConsumer.config.Topic)
+		require.Equal(t, "custom", metricsConsumer.config.Metrics.Encoding)
 		require.NoError(t, err)
 		require.NotNil(t, receiver)
 	})
 	t.Run("default_encoding", func(t *testing.T) {
-		cfg := createDefaultConfig().(*Config)
+		cfg := createDefaultConfig()
 		receiver, err := f.CreateMetrics(context.Background(), receivertest.NewNopSettings(metadata.Type), cfg, nil)
-		metricsConsumer, ok := receiver.(*kafkaMetricsConsumer)
+		metricsConsumer, ok := receiver.(*saramaConsumer)
 		require.True(t, ok)
-		require.Equal(t, defaultMetricsTopic, metricsConsumer.config.Topic)
+		require.Equal(t, defaultMetricsEncoding, metricsConsumer.config.Metrics.Encoding)
 		require.NoError(t, err)
 		assert.NotNil(t, receiver)
 	})
@@ -107,20 +107,20 @@ func TestWithLogsUnmarshalers(t *testing.T) {
 
 	t.Run("custom_encoding", func(t *testing.T) {
 		cfg := createDefaultConfig().(*Config)
-		cfg.Encoding = "custom"
+		cfg.Logs.Encoding = "custom"
 		receiver, err := f.CreateLogs(context.Background(), receivertest.NewNopSettings(metadata.Type), cfg, nil)
-		logsConsumer, ok := receiver.(*kafkaLogsConsumer)
+		logsConsumer, ok := receiver.(*saramaConsumer)
 		require.True(t, ok)
-		require.Equal(t, defaultLogsTopic, logsConsumer.config.Topic)
+		require.Equal(t, "custom", logsConsumer.config.Logs.Encoding)
 		require.NoError(t, err)
 		require.NotNil(t, receiver)
 	})
 	t.Run("default_encoding", func(t *testing.T) {
-		cfg := createDefaultConfig().(*Config)
+		cfg := createDefaultConfig()
 		receiver, err := f.CreateLogs(context.Background(), receivertest.NewNopSettings(metadata.Type), cfg, nil)
-		logsConsumer, ok := receiver.(*kafkaLogsConsumer)
+		logsConsumer, ok := receiver.(*saramaConsumer)
 		require.True(t, ok)
-		require.Equal(t, defaultLogsTopic, logsConsumer.config.Topic)
+		require.Equal(t, defaultLogsEncoding, logsConsumer.config.Logs.Encoding)
 		require.NoError(t, err)
 		assert.NotNil(t, receiver)
 	})

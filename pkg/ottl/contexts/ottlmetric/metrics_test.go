@@ -25,6 +25,9 @@ func Test_newPathGetSetter(t *testing.T) {
 	newCache := pcommon.NewMap()
 	newCache.PutStr("temp", "value")
 
+	newMetadata := pcommon.NewMap()
+	newMetadata.PutStr("new_k", "new_v")
+
 	newMetric := pmetric.NewMetric()
 	newMetric.SetName("new name")
 
@@ -113,6 +116,33 @@ func Test_newPathGetSetter(t *testing.T) {
 			newVal: newDataPoints,
 			modified: func(metric pmetric.Metric, _ pcommon.Map) {
 				newDataPoints.CopyTo(metric.Sum().DataPoints())
+			},
+		},
+		{
+			name: "metadata",
+			path: &pathtest.Path[TransformContext]{
+				N: "metadata",
+			},
+			orig:   pcommon.NewMap(),
+			newVal: newMetadata,
+			modified: func(metric pmetric.Metric, _ pcommon.Map) {
+				newMetadata.CopyTo(metric.Metadata())
+			},
+		},
+		{
+			name: "metadata access",
+			path: &pathtest.Path[TransformContext]{
+				N: "metadata",
+				KeySlice: []ottl.Key[TransformContext]{
+					&pathtest.Key[TransformContext]{
+						S: ottltest.Strp("temp"),
+					},
+				},
+			},
+			orig:   nil,
+			newVal: "new value",
+			modified: func(metric pmetric.Metric, _ pcommon.Map) {
+				metric.Metadata().PutStr("temp", "new value")
 			},
 		},
 		{
@@ -242,23 +272,6 @@ func Test_newPathGetSetter_higherContextPath(t *testing.T) {
 			assert.Equal(t, tt.expected, got)
 		})
 	}
-}
-
-func Test_newPathGetSetter_WithCache(t *testing.T) {
-	cacheValue := pcommon.NewMap()
-	cacheValue.PutStr("test", "pass")
-
-	tCtx := NewTransformContext(
-		pmetric.NewMetric(),
-		pmetric.NewMetricSlice(),
-		pcommon.NewInstrumentationScope(),
-		pcommon.NewResource(),
-		pmetric.NewScopeMetrics(),
-		pmetric.NewResourceMetrics(),
-		WithCache(&cacheValue),
-	)
-
-	assert.Equal(t, cacheValue, getCache(tCtx))
 }
 
 func createTelemetry() pmetric.Metric {

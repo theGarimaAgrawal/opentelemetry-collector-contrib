@@ -23,7 +23,7 @@ require (
 	go.opentelemetry.io/collector/pdata v1.33.0
 	go.opentelemetry.io/collector/receiver v1.33.0
 	go.opentelemetry.io/collector/receiver/otlpreceiver v0.127.0
-	go.opentelemetry.io/collector/semconv v0.127.0
+	go.opentelemetry.io/otel v1.36.0
 	go.opentelemetry.io/proto/otlp v1.7.0
 	go.uber.org/goleak v1.3.0
 	go.uber.org/zap v1.27.0
@@ -75,7 +75,7 @@ require (
 	go.opentelemetry.io/collector/extension/extensionauth v1.33.0 // indirect
 	go.opentelemetry.io/collector/extension/extensionmiddleware v0.127.0 // indirect
 	go.opentelemetry.io/collector/extension/xextension v0.126.0 // indirect
-	go.opentelemetry.io/collector/featuregate v1.33.0 // indirect
+	go.opentelemetry.io/collector/featuregate v1.34.1-0.20250610090210-188191247685 // indirect
 	go.opentelemetry.io/collector/internal/sharedcomponent v0.127.0 // indirect
 	go.opentelemetry.io/collector/internal/telemetry v0.127.0 // indirect
 	go.opentelemetry.io/collector/pdata/pprofile v0.127.0 // indirect
@@ -86,7 +86,6 @@ require (
 	go.opentelemetry.io/contrib/bridges/otelzap v0.10.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.60.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.60.0 // indirect
-	go.opentelemetry.io/otel v1.36.0 // indirect
 	go.opentelemetry.io/otel/log v0.12.2 // indirect
 	go.opentelemetry.io/otel/log/logtest v0.0.0-20250604074849-11c9cfe763b4 // indirect
 	go.opentelemetry.io/otel/metric v1.36.0 // indirect

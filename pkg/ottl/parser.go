@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"sort"
 	"strings"
+	"sync"
 
 	"github.com/alecthomas/participle/v2"
 	"go.opentelemetry.io/collector/component"
@@ -32,7 +33,7 @@ type Statement[K any] struct {
 func (s *Statement[K]) Execute(ctx context.Context, tCtx K) (any, bool, error) {
 	condition, err := s.condition.Eval(ctx, tCtx)
 	defer func() {
-		if s.telemetrySettings.Logger != nil {
+		if s.telemetrySettings.Logger.Core().Enabled(zap.DebugLevel) {
 			s.telemetrySettings.Logger.Debug("TransformContext after statement execution", zap.String("statement", s.origText), zap.Bool("condition matched", condition), zap.Any("TransformContext", tCtx))
 		}
 	}()
@@ -70,6 +71,7 @@ type Parser[K any] struct {
 	pathContextNames  map[string]struct{}
 }
 
+// NewParser creates a new Parser
 func NewParser[K any](
 	functions map[string]Factory[K],
 	pathParser PathExpressionParser[K],
@@ -77,7 +79,7 @@ func NewParser[K any](
 	options ...Option[K],
 ) (Parser[K], error) {
 	if settings.Logger == nil {
-		return Parser[K]{}, fmt.Errorf("logger cannot be nil")
+		return Parser[K]{}, errors.New("logger cannot be nil")
 	}
 	p := Parser[K]{
 		functions:  functions,
@@ -93,8 +95,10 @@ func NewParser[K any](
 	return p, nil
 }
 
+// Option is an option for a Parser
 type Option[K any] func(*Parser[K])
 
+// WithEnumParser allows setting the enums a parser can use during parsing.
 func WithEnumParser[K any](parser EnumParser) Option[K] {
 	return func(p *Parser[K]) {
 		p.enumParser = parser
@@ -256,13 +260,13 @@ func (p *Parser[K]) prependContextToConditionPaths(context string, condition str
 }
 
 var (
-	parser                = newParser[parsedStatement]()
-	conditionParser       = newParser[booleanExpression]()
-	valueExpressionParser = newParser[value]()
+	parser                = sync.OnceValue(newParser[parsedStatement])
+	conditionParser       = sync.OnceValue(newParser[booleanExpression])
+	valueExpressionParser = sync.OnceValue(newParser[value])
 )
 
 func parseStatement(raw string) (*parsedStatement, error) {
-	parsed, err := parser.ParseString("", raw)
+	parsed, err := parser().ParseString("", raw)
 	if err != nil {
 		return nil, fmt.Errorf("statement has invalid syntax: %w", err)
 	}
@@ -275,7 +279,7 @@ func parseStatement(raw string) (*parsedStatement, error) {
 }
 
 func parseCondition(raw string) (*booleanExpression, error) {
-	parsed, err := conditionParser.ParseString("", raw)
+	parsed, err := conditionParser().ParseString("", raw)
 	if err != nil {
 		return nil, fmt.Errorf("condition has invalid syntax: %w", err)
 	}
@@ -288,7 +292,7 @@ func parseCondition(raw string) (*booleanExpression, error) {
 }
 
 func parseValueExpression(raw string) (*value, error) {
-	parsed, err := valueExpressionParser.ParseString("", raw)
+	parsed, err := valueExpressionParser().ParseString("", raw)
 	if err != nil {
 		return nil, fmt.Errorf("expression has invalid syntax: %w", err)
 	}
@@ -348,6 +352,7 @@ type StatementSequence[K any] struct {
 	telemetrySettings component.TelemetrySettings
 }
 
+// StatementSequenceOption is an option for a StatementSequence
 type StatementSequenceOption[K any] func(*StatementSequence[K])
 
 // WithStatementSequenceErrorMode sets the ErrorMode of a StatementSequence
@@ -377,7 +382,9 @@ func NewStatementSequence[K any](statements []*Statement[K], telemetrySettings c
 // When the ErrorMode of the StatementSequence is `ignore`, errors are logged and execution continues to the next statement.
 // When the ErrorMode of the StatementSequence is `silent`, errors are not logged and execution continues to the next statement.
 func (s *StatementSequence[K]) Execute(ctx context.Context, tCtx K) error {
-	s.telemetrySettings.Logger.Debug("initial TransformContext before executing StatementSequence", zap.Any("TransformContext", tCtx))
+	if s.telemetrySettings.Logger.Core().Enabled(zap.DebugLevel) {
+		s.telemetrySettings.Logger.Debug("initial TransformContext before executing StatementSequence", zap.Any("TransformContext", tCtx))
+	}
 	for _, statement := range s.statements {
 		_, _, err := statement.Execute(ctx, tCtx)
 		if err != nil {
@@ -403,6 +410,7 @@ type ConditionSequence[K any] struct {
 	logicOp           LogicOperation
 }
 
+// ConditionSequenceOption is an option for a ConditionSequence
 type ConditionSequenceOption[K any] func(*ConditionSequence[K])
 
 // WithConditionSequenceErrorMode sets the ErrorMode of a ConditionSequence
@@ -449,7 +457,9 @@ func (c *ConditionSequence[K]) Eval(ctx context.Context, tCtx K) (bool, error) {
 	var atLeastOneMatch bool
 	for _, condition := range c.conditions {
 		match, err := condition.Eval(ctx, tCtx)
-		c.telemetrySettings.Logger.Debug("condition evaluation result", zap.String("condition", condition.origText), zap.Bool("match", match), zap.Any("TransformContext", tCtx))
+		if c.telemetrySettings.Logger.Core().Enabled(zap.DebugLevel) {
+			c.telemetrySettings.Logger.Debug("condition evaluation result", zap.String("condition", condition.origText), zap.Bool("match", match), zap.Any("TransformContext", tCtx))
+		}
 		if err != nil {
 			if c.errorMode == PropagateError {
 				err = fmt.Errorf("failed to eval condition: %v, %w", condition.origText, err)

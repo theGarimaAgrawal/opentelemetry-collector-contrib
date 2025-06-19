@@ -14,6 +14,7 @@ import (
 
 	"github.com/cespare/xxhash/v2"
 	"github.com/gogo/protobuf/proto"
+	lru "github.com/hashicorp/golang-lru/v2"
 	promconfig "github.com/prometheus/prometheus/config"
 	"github.com/prometheus/prometheus/model/labels"
 	writev2 "github.com/prometheus/prometheus/prompb/io/prometheus/write/v2"
@@ -24,12 +25,18 @@ import (
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
 	"go.opentelemetry.io/collector/receiver"
+	"go.opentelemetry.io/collector/receiver/receiverhelper"
 	"go.uber.org/zap/zapcore"
 
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
 )
 
 func newRemoteWriteReceiver(settings receiver.Settings, cfg *Config, nextConsumer consumer.Metrics) (receiver.Metrics, error) {
+	cache, err := lru.New[uint64, pmetric.ResourceMetrics](1000)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create LRU cache: %w", err)
+	}
+
 	return &prometheusRemoteWriteReceiver{
 		settings:     settings,
 		nextConsumer: nextConsumer,
@@ -37,6 +44,7 @@ func newRemoteWriteReceiver(settings receiver.Settings, cfg *Config, nextConsume
 		server: &http.Server{
 			ReadTimeout: 60 * time.Second,
 		},
+		rmCache: cache,
 	}, nil
 }
 
@@ -47,12 +55,15 @@ type prometheusRemoteWriteReceiver struct {
 	config *Config
 	server *http.Server
 	wg     sync.WaitGroup
+
+	rmCache *lru.Cache[uint64, pmetric.ResourceMetrics]
+	obsrecv *receiverhelper.ObsReport
 }
 
-// MetricIdentity contains all the components that uniquely identify a metric
+// metricIdentity contains all the components that uniquely identify a metric
 // according to the OpenTelemetry Protocol data model.
 // The definition of the metric uniqueness is based on the following document. Ref: https://opentelemetry.io/docs/specs/otel/metrics/data-model/#opentelemetry-protocol-data-model
-type MetricIdentity struct {
+type metricIdentity struct {
 	ResourceID   string
 	ScopeName    string
 	ScopeVersion string
@@ -61,9 +72,9 @@ type MetricIdentity struct {
 	Type         writev2.Metadata_MetricType
 }
 
-// createMetricIdentity creates a MetricIdentity struct from the required components
-func createMetricIdentity(resourceID, scopeName, scopeVersion, metricName, unit string, metricType writev2.Metadata_MetricType) MetricIdentity {
-	return MetricIdentity{
+// createMetricIdentity creates a metricIdentity struct from the required components
+func createMetricIdentity(resourceID, scopeName, scopeVersion, metricName, unit string, metricType writev2.Metadata_MetricType) metricIdentity {
+	return metricIdentity{
 		ResourceID:   resourceID,
 		ScopeName:    scopeName,
 		ScopeVersion: scopeVersion,
@@ -74,7 +85,7 @@ func createMetricIdentity(resourceID, scopeName, scopeVersion, metricName, unit 
 }
 
 // Hash generates a unique hash for the metric identity
-func (mi MetricIdentity) Hash() uint64 {
+func (mi metricIdentity) Hash() uint64 {
 	const separator = "\xff"
 
 	combined := strings.Join([]string{
@@ -93,6 +104,14 @@ func (prw *prometheusRemoteWriteReceiver) Start(ctx context.Context, host compon
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/v1/write", prw.handlePRW)
 	var err error
+	prw.obsrecv, err = receiverhelper.NewObsReport(receiverhelper.ObsReportSettings{
+		ReceiverID:             prw.settings.ID,
+		ReceiverCreateSettings: prw.settings,
+		Transport:              "http",
+	})
+	if err != nil {
+		return fmt.Errorf("failed to create obsreport: %w", err)
+	}
 
 	prw.server, err = prw.config.ToServer(ctx, host, prw.settings.TelemetrySettings, mux)
 	if err != nil {
@@ -163,7 +182,7 @@ func (prw *prometheusRemoteWriteReceiver) handlePRW(w http.ResponseWriter, req *
 		return
 	}
 
-	_, stats, err := prw.translateV2(req.Context(), &prw2Req)
+	m, stats, err := prw.translateV2(req.Context(), &prw2Req)
 	stats.SetHeaders(w)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest) // Following instructions at https://prometheus.io/docs/specs/remote_write_spec_2_0/#invalid-samples
@@ -171,6 +190,13 @@ func (prw *prometheusRemoteWriteReceiver) handlePRW(w http.ResponseWriter, req *
 	}
 
 	w.WriteHeader(http.StatusNoContent)
+
+	obsrecvCtx := prw.obsrecv.StartMetricsOp(req.Context())
+	err = prw.nextConsumer.ConsumeMetrics(req.Context(), m)
+	if err != nil {
+		prw.settings.Logger.Error("Error consuming metrics", zapcore.Field{Key: "error", Type: zapcore.ErrorType, Interface: err})
+	}
+	prw.obsrecv.EndMetricsOp(obsrecvCtx, "prometheusremotewritereceiver", m.ResourceMetrics().Len(), err)
 }
 
 // parseProto parses the content-type header and returns the version of the remote-write protocol.
@@ -205,19 +231,17 @@ func (prw *prometheusRemoteWriteReceiver) parseProto(contentType string) (promco
 
 // translateV2 translates a v2 remote-write request into OTLP metrics.
 // translate is not feature complete.
-//
-//nolint:unparam
 func (prw *prometheusRemoteWriteReceiver) translateV2(_ context.Context, req *writev2.Request) (pmetric.Metrics, promremote.WriteResponseStats, error) {
 	var (
 		badRequestErrors error
 		otelMetrics      = pmetric.NewMetrics()
 		labelsBuilder    = labels.NewScratchBuilder(0)
-		stats            = promremote.WriteResponseStats{}
-		// Prometheus Remote-Write can send multiple time series with the same labels in the same request.
-		// Instead of creating a whole new OTLP metric, we just append the new sample to the existing OTLP metric.
-		// This cache is called "intra" because in the future we'll have a "interRequestCache" to cache resourceAttributes
-		// between requests based on the metric "target_info".
-		intraRequestCache = make(map[uint64]pmetric.ResourceMetrics)
+		// More about stats: https://github.com/prometheus/docs/blob/main/docs/specs/prw/remote_write_spec_2_0.md#required-written-response-headers
+		// TODO: add histograms and exemplars to the stats. Histograms can be added after this PR be merged. Ref #39864
+		// Exemplars should be implemented to add them to the stats.
+		stats = promremote.WriteResponseStats{
+			Confirmed: true,
+		}
 		// The key is composed by: resource_hash:scope_name:scope_version:metric_name:unit:type
 		metricCache = make(map[uint64]pmetric.Metric)
 	)
@@ -225,23 +249,48 @@ func (prw *prometheusRemoteWriteReceiver) translateV2(_ context.Context, req *wr
 	for _, ts := range req.Timeseries {
 		ls := ts.ToLabels(&labelsBuilder, req.Symbols)
 		if !ls.Has(labels.MetricName) {
-			badRequestErrors = errors.Join(badRequestErrors, fmt.Errorf("missing metric name in labels"))
+			badRequestErrors = errors.Join(badRequestErrors, errors.New("missing metric name in labels"))
 			continue
 		} else if duplicateLabel, hasDuplicate := ls.HasDuplicateLabelNames(); hasDuplicate {
 			badRequestErrors = errors.Join(badRequestErrors, fmt.Errorf("duplicate label %q in labels", duplicateLabel))
 			continue
 		}
 
+		// If the metric name is equal to target_info, we use its labels as attributes of the resource
+		// Ref: https://opentelemetry.io/docs/specs/otel/compatibility/prometheus_and_openmetrics/#resource-attributes-1
+		if ls.Get(labels.MetricName) == "target_info" {
+			var rm pmetric.ResourceMetrics
+			hashedLabels := xxhash.Sum64String(ls.Get("job") + string([]byte{'\xff'}) + ls.Get("instance"))
+
+			if existingRM, ok := prw.rmCache.Get(hashedLabels); ok {
+				rm = existingRM
+			} else {
+				rm = otelMetrics.ResourceMetrics().AppendEmpty()
+			}
+
+			attrs := rm.Resource().Attributes()
+			parseJobAndInstance(attrs, ls.Get("job"), ls.Get("instance"))
+
+			// Add the remaining labels as resource attributes
+			for _, l := range ls {
+				if l.Name != "job" && l.Name != "instance" && l.Name != labels.MetricName {
+					attrs.PutStr(l.Name, l.Value)
+				}
+			}
+			prw.rmCache.Add(hashedLabels, rm)
+			continue
+		}
+
+		// For metrics other than target_info, we need to follow the standard process of creating a metric.
 		var rm pmetric.ResourceMetrics
 		hashedLabels := xxhash.Sum64String(ls.Get("job") + string([]byte{'\xff'}) + ls.Get("instance"))
-		intraCacheEntry, ok := intraRequestCache[hashedLabels]
+		existingRM, ok := prw.rmCache.Get(hashedLabels)
 		if ok {
-			// We found the same time series in the same request, so we should append to the same OTLP metric.
-			rm = intraCacheEntry
+			rm = existingRM
 		} else {
 			rm = otelMetrics.ResourceMetrics().AppendEmpty()
 			parseJobAndInstance(rm.Resource().Attributes(), ls.Get("job"), ls.Get("instance"))
-			intraRequestCache[hashedLabels] = rm
+			prw.rmCache.Add(hashedLabels, rm)
 		}
 
 		scopeName, scopeVersion := prw.extractScopeInfo(ls)
@@ -321,9 +370,9 @@ func (prw *prometheusRemoteWriteReceiver) translateV2(_ context.Context, req *wr
 		// Otherwise, we append the samples to the existing metric.
 		switch ts.Metadata.Type {
 		case writev2.Metadata_METRIC_TYPE_GAUGE:
-			addNumberDatapoints(metric.Gauge().DataPoints(), ls, ts)
+			addNumberDatapoints(metric.Gauge().DataPoints(), ls, ts, &stats)
 		case writev2.Metadata_METRIC_TYPE_COUNTER:
-			addNumberDatapoints(metric.Sum().DataPoints(), ls, ts)
+			addNumberDatapoints(metric.Sum().DataPoints(), ls, ts, &stats)
 		case writev2.Metadata_METRIC_TYPE_HISTOGRAM:
 			addHistogramDatapoints(metric.Histogram().DataPoints(), ls, ts)
 		case writev2.Metadata_METRIC_TYPE_SUMMARY:
@@ -354,7 +403,7 @@ func parseJobAndInstance(dest pcommon.Map, job, instance string) {
 }
 
 // addNumberDatapoints adds the labels to the datapoints attributes.
-func addNumberDatapoints(datapoints pmetric.NumberDataPointSlice, ls labels.Labels, ts writev2.TimeSeries) {
+func addNumberDatapoints(datapoints pmetric.NumberDataPointSlice, ls labels.Labels, ts writev2.TimeSeries, stats *promremote.WriteResponseStats) {
 	// Add samples from the timeseries
 	for _, sample := range ts.Samples {
 		dp := datapoints.AppendEmpty()
@@ -372,6 +421,7 @@ func addNumberDatapoints(datapoints pmetric.NumberDataPointSlice, ls labels.Labe
 			}
 			attributes.PutStr(l.Name, l.Value)
 		}
+		stats.Samples++
 	}
 }
 

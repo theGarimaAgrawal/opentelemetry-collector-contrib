@@ -18,6 +18,7 @@ import (
 	"github.com/DataDog/datadog-agent/pkg/trace/telemetry"
 	"github.com/DataDog/datadog-agent/pkg/trace/timing"
 	"github.com/DataDog/datadog-agent/pkg/trace/writer"
+	"github.com/DataDog/datadog-agent/pkg/util/log"
 	"github.com/DataDog/opentelemetry-mapping-go/pkg/inframetadata"
 	"github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes"
 	"github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes/source"
@@ -67,6 +68,10 @@ var metricExportSerializerClientFeatureGate = featuregate.GlobalRegistry().MustR
 	featuregate.StageBeta,
 	featuregate.WithRegisterDescription("When enabled, metric export in datadogexporter uses the serializer exporter from the Datadog Agent."),
 )
+
+func init() {
+	log.SetupLogger(log.Disabled(), "off")
+}
 
 // isMetricExportV2Enabled returns true if metric export in datadogexporter uses native Datadog client APIs, false if it uses Zorkian APIs
 func isMetricExportV2Enabled() bool {
@@ -171,7 +176,11 @@ func (f *factory) StopReporter() {
 }
 
 func (f *factory) TraceAgent(ctx context.Context, wg *sync.WaitGroup, params exporter.Settings, cfg *datadogconfig.Config, sourceProvider source.Provider, attrsTranslator *attributes.Translator) (*agent.Agent, error) {
-	agnt, err := newTraceAgent(ctx, params, cfg, sourceProvider, metricsclient.InitializeMetricClient(params.MeterProvider, metricsclient.ExporterSourceTag), attrsTranslator)
+	mc, err := metricsclient.InitializeMetricClient(params.MeterProvider, metricsclient.ExporterSourceTag)
+	if err != nil {
+		return nil, err
+	}
+	agnt, err := newTraceAgent(ctx, params, cfg, sourceProvider, mc, attrsTranslator)
 	if err != nil {
 		return nil, err
 	}
@@ -259,7 +268,7 @@ func (f *factory) createMetricsExporter(
 	c component.Config,
 ) (exporter.Metrics, error) {
 	cfg := checkAndCastConfig(c, set.Logger)
-	hostProvider, err := f.SourceProvider(set.TelemetrySettings, cfg.Hostname, cfg.HostMetadata.GetSourceTimeout())
+	hostProvider, err := f.SourceProvider(set.TelemetrySettings, cfg.Hostname, cfg.HostnameDetectionTimeout)
 	if err != nil {
 		return nil, fmt.Errorf("failed to build hostname provider: %w", err)
 	}
@@ -279,7 +288,11 @@ func (f *factory) createMetricsExporter(
 		cancel()
 		return nil, err
 	}
-	metricsClient := metricsclient.InitializeMetricClient(set.MeterProvider, metricsclient.ExporterSourceTag)
+	metricsClient, err := metricsclient.InitializeMetricClient(set.MeterProvider, metricsclient.ExporterSourceTag)
+	if err != nil {
+		cancel()
+		return nil, err
+	}
 	timingReporter := timing.New(metricsClient)
 	statsWriter := writer.NewStatsWriter(acfg, telemetry.NewNoopCollector(), metricsClient, timingReporter)
 
@@ -357,8 +370,9 @@ func (f *factory) createMetricsExporter(
 			TimeoutConfig: exporterhelper.TimeoutConfig{
 				Timeout: cfg.Timeout,
 			},
-			QueueConfig: cfg.QueueSettings,
-			API:         cfg.API,
+			ClientConfig:     cfg.TLS,
+			QueueBatchConfig: cfg.QueueSettings,
+			API:              cfg.API,
 			HostProvider: func(ctx context.Context) (string, error) {
 				h, err2 := hostProvider.Source(ctx)
 				if err2 != nil {
@@ -440,7 +454,7 @@ func (f *factory) createTracesExporter(
 		wg     sync.WaitGroup // waits for agent to exit
 	)
 
-	hostProvider, err := f.SourceProvider(set.TelemetrySettings, cfg.Hostname, cfg.HostMetadata.GetSourceTimeout())
+	hostProvider, err := f.SourceProvider(set.TelemetrySettings, cfg.Hostname, cfg.HostnameDetectionTimeout)
 	if err != nil {
 		return nil, fmt.Errorf("failed to build hostname provider: %w", err)
 	}
@@ -544,7 +558,7 @@ func (f *factory) createLogsExporter(
 
 	var pusher consumer.ConsumeLogsFunc
 	var logsAgent logsagentpipeline.LogsAgent
-	hostProvider, err := f.SourceProvider(set.TelemetrySettings, cfg.Hostname, cfg.HostMetadata.GetSourceTimeout())
+	hostProvider, err := f.SourceProvider(set.TelemetrySettings, cfg.Hostname, cfg.HostnameDetectionTimeout)
 	if err != nil {
 		return nil, fmt.Errorf("failed to build hostname provider: %w", err)
 	}

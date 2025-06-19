@@ -10,15 +10,19 @@ import (
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/receiver"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/kafka/configkafka"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkareceiver/internal/metadata"
 )
 
 const (
-	defaultTracesTopic  = "otlp_spans"
-	defaultMetricsTopic = "otlp_metrics"
 	defaultLogsTopic    = "otlp_logs"
-	defaultEncoding     = "otlp_proto"
+	defaultLogsEncoding = "otlp_proto"
+
+	defaultMetricsTopic    = "otlp_metrics"
+	defaultMetricsEncoding = "otlp_proto"
+
+	defaultTracesTopic    = "otlp_spans"
+	defaultTracesEncoding = "otlp_proto"
 )
 
 // NewFactory creates Kafka receiver factory.
@@ -36,7 +40,18 @@ func createDefaultConfig() component.Config {
 	return &Config{
 		ClientConfig:   configkafka.NewDefaultClientConfig(),
 		ConsumerConfig: configkafka.NewDefaultConsumerConfig(),
-		Encoding:       defaultEncoding,
+		Logs: TopicEncodingConfig{
+			Topic:    defaultLogsTopic,
+			Encoding: defaultLogsEncoding,
+		},
+		Metrics: TopicEncodingConfig{
+			Topic:    defaultMetricsTopic,
+			Encoding: defaultMetricsEncoding,
+		},
+		Traces: TopicEncodingConfig{
+			Topic:    defaultTracesTopic,
+			Encoding: defaultTracesEncoding,
+		},
 		MessageMarking: MessageMarking{
 			After:   false,
 			OnError: false,
@@ -53,16 +68,7 @@ func createTracesReceiver(
 	cfg component.Config,
 	nextConsumer consumer.Traces,
 ) (receiver.Traces, error) {
-	oCfg := *(cfg.(*Config))
-	if oCfg.Topic == "" {
-		oCfg.Topic = defaultTracesTopic
-	}
-
-	r, err := newTracesReceiver(oCfg, set, nextConsumer)
-	if err != nil {
-		return nil, err
-	}
-	return r, nil
+	return newTracesReceiver(cfg.(*Config), set, nextConsumer)
 }
 
 func createMetricsReceiver(
@@ -71,16 +77,7 @@ func createMetricsReceiver(
 	cfg component.Config,
 	nextConsumer consumer.Metrics,
 ) (receiver.Metrics, error) {
-	oCfg := *(cfg.(*Config))
-	if oCfg.Topic == "" {
-		oCfg.Topic = defaultMetricsTopic
-	}
-
-	r, err := newMetricsReceiver(oCfg, set, nextConsumer)
-	if err != nil {
-		return nil, err
-	}
-	return r, nil
+	return newMetricsReceiver(cfg.(*Config), set, nextConsumer)
 }
 
 func createLogsReceiver(
@@ -89,14 +86,5 @@ func createLogsReceiver(
 	cfg component.Config,
 	nextConsumer consumer.Logs,
 ) (receiver.Logs, error) {
-	oCfg := *(cfg.(*Config))
-	if oCfg.Topic == "" {
-		oCfg.Topic = defaultLogsTopic
-	}
-
-	r, err := newLogsReceiver(oCfg, set, nextConsumer)
-	if err != nil {
-		return nil, err
-	}
-	return r, nil
+	return newLogsReceiver(cfg.(*Config), set, nextConsumer)
 }
