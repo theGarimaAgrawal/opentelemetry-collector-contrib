@@ -57,7 +57,7 @@ func (s *alertmanagerExporter) convertSpanEventSliceToArray(eventSlice ptrace.Sp
 	if eventSlice.Len() > 0 {
 		events := make([]*alertmanagerEvent, eventSlice.Len())
 
-		for i := 0; i < eventSlice.Len(); i++ {
+		for i := range eventSlice.Len() {
 			var severity string
 			severityAttrValue, ok := eventSlice.At(i).Attributes().Get(s.severityAttribute)
 			if ok {
@@ -193,9 +193,7 @@ func createLogAnnotations(event *alertmanagerLogEvent) model.LabelSet {
 	if event.spanID != "" {
 		labelMap["SpanID"] = model.LabelValue(event.spanID)
 	}
-	labelMap["Body"] = model.LabelValue(event.LogRecord.Body().AsString())         // RECHECK
-	labelMap["Timestamp"] = model.LabelValue(event.LogRecord.Timestamp().String()) // SHOULDNT BE A LABEL
-
+	labelMap["Body"] = model.LabelValue(event.LogRecord.Body().AsString())
 	return labelMap
 }
 
@@ -219,7 +217,9 @@ func (s *alertmanagerExporter) createLogLabels(event *alertmanagerLogEvent) mode
 		}
 	}
 	labelMap["severity"] = model.LabelValue(event.severity)
-	labelMap["event_name"] = model.LabelValue(event.LogRecord.SeverityText())
+	if attr, ok := event.LogRecord.Attributes().Get("event_name"); ok {
+		labelMap["event_name"] = model.LabelValue(attr.AsString())
+	}
 
 	return labelMap
 }
@@ -254,7 +254,7 @@ func (s *alertmanagerExporter) convertLogEventsToAlertPayload(events []*alertman
 			StartsAt:     time.Now(),
 			Labels:       labels,
 			Annotations:  annotations,
-			GeneratorURL: s.generatorURL, // IDENTIFY HOW TO ADD MESSAGE BODY OF LOG RECORD
+			GeneratorURL: s.generatorURL,
 		}
 
 		payload[i] = alert
