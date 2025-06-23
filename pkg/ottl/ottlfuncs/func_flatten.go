@@ -10,8 +10,9 @@ import (
 	"math"
 	"strconv"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 	"go.opentelemetry.io/collector/pdata/pcommon"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 )
 
 type FlattenArguments[K any] struct {

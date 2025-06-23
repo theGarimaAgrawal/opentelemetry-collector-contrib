@@ -12,11 +12,12 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/gopsutilenv"
 	"github.com/shirou/gopsutil/v4/common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/sys/unix"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/gopsutilenv"
 )
 
 func TestFillOSSpecificData(t *testing.T) {

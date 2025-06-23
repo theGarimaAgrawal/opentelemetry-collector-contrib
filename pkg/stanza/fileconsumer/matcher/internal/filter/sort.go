@@ -11,8 +11,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/timeutils"
 	"go.uber.org/multierr"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/timeutils"
 )
 
 type parseFunc func(string) (any, error)

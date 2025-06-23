@@ -6,9 +6,10 @@ package basicauthextension // import "github.com/open-telemetry/opentelemetry-co
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension/internal/metadata"
 )
 
 // NewFactory creates a factory for the static bearer token Authenticator extension.

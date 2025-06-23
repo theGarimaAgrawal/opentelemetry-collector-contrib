@@ -10,13 +10,14 @@ import (
 	"net"
 
 	"github.com/jaegertracing/jaeger-idl/proto-gen/api_v2"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling/internal/source"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/config/configgrpc"
 	"go.uber.org/zap"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 	"google.golang.org/grpc/reflection"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling/internal/source"
 )
 
 var _ component.Component = (*SamplingGRPCServer)(nil)

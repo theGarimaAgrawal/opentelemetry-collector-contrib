@@ -6,8 +6,9 @@ package telemetry // import "github.com/open-telemetry/opentelemetry-collector-c
 import (
 	"sync"
 
-	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 	"go.opentelemetry.io/collector/component"
+
+	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 )
 
 type Registry interface {

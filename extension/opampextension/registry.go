@@ -11,9 +11,10 @@ import (
 	"sync"
 
 	"github.com/open-telemetry/opamp-go/protobufs"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/opampcustommessages"
 	"go.uber.org/zap"
 	"golang.org/x/exp/maps"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/opampcustommessages"
 )
 
 // customCapabilityClient is a subset of OpAMP client containing only the methods needed for the customCapabilityRegistry.

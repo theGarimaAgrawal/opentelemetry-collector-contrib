@@ -9,14 +9,15 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/goldendataset"
-	idutils "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/core/xidutils"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/golden"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/plog"
 	"go.opentelemetry.io/collector/pdata/pmetric"
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	"go.opentelemetry.io/collector/pipeline"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/goldendataset"
+	idutils "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/core/xidutils"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/golden"
 )
 
 // DataProvider defines the interface for generators of test data used to drive various end-to-end tests.

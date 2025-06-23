@@ -7,9 +7,10 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/apachereceiver/internal/metadata"
 	"go.opentelemetry.io/collector/config/confighttp"
 	"go.opentelemetry.io/collector/scraper/scraperhelper"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/apachereceiver/internal/metadata"
 )
 
 type Config struct {

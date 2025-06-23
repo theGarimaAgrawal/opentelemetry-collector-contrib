@@ -6,8 +6,9 @@ package metadataparser // import "github.com/open-telemetry/opentelemetry-collec
 import (
 	"errors"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver/internal/metadata"
 	"go.opentelemetry.io/collector/pdata/pmetric"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver/internal/metadata"
 )
 
 type MetricDataType string

@@ -10,7 +10,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver/internal/metadata"
 	promConfig "github.com/prometheus/common/config"
 	promModel "github.com/prometheus/common/model"
 	"github.com/stretchr/testify/assert"
@@ -21,6 +20,8 @@ import (
 	"go.opentelemetry.io/collector/receiver/receivertest"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zaptest/observer"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver/internal/metadata"
 )
 
 func TestLoadConfig(t *testing.T) {

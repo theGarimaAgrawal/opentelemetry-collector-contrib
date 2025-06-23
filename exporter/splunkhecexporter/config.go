@@ -10,11 +10,12 @@ import (
 	"path"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 	"go.opentelemetry.io/collector/config/confighttp"
 	"go.opentelemetry.io/collector/config/configopaque"
 	"go.opentelemetry.io/collector/config/configretry"
 	"go.opentelemetry.io/collector/exporter/exporterhelper"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 )
 
 const (

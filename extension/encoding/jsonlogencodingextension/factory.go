@@ -6,9 +6,10 @@ package jsonlogencodingextension // import "github.com/open-telemetry/openteleme
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/jsonlogencodingextension/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/jsonlogencodingextension/internal/metadata"
 )
 
 func NewFactory() extension.Factory {

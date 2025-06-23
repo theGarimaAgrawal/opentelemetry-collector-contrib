@@ -15,10 +15,11 @@ import (
 
 	"github.com/cenkalti/backoff/v4"
 	"github.com/mongodb-forks/digest"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/mongodbatlasreceiver/internal/metadata"
 	"go.mongodb.org/atlas/mongodbatlas"
 	"go.opentelemetry.io/collector/config/configretry"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/mongodbatlasreceiver/internal/metadata"
 )
 
 type clientRoundTripper struct {

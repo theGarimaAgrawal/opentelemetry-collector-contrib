@@ -10,9 +10,10 @@ import (
 	"strings"
 
 	"github.com/go-logfmt/logfmt"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/traceutil"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/plog"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/traceutil"
 )
 
 // JSON representation of the LogRecord as described by https://developers.google.com/protocol-buffers/docs/proto3#json

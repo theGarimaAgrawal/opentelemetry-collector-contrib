@@ -15,9 +15,10 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-version"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/elasticsearchreceiver/internal/model"
 	"go.opentelemetry.io/collector/component"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/elasticsearchreceiver/internal/model"
 )
 
 var (

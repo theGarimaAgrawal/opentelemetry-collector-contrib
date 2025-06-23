@@ -4,9 +4,10 @@
 package pdatautil // import "github.com/open-telemetry/opentelemetry-collector-contrib/internal/pdatautil"
 
 import (
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatautil"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/plog"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatautil"
 )
 
 // FlattenResourceLogs moves each LogRecord onto a dedicated ResourceLogs and ScopeLogs.

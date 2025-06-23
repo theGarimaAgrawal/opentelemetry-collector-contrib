@@ -6,8 +6,9 @@ package batch_test
 import (
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awskinesisexporter/internal/batch"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awskinesisexporter/internal/batch"
 )
 
 func TestBatchingMessages(t *testing.T) {

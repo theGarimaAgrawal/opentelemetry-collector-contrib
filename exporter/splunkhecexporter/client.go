@@ -13,8 +13,6 @@ import (
 	"sync"
 
 	"github.com/goccy/go-json"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter/internal/metadata"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer/consumererror"
 	"go.opentelemetry.io/collector/exporter"
@@ -24,6 +22,9 @@ import (
 	"go.opentelemetry.io/otel/metric"
 	"go.uber.org/multierr"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter/internal/metadata"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 )
 
 // allow monkey patching for injecting pushLogData function in test

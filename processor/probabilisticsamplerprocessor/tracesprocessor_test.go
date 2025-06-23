@@ -11,9 +11,6 @@ import (
 	"math/rand/v2"
 	"testing"
 
-	idutils "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/core/xidutils"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/sampling"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor/internal/metadata"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/consumer"
@@ -24,6 +21,10 @@ import (
 	conventions "go.opentelemetry.io/otel/semconv/v1.6.1"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zaptest/observer"
+
+	idutils "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/core/xidutils"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/sampling"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor/internal/metadata"
 )
 
 // defaultHashSeed is used throughout to ensure that the HashSeed is real

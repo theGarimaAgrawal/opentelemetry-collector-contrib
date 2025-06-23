@@ -12,9 +12,10 @@ import (
 	"time"
 
 	"github.com/DataDog/agent-payload/v5/gogen"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
 )
 
 const (

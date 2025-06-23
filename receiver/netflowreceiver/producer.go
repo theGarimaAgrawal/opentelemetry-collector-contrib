@@ -8,10 +8,11 @@ import (
 	"fmt"
 
 	"github.com/netsampler/goflow2/v2/producer"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/netflowreceiver/internal/metadata"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/pdata/plog"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/netflowreceiver/internal/metadata"
 )
 
 // otelLogsProducerWrapper is a wrapper around a producer.ProducerInterface that sends the messages to a log consumer

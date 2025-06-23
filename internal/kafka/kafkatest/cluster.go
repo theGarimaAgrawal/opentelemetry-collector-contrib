@@ -6,9 +6,10 @@ package kafkatest // import "github.com/open-telemetry/opentelemetry-collector-c
 import (
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
 	"github.com/stretchr/testify/require"
 	"github.com/twmb/franz-go/pkg/kfake"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
 )
 
 // NewCluster returns a fake Kafka cluster and configkafka.ClientConfig

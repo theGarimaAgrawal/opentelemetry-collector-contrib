@@ -20,8 +20,6 @@ import (
 	"time"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver/internal"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver/internal/metadata"
 	"github.com/prometheus/common/promslog"
 	promcfg "github.com/prometheus/prometheus/config"
 	"github.com/prometheus/prometheus/model/labels"
@@ -37,6 +35,9 @@ import (
 	"go.opentelemetry.io/collector/receiver/receivertest"
 	semconv "go.opentelemetry.io/otel/semconv/v1.27.0"
 	"gopkg.in/yaml.v3"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver/internal"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver/internal/metadata"
 )
 
 type mockPrometheusResponse struct {

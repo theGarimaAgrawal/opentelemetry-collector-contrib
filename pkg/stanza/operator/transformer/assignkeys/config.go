@@ -6,11 +6,12 @@ import (
 	"errors"
 	"fmt"
 
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/featuregate"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/featuregate"
 )
 
 const operatorType = "assign_keys"

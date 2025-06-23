@@ -8,9 +8,10 @@ import (
 	"sync"
 	"time"
 
+	"go.opentelemetry.io/collector/component"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
-	"go.opentelemetry.io/collector/component"
 )
 
 type LogEmitter interface {

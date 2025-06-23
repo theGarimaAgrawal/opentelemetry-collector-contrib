@@ -16,6 +16,7 @@ import (
 	"github.com/leodido/go-syslog/v4/octetcounting"
 	"github.com/leodido/go-syslog/v4/rfc3164"
 	"github.com/leodido/go-syslog/v4/rfc5424"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
 )

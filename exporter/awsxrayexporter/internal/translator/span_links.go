@@ -4,8 +4,9 @@
 package translator // import "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsxrayexporter/internal/translator"
 
 import (
-	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 	"go.opentelemetry.io/collector/pdata/ptrace"
+
+	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 )
 
 func makeSpanLinks(links ptrace.SpanLinkSlice, skipTimestampValidation bool) ([]awsxray.SpanLinkData, error) {

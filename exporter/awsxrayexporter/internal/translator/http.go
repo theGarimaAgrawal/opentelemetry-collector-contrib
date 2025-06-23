@@ -8,11 +8,12 @@ import (
 	"strconv"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
-	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	conventionsv112 "go.opentelemetry.io/otel/semconv/v1.12.0"
 	conventions "go.opentelemetry.io/otel/semconv/v1.27.0"
+
+	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 )
 
 func makeHTTP(span ptrace.Span) (map[string]pcommon.Value, *awsxray.HTTPData) {

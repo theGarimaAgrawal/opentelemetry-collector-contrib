@@ -8,12 +8,13 @@ import (
 	"regexp"
 	"strconv"
 
+	"golang.org/x/text/encoding"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/input/tcp"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/input/udp"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/parser/syslog"
-	"golang.org/x/text/encoding"
 )
 
 // Input is an operator that listens for log entries over tcp.

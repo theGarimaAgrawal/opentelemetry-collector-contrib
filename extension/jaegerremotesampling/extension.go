@@ -7,14 +7,15 @@ import (
 	"context"
 	"fmt"
 
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/extension"
+	"go.uber.org/zap"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling/internal/server/grpc"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling/internal/server/http"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling/internal/source"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling/internal/source/filesource"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling/internal/source/remotesource"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/extension"
-	"go.uber.org/zap"
 )
 
 var _ extension.Extension = (*jrsExtension)(nil)

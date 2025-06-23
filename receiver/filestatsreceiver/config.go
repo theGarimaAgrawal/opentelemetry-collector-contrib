@@ -6,8 +6,9 @@ package filestatsreceiver // import "github.com/open-telemetry/opentelemetry-col
 import (
 	"errors"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filestatsreceiver/internal/metadata"
 	"go.opentelemetry.io/collector/scraper/scraperhelper"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filestatsreceiver/internal/metadata"
 )
 
 type Config struct {

@@ -7,9 +7,10 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/valyala/fastjson"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
-	"github.com/valyala/fastjson"
 )
 
 // Parser is an operator that parses json array in an entry.

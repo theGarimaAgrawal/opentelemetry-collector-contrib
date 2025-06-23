@@ -10,9 +10,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancingexporter/internal/metadata"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/exporter"
@@ -22,6 +19,10 @@ import (
 	conventions "go.opentelemetry.io/otel/semconv/v1.27.0"
 	"go.uber.org/multierr"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancingexporter/internal/metadata"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
 )
 
 var _ exporter.Metrics = (*metricExporterImp)(nil)

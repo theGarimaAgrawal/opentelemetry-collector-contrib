@@ -7,9 +7,10 @@ import (
 	"context"
 	"errors"
 
+	"go.opentelemetry.io/collector/pdata/pmetric"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlmetric"
-	"go.opentelemetry.io/collector/pdata/pmetric"
 )
 
 const sumCountName = "extract_count_metric"

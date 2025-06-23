@@ -6,8 +6,9 @@ import (
 	"os"
 	"time"
 
-	internaltime "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/internal/time"
 	"go.uber.org/multierr"
+
+	internaltime "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/internal/time"
 )
 
 type excludeOlderThanOption struct {

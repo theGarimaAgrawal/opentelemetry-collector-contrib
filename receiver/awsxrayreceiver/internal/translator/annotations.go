@@ -4,8 +4,9 @@
 package translator // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awsxrayreceiver/internal/translator"
 
 import (
-	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 	"go.opentelemetry.io/collector/pdata/pcommon"
+
+	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 )
 
 func addAnnotations(annos map[string]any, attrs pcommon.Map) {

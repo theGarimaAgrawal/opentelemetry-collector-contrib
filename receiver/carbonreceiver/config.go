@@ -7,9 +7,10 @@ import (
 	"errors"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/carbonreceiver/protocol"
 	"go.opentelemetry.io/collector/config/confignet"
 	"go.opentelemetry.io/collector/confmap/xconfmap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/carbonreceiver/protocol"
 )
 
 var _ xconfmap.Validator = (*Config)(nil)

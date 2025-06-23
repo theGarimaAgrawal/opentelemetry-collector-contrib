@@ -4,9 +4,10 @@
 package splunkhecreceiver // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/splunkhecreceiver"
 
 import (
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/config/confighttp"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 )
 
 type SplittingStrategy string

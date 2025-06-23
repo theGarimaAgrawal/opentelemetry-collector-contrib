@@ -6,9 +6,10 @@ package networkscraper // import "github.com/open-telemetry/opentelemetry-collec
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/networkscraper/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/scraper"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/networkscraper/internal/metadata"
 )
 
 // NewFactory for Network scraper.

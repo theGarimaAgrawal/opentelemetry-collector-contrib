@@ -8,11 +8,12 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/receiver"
 	"go.opentelemetry.io/collector/service/hostcapabilities"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 )
 
 var _ receiver.Metrics = (*receiverCreator)(nil)

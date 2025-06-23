@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/expr-lang/expr"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 )
 

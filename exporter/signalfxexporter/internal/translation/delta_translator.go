@@ -5,8 +5,9 @@ package translation // import "github.com/open-telemetry/opentelemetry-collector
 
 import (
 	"github.com/gogo/protobuf/proto"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/ttlmap"
 	sfxpb "github.com/signalfx/com_signalfx_metrics_protobuf/model"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/ttlmap"
 )
 
 type deltaTranslator struct {

@@ -6,12 +6,13 @@ package groupbyattrsprocessor // import "github.com/open-telemetry/opentelemetry
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/processor"
 	"go.opentelemetry.io/collector/processor/processorhelper"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor/internal/metadata"
 )
 
 var consumerCapabilities = consumer.Capabilities{MutatesData: true}

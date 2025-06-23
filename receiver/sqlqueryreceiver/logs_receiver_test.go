@@ -8,9 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/sqlquery"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/collector/pdata/pcommon"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/sqlquery"
 )
 
 func TestLogsQueryReceiver_Collect(t *testing.T) {

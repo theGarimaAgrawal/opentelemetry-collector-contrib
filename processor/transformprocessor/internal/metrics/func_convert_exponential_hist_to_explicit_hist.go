@@ -9,10 +9,11 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlmetric"
 	"go.opentelemetry.io/collector/pdata/pmetric"
 	"golang.org/x/exp/rand"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlmetric"
 )
 
 type convertExponentialHistToExplicitHistArguments struct {

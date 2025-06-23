@@ -8,8 +8,9 @@ package namedpipe // import "github.com/open-telemetry/opentelemetry-collector-c
 import (
 	"errors"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"go.opentelemetry.io/collector/component"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 )
 
 func (c *Config) Build(_ component.TelemetrySettings) (operator.Operator, error) {

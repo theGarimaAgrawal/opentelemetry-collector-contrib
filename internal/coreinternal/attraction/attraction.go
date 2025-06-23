@@ -9,10 +9,11 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/clientutil"
 	"go.opentelemetry.io/collector/client"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/clientutil"
 )
 
 // Settings specifies the processor settings.

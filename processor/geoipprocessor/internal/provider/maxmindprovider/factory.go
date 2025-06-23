@@ -6,8 +6,9 @@ package maxmind // import "github.com/open-telemetry/opentelemetry-collector-con
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/geoipprocessor/internal/provider"
 	"go.opentelemetry.io/collector/processor"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/geoipprocessor/internal/provider"
 )
 
 const (

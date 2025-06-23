@@ -4,8 +4,9 @@
 package ctxspan // import "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/internal/ctxspan"
 
 import (
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 	"go.opentelemetry.io/collector/pdata/ptrace"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 )
 
 var SymbolTable = map[ottl.EnumSymbol]ottl.Enum{

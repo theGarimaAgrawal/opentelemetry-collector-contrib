@@ -6,11 +6,12 @@ package carbonreceiver // import "github.com/open-telemetry/opentelemetry-collec
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/carbonreceiver/internal/transport"
 	"go.opentelemetry.io/collector/receiver"
 	"go.opentelemetry.io/collector/receiver/receiverhelper"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/carbonreceiver/internal/transport"
 )
 
 // reporter struct implements the transport.Reporter interface to give consistent

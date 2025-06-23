@@ -9,8 +9,9 @@ import (
 	"encoding/hex"
 	"errors"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 	"github.com/twmb/murmur3"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 )
 
 type Murmur3Hash128Arguments[K any] struct {

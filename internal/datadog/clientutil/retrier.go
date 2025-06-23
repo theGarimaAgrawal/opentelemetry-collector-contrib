@@ -9,10 +9,11 @@ import (
 	"time"
 
 	"github.com/cenkalti/backoff/v4"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/scrub"
 	"go.opentelemetry.io/collector/config/configretry"
 	"go.opentelemetry.io/collector/consumer/consumererror"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/scrub"
 )
 
 type Retrier struct {

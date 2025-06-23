@@ -6,11 +6,12 @@ package plogutil_test
 import (
 	"testing"
 
+	"github.com/stretchr/testify/assert"
+	"go.opentelemetry.io/collector/pdata/plog"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector/internal/plogutil"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector/internal/plogutiltest"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/plogtest"
-	"github.com/stretchr/testify/assert"
-	"go.opentelemetry.io/collector/pdata/plog"
 )
 
 func TestMoveResourcesIf(t *testing.T) {

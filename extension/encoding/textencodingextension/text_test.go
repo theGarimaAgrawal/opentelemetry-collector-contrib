@@ -7,9 +7,10 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/textutils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/textutils"
 )
 
 func TestTextRoundtrip(t *testing.T) {

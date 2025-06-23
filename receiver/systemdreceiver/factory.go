@@ -6,10 +6,11 @@ package systemdreceiver // import "github.com/open-telemetry/opentelemetry-colle
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/systemdreceiver/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/receiver"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/systemdreceiver/internal/metadata"
 )
 
 // NewFactory creates a factory for systemd receiver.

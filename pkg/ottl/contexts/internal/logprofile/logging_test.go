@@ -6,11 +6,12 @@ package logprofile
 import (
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/pprofiletest"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/collector/pdata/pprofile"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/pprofiletest"
 )
 
 func TestProfile_MarshalLogObject(t *testing.T) {

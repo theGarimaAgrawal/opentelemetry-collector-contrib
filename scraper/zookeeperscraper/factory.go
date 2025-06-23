@@ -6,10 +6,11 @@ package zookeeperscraper // import "github.com/open-telemetry/opentelemetry-coll
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/scraper/zookeeperscraper/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/config/confignet"
 	"go.opentelemetry.io/collector/scraper"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/scraper/zookeeperscraper/internal/metadata"
 )
 
 const (

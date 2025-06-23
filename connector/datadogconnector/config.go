@@ -6,8 +6,9 @@ package datadogconnector // import "github.com/open-telemetry/opentelemetry-coll
 import (
 	"errors"
 
-	datadogconfig "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/config"
 	"go.opentelemetry.io/collector/component"
+
+	datadogconfig "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/config"
 )
 
 var _ component.Config = (*Config)(nil)

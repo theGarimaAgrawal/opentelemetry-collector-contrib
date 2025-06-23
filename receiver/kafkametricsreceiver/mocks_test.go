@@ -9,8 +9,9 @@ import (
 	"strconv"
 
 	"github.com/IBM/sarama"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
 	"github.com/stretchr/testify/mock"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
 )
 
 const (

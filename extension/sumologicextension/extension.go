@@ -22,8 +22,6 @@ import (
 
 	"github.com/Showmax/go-fqdn"
 	"github.com/cenkalti/backoff/v4"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension/api"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension/credentials"
 	"github.com/shirou/gopsutil/v4/host"
 	"github.com/shirou/gopsutil/v4/process"
 	"go.opentelemetry.io/collector/component"
@@ -33,6 +31,9 @@ import (
 	"go.opentelemetry.io/collector/extension/extensionauth"
 	"go.opentelemetry.io/collector/featuregate"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension/api"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension/credentials"
 )
 
 type SumologicExtension struct {

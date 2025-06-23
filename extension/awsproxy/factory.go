@@ -6,13 +6,14 @@ package awsproxy // import "github.com/open-telemetry/opentelemetry-collector-co
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/awsproxy/internal/metadata"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/proxy"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/testutil"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/config/confignet"
 	"go.opentelemetry.io/collector/config/configtls"
 	"go.opentelemetry.io/collector/extension"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/awsproxy/internal/metadata"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/proxy"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/testutil"
 )
 
 const (

@@ -10,10 +10,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/tcpcheckreceiver/internal/metadata"
 	"go.opentelemetry.io/collector/config/confignet"
 	"go.opentelemetry.io/collector/scraper/scraperhelper"
 	"go.uber.org/multierr"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/tcpcheckreceiver/internal/metadata"
 )
 
 // Predefined error responses for configuration validation failures

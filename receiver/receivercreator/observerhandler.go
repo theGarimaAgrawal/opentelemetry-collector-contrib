@@ -7,12 +7,13 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/receiver"
 	"go.uber.org/multierr"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 )
 
 var _ observer.Notify = (*observerHandler)(nil)

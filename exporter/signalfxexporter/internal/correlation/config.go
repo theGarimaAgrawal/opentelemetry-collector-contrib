@@ -8,9 +8,10 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter/internal/apm/correlations"
 	"go.opentelemetry.io/collector/config/confighttp"
 	conventions "go.opentelemetry.io/otel/semconv/v1.26.0"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter/internal/apm/correlations"
 )
 
 // DefaultConfig returns default configuration correlation values.

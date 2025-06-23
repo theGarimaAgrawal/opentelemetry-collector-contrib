@@ -7,8 +7,9 @@ import (
 	"regexp"
 
 	cinfo "github.com/google/cadvisor/info/v1"
-	ci "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/containerinsight"
 	"go.uber.org/zap"
+
+	ci "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/containerinsight"
 )
 
 var allowedPaths = regexp.MustCompile(`^(tmpfs|\/dev\/.*|overlay)$`)

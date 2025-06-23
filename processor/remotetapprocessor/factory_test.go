@@ -6,8 +6,9 @@ package remotetapprocessor
 import (
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/remotetapprocessor/internal/metadata"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/remotetapprocessor/internal/metadata"
 )
 
 func TestNewFactory(t *testing.T) {

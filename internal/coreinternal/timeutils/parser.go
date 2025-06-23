@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/elastic/lunes"
+
 	strptime "github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/timeutils/internal/ctimefmt"
 )
 

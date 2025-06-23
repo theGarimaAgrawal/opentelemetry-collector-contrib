@@ -6,10 +6,11 @@ package pulsarreceiver // import "github.com/open-telemetry/opentelemetry-collec
 import (
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/pulsarreceiver/internal/metadata"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/collector/consumer/consumertest"
 	"go.opentelemetry.io/collector/receiver/receivertest"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/pulsarreceiver/internal/metadata"
 )
 
 func Test_newTracesReceiver_err(t *testing.T) {

@@ -8,9 +8,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/sharedcomponent"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/metadata"
 	quotaclientset "github.com/openshift/client-go/quota/clientset/versioned"
 	fakeQuota "github.com/openshift/client-go/quota/clientset/versioned/fake"
 	"github.com/stretchr/testify/assert"
@@ -21,6 +18,10 @@ import (
 	"go.opentelemetry.io/collector/receiver/receivertest"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/kubernetes/fake"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/sharedcomponent"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/metadata"
 )
 
 func TestFactory(t *testing.T) {

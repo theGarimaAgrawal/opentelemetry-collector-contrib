@@ -11,6 +11,7 @@ import (
 
 	"github.com/antchfx/xmlquery"
 	"github.com/antchfx/xpath"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 )
 

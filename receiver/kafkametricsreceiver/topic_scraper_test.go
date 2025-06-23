@@ -10,12 +10,13 @@ import (
 	"testing"
 
 	"github.com/IBM/sarama"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkametricsreceiver/internal/metadata"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/component/componenttest"
 	"go.opentelemetry.io/collector/receiver/receivertest"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkametricsreceiver/internal/metadata"
 )
 
 func TestTopicShutdown(t *testing.T) {

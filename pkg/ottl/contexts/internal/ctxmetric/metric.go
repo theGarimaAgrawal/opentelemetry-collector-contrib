@@ -6,10 +6,11 @@ package ctxmetric // import "github.com/open-telemetry/opentelemetry-collector-c
 import (
 	"context"
 
+	"go.opentelemetry.io/collector/pdata/pmetric"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/internal/ctxerror"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/internal/ctxutil"
-	"go.opentelemetry.io/collector/pdata/pmetric"
 )
 
 func PathGetSetter[K Context](path ottl.Path[K]) (ottl.GetSetter[K], error) {

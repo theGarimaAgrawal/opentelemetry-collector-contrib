@@ -8,9 +8,10 @@ import (
 	"errors"
 	"fmt"
 
+	"go.opentelemetry.io/collector/pdata/pmetric"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlmetric"
-	"go.opentelemetry.io/collector/pdata/pmetric"
 )
 
 type convertGaugeToSumArguments struct {

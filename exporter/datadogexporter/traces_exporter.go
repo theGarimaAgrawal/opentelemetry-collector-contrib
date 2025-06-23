@@ -20,13 +20,6 @@ import (
 	"github.com/DataDog/opentelemetry-mapping-go/pkg/inframetadata"
 	"github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes"
 	"github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes/source"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/datadogexporter/internal/metrics"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/clientutil"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/hostmetadata"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/scrub"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/agentcomponents"
-	datadogconfig "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/config"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/exporter"
 	"go.opentelemetry.io/collector/featuregate"
@@ -34,6 +27,14 @@ import (
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	"go.uber.org/zap"
 	zorkian "gopkg.in/zorkian/go-datadog-api.v2"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/datadogexporter/internal/metrics"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/clientutil"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/hostmetadata"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/scrub"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/agentcomponents"
+	datadogconfig "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/config"
 )
 
 var traceCustomHTTPFeatureGate = featuregate.GlobalRegistry().MustRegister(

@@ -8,9 +8,10 @@ import (
 	"errors"
 	"fmt"
 
+	"go.opentelemetry.io/collector/pdata/pcommon"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/internal/ottlcommon"
-	"go.opentelemetry.io/collector/pdata/pcommon"
 )
 
 func SetValue(value pcommon.Value, val any) error {

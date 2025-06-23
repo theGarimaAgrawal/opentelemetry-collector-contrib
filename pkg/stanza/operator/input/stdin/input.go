@@ -10,10 +10,11 @@ import (
 	"os"
 	"sync"
 
+	"go.uber.org/zap"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
-	"go.uber.org/zap"
 )
 
 // Input is an operator that reads input from stdin

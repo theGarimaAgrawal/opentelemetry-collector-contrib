@@ -8,11 +8,12 @@ import (
 	"errors"
 	"fmt"
 
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/pdata/ptrace"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/zipkin/zipkinv1"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/zipkin/zipkinv2"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/pdata/ptrace"
 )
 
 const (

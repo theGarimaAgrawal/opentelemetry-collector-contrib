@@ -6,8 +6,9 @@ package logs
 import (
 	"errors"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/cmd/telemetrygen/internal/common"
 	"github.com/spf13/pflag"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/cmd/telemetrygen/internal/common"
 )
 
 // Config describes the test scenario.

@@ -6,9 +6,10 @@ package resourcequota // import "github.com/open-telemetry/opentelemetry-collect
 import (
 	"strings"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/metadata"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	corev1 "k8s.io/api/core/v1"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/metadata"
 )
 
 func RecordMetrics(mb *metadata.MetricsBuilder, rq *corev1.ResourceQuota, ts pcommon.Timestamp) {

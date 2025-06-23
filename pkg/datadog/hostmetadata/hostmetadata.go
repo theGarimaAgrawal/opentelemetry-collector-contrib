@@ -7,8 +7,9 @@ import (
 	"time"
 
 	"github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes/source"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/hostmetadata"
 	"go.opentelemetry.io/collector/component"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/hostmetadata"
 )
 
 // GetSourceProvider returns a provider which can be used to identify a source

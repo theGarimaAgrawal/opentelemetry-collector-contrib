@@ -8,10 +8,11 @@ package roundrobinconnector // import "github.com/open-telemetry/opentelemetry-c
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/roundrobinconnector/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/connector"
 	"go.opentelemetry.io/collector/consumer"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/roundrobinconnector/internal/metadata"
 )
 
 // NewFactory returns a ConnectorFactory.

@@ -14,11 +14,12 @@ import (
 	ces "github.com/huaweicloud/huaweicloud-sdk-go-v3/services/ces/v1"
 	"github.com/huaweicloud/huaweicloud-sdk-go-v3/services/ces/v1/model"
 	"github.com/huaweicloud/huaweicloud-sdk-go-v3/services/ces/v1/region"
-	internal "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/huaweicloudcesreceiver/internal"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/receiver"
 	"go.uber.org/zap"
+
+	internal "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/huaweicloudcesreceiver/internal"
 )
 
 const (

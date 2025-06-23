@@ -6,8 +6,9 @@ package vcenterreceiver // import "github.com/open-telemetry/opentelemetry-colle
 import (
 	"fmt"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/vcenterreceiver/internal/metadata"
 	"github.com/vmware/govmomi/vim25/mo"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/vcenterreceiver/internal/metadata"
 )
 
 // createDatastoreResourceBuilder returns a ResourceBuilder with

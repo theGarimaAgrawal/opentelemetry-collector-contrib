@@ -7,9 +7,10 @@ import (
 	"fmt"
 	"strings"
 
+	"go.uber.org/multierr"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter/internal/translation"
 	metadata "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/experimentalmetricmetadata"
-	"go.uber.org/multierr"
 )
 
 // MetadataUpdateClient is an interface for pushing metadata updates

@@ -6,10 +6,11 @@ package pipeline
 import (
 	"testing"
 
+	"github.com/stretchr/testify/require"
+
 	_ "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/input/generate"
 	_ "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/transformer/noop"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/testutil"
-	"github.com/stretchr/testify/require"
 )
 
 func TestNodeDOTID(t *testing.T) {

@@ -7,9 +7,10 @@ import (
 	"fmt"
 	"regexp"
 
-	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	conventions "go.opentelemetry.io/otel/semconv/v1.18.0"
+
+	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 )
 
 func addSQLToSpan(sql *awsxray.SQLData, attrs pcommon.Map) error {

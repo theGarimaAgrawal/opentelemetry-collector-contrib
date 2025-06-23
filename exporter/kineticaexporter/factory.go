@@ -6,10 +6,11 @@ package kineticaexporter // import "github.com/open-telemetry/opentelemetry-coll
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kineticaexporter/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/exporter"
 	"go.opentelemetry.io/collector/exporter/exporterhelper"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kineticaexporter/internal/metadata"
 )
 
 // NewFactory creates a factory for Kinetica exporter.

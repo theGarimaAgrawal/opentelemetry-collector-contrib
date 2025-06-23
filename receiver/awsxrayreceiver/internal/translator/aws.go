@@ -6,9 +6,10 @@ package translator // import "github.com/open-telemetry/opentelemetry-collector-
 import (
 	"strconv"
 
-	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	conventions "go.opentelemetry.io/otel/semconv/v1.18.0"
+
+	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 )
 
 func addAWSToResource(aws *awsxray.AWSData, attrs pcommon.Map) {

@@ -6,9 +6,10 @@ package translator // import "github.com/open-telemetry/opentelemetry-collector-
 import (
 	"sync"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/pdata/pcommon"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
 )
 
 type MetricsTranslator struct {

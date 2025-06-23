@@ -6,9 +6,6 @@ package healthcheckv2extension // import "github.com/open-telemetry/opentelemetr
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckv2extension/internal/grpc"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckv2extension/internal/http"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/status"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componentstatus"
 	"go.opentelemetry.io/collector/confmap"
@@ -16,6 +13,10 @@ import (
 	"go.opentelemetry.io/collector/extension/extensioncapabilities"
 	"go.uber.org/multierr"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckv2extension/internal/grpc"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckv2extension/internal/http"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/status"
 )
 
 type eventSourcePair struct {

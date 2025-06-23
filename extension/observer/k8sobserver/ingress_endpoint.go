@@ -8,8 +8,9 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 	v1 "k8s.io/api/networking/v1"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 )
 
 // convertIngressToEndpoints converts a ingress instance into a slice of endpoints. The endpoints

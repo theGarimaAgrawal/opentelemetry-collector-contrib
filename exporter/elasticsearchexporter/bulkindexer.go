@@ -16,11 +16,12 @@ import (
 
 	"github.com/elastic/go-docappender/v2"
 	"github.com/elastic/go-elasticsearch/v8/esapi"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter/internal/logging"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/config/configcompression"
 	"go.opentelemetry.io/collector/exporter"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter/internal/logging"
 )
 
 type bulkIndexer interface {

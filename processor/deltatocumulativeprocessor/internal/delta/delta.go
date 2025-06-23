@@ -6,9 +6,10 @@ package delta // import "github.com/open-telemetry/opentelemetry-collector-contr
 import (
 	"fmt"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data"
 )
 
 type ErrOlderStart struct {

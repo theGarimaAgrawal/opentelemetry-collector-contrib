@@ -7,10 +7,11 @@ import (
 	"testing"
 
 	"github.com/huaweicloud/huaweicloud-sdk-go-v3/services/ces/v1/model"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/pmetrictest"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/pdata/pmetric"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/pmetrictest"
 )
 
 const jsonBytes = `{

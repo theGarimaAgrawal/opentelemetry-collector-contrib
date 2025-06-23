@@ -10,11 +10,12 @@ import (
 	"sync"
 	"text/template"
 
+	"go.uber.org/multierr"
+	"go.uber.org/zap"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
-	"go.uber.org/multierr"
-	"go.uber.org/zap"
 )
 
 // Output is an operator that writes logs to a file.

@@ -6,11 +6,12 @@ package pmetricutil_test
 import (
 	"testing"
 
+	"github.com/stretchr/testify/assert"
+	"go.opentelemetry.io/collector/pdata/pmetric"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector/internal/pmetricutil"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector/internal/pmetricutiltest"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/pmetrictest"
-	"github.com/stretchr/testify/assert"
-	"go.opentelemetry.io/collector/pdata/pmetric"
 )
 
 func TestMoveResourcesIf(t *testing.T) {

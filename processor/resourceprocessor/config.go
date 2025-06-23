@@ -6,8 +6,9 @@ package resourceprocessor // import "github.com/open-telemetry/opentelemetry-col
 import (
 	"errors"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/attraction"
 	"go.opentelemetry.io/collector/component"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/attraction"
 )
 
 // Config defines configuration for Resource processor.

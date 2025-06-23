@@ -7,8 +7,9 @@ import (
 	"errors"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
 	"go.uber.org/multierr"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
 )
 
 // Config defines configuration for docker observer

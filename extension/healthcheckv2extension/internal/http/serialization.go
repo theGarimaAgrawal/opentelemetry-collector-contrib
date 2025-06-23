@@ -6,8 +6,9 @@ package http // import "github.com/open-telemetry/opentelemetry-collector-contri
 import (
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/status"
 	"go.opentelemetry.io/collector/component/componentstatus"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/status"
 )
 
 type healthyFunc func(status.Event) bool

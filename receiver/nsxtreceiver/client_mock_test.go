@@ -7,8 +7,9 @@ import (
 	context "context"
 	testing "testing"
 
-	model "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/nsxtreceiver/internal/model"
 	mock "github.com/stretchr/testify/mock"
+
+	model "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/nsxtreceiver/internal/model"
 )
 
 const (

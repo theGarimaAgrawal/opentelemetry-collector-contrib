@@ -12,9 +12,10 @@ import (
 	"strings"
 
 	cInfo "github.com/google/cadvisor/info/v1"
+	"go.uber.org/zap"
+
 	ci "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/containerinsight"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver/internal/cadvisor/extractors"
-	"go.uber.org/zap"
 )
 
 const (

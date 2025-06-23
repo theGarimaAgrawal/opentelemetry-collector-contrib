@@ -7,8 +7,9 @@ import (
 	"errors"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
 	"k8s.io/client-go/kubernetes"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
 )
 
 // Config is the configuration for the leader elector extension.

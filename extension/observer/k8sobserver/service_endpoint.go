@@ -6,8 +6,9 @@ package k8sobserver // import "github.com/open-telemetry/opentelemetry-collector
 import (
 	"fmt"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 	v1 "k8s.io/api/core/v1"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 )
 
 // convertServiceToEndpoints converts a service instance into a slice of endpoints. The endpoints

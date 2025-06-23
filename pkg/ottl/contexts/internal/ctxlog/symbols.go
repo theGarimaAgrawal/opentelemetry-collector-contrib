@@ -4,8 +4,9 @@
 package ctxlog // import "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/internal/ctxlog"
 
 import (
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 	"go.opentelemetry.io/collector/pdata/plog"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 )
 
 var SymbolTable = map[ottl.EnumSymbol]ottl.Enum{

@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/goccy/go-json"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
 )

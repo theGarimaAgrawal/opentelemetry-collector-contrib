@@ -11,13 +11,14 @@ import (
 	"testing"
 
 	"github.com/gosnmp/gosnmp"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/snmpreceiver/internal/mocks"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componenttest"
 	"go.opentelemetry.io/collector/scraper/scrapererror"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/snmpreceiver/internal/mocks"
 )
 
 func TestNewClient(t *testing.T) {

@@ -16,9 +16,10 @@ import (
 	"github.com/DataDog/datadog-agent/pkg/config/viperconfig"
 	"github.com/DataDog/datadog-agent/pkg/serializer"
 	zlib "github.com/DataDog/datadog-agent/pkg/util/compression/impl-zlib"
-	datadogconfig "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/config"
 	"go.opentelemetry.io/collector/component"
 	"golang.org/x/net/http/httpproxy"
+
+	datadogconfig "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/config"
 )
 
 // ConfigOption is a function that configures the Datadog agent config component.

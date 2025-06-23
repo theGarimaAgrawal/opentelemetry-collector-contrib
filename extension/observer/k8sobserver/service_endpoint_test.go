@@ -6,8 +6,9 @@ package k8sobserver // import "github.com/open-telemetry/opentelemetry-collector
 import (
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 	"github.com/stretchr/testify/require"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 )
 
 func TestServiceObjectToEndpoint(t *testing.T) {

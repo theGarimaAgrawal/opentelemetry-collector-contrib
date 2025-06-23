@@ -11,9 +11,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/winperfcounters"
 	"github.com/shirou/gopsutil/v4/load"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/winperfcounters"
 )
 
 // Sample processor queue length at a 5s frequency, and calculate exponentially weighted moving averages

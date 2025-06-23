@@ -7,9 +7,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/textutils"
 	"golang.org/x/text/encoding"
 	"golang.org/x/text/transform"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/textutils"
 )
 
 // Deprecated: [v0.120.0] Use directly the encoding.Decoder().

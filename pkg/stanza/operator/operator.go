@@ -6,8 +6,9 @@ package operator // import "github.com/open-telemetry/opentelemetry-collector-co
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 )
 
 // Operator is a log monitoring component.

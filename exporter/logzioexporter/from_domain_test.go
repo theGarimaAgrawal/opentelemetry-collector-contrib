@@ -15,9 +15,10 @@ import (
 
 	"github.com/gogo/protobuf/jsonpb"
 	"github.com/jaegertracing/jaeger-idl/model/v1"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/logzioexporter/internal/dbmodel"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/logzioexporter/internal/dbmodel"
 )
 
 func TestFromDomainEmbedProcess(t *testing.T) {

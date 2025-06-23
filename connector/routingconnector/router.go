@@ -8,6 +8,10 @@ import (
 	"fmt"
 	"strings"
 
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/pipeline"
+	"go.uber.org/zap"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector/internal/common"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottldatapoint"
@@ -15,9 +19,6 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlmetric"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlresource"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlspan"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/pipeline"
-	"go.uber.org/zap"
 )
 
 var errPipelineNotFound = errors.New("pipeline not found")

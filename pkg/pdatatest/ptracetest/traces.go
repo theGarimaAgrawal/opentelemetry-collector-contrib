@@ -7,9 +7,10 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/internal"
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	"go.uber.org/multierr"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/internal"
 )
 
 // CompareTraces compares each part of two given Traces and returns

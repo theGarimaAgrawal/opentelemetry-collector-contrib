@@ -7,7 +7,6 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/alias"
 	"go.opentelemetry.io/collector/pdata/plog"
 	"go.opentelemetry.io/collector/pdata/pmetric"
 	"go.opentelemetry.io/collector/pdata/ptrace"
@@ -15,6 +14,8 @@ import (
 	ast11 "go.opentelemetry.io/otel/schema/v1.1/ast"
 	"go.uber.org/multierr"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/alias"
 )
 
 // Translation defines the complete abstraction of schema translation file

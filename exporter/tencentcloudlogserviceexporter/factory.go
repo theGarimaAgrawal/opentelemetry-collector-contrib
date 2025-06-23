@@ -8,9 +8,10 @@ package tencentcloudlogserviceexporter // import "github.com/open-telemetry/open
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/tencentcloudlogserviceexporter/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/exporter"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/tencentcloudlogserviceexporter/internal/metadata"
 )
 
 // NewFactory creates a factory for tencentcloud LogService exporter.

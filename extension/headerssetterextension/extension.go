@@ -9,13 +9,14 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/headerssetterextension/internal/action"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/headerssetterextension/internal/source"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
 	"go.opentelemetry.io/collector/extension/extensionauth"
 	"go.uber.org/zap"
 	"google.golang.org/grpc/credentials"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/headerssetterextension/internal/action"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/headerssetterextension/internal/source"
 )
 
 type header struct {

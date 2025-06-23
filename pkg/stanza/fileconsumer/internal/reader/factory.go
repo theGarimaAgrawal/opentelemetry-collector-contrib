@@ -12,6 +12,10 @@ import (
 	"sync"
 	"time"
 
+	"go.opentelemetry.io/collector/component"
+	"go.uber.org/zap"
+	"golang.org/x/text/encoding"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/fileconsumer/attrs"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/fileconsumer/emit"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/fileconsumer/internal/fingerprint"
@@ -19,9 +23,6 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/flush"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/tokenlen"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/trim"
-	"go.opentelemetry.io/collector/component"
-	"go.uber.org/zap"
-	"golang.org/x/text/encoding"
 )
 
 const (

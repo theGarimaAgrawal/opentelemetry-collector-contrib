@@ -5,6 +5,7 @@ package datadog // import "github.com/open-telemetry/opentelemetry-collector-con
 
 import (
 	tracelog "github.com/DataDog/datadog-agent/pkg/trace/log"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/agentcomponents"
 )
 

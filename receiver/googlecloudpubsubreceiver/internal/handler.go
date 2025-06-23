@@ -13,13 +13,14 @@ import (
 	"time"
 
 	"cloud.google.com/go/pubsub/apiv1/pubsubpb"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudpubsubreceiver/internal/metadata"
 	"go.opentelemetry.io/collector/receiver"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/metric"
 	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudpubsubreceiver/internal/metadata"
 )
 
 // Time to wait before restarting, when the stream stopped

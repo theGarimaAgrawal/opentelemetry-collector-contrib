@@ -11,12 +11,13 @@ import (
 	"testing"
 
 	lmsdktraces "github.com/logicmonitor/lm-data-sdk-go/api/traces"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/logicmonitorexporter/internal/metadata"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/collector/component/componenttest"
 	"go.opentelemetry.io/collector/config/confighttp"
 	"go.opentelemetry.io/collector/exporter/exportertest"
 	"go.opentelemetry.io/collector/pdata/ptrace"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/logicmonitorexporter/internal/metadata"
 )
 
 func Test_NewTracesExporter(t *testing.T) {

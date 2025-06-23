@@ -6,10 +6,11 @@ package receivercreator // import "github.com/open-telemetry/opentelemetry-colle
 import (
 	"fmt"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 	"github.com/spf13/cast"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/confmap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 )
 
 const (

@@ -17,7 +17,6 @@ import (
 	"time"
 
 	"github.com/klauspost/compress/zstd"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/testdata"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/component/componenttest"
@@ -27,6 +26,8 @@ import (
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	"go.uber.org/zap"
 	"gopkg.in/natefinch/lumberjack.v2"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/testdata"
 )
 
 func buildUnCompressor(compressor string) func([]byte) ([]byte, error) {

@@ -10,9 +10,10 @@ import (
 
 	sls "github.com/aliyun/aliyun-log-go-sdk"
 	"github.com/gogo/protobuf/proto"
+	"go.opentelemetry.io/collector/pdata/ptrace"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/tracetranslator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/traceutil"
-	"go.opentelemetry.io/collector/pdata/ptrace"
 )
 
 const (

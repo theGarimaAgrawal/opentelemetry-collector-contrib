@@ -8,9 +8,10 @@ package namedpipe // import "github.com/open-telemetry/opentelemetry-collector-c
 import (
 	"fmt"
 
+	"go.opentelemetry.io/collector/component"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/textutils"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
-	"go.opentelemetry.io/collector/component"
 )
 
 func init() {

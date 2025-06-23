@@ -4,12 +4,13 @@
 package udplogreceiver // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/udplogreceiver"
 
 import (
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/receiver"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/adapter"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/input/udp"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/udplogreceiver/internal/metadata"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/receiver"
 )
 
 // NewFactory creates a factory for udp receiver

@@ -7,8 +7,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver/internal/metadataparser"
 	"github.com/stretchr/testify/require"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver/internal/metadataparser"
 )
 
 // Kind of sanity check test of metrics.yaml used for production usage

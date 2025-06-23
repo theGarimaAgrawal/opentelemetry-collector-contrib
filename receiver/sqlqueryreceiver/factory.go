@@ -6,9 +6,10 @@ package sqlqueryreceiver // import "github.com/open-telemetry/opentelemetry-coll
 import (
 	"database/sql"
 
+	"go.opentelemetry.io/collector/receiver"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/sqlquery"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/sqlqueryreceiver/internal/metadata"
-	"go.opentelemetry.io/collector/receiver"
 )
 
 func NewFactory() receiver.Factory {

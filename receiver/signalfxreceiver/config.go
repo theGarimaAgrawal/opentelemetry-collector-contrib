@@ -6,8 +6,9 @@ package signalfxreceiver // import "github.com/open-telemetry/opentelemetry-coll
 import (
 	"errors"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 	"go.opentelemetry.io/collector/config/confighttp"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 )
 
 var errEmptyEndpoint = errors.New("empty endpoint")

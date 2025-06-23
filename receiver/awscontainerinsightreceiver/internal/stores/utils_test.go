@@ -8,8 +8,9 @@ import (
 	"testing"
 	"time"
 
-	ci "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/containerinsight"
 	"github.com/stretchr/testify/assert"
+
+	ci "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/containerinsight"
 )
 
 type mockCIMetric struct {

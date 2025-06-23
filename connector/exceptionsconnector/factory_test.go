@@ -8,12 +8,13 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/exceptionsconnector/internal/metadata"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/pdatautil"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/collector/connector/connectortest"
 	"go.opentelemetry.io/collector/consumer/consumertest"
 	"go.opentelemetry.io/collector/pdata/pcommon"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/exceptionsconnector/internal/metadata"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/pdatautil"
 )
 
 func TestNewConnector(t *testing.T) {

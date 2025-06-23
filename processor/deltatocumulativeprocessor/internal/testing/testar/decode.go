@@ -26,8 +26,9 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/testing/testar/crlf"
 	"golang.org/x/tools/txtar"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/testing/testar/crlf"
 )
 
 // Read archive data into the fields of struct *T

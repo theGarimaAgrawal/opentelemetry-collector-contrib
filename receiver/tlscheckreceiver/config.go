@@ -6,10 +6,11 @@ package tlscheckreceiver // import "github.com/open-telemetry/opentelemetry-coll
 import (
 	"errors"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/tlscheckreceiver/internal/metadata"
 	"go.opentelemetry.io/collector/config/confignet"
 	"go.opentelemetry.io/collector/scraper/scraperhelper"
 	"go.uber.org/multierr"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/tlscheckreceiver/internal/metadata"
 )
 
 // Predefined error responses for configuration validation failures

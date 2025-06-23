@@ -9,7 +9,6 @@ import (
 	coreconfig "github.com/DataDog/datadog-agent/comp/core/config"
 	"github.com/DataDog/datadog-agent/comp/forwarder/defaultforwarder"
 	pkgconfigmodel "github.com/DataDog/datadog-agent/pkg/config/model"
-	datadogconfig "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/component"
@@ -19,6 +18,8 @@ import (
 	"go.opentelemetry.io/collector/config/configopaque"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+
+	datadogconfig "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/config"
 )
 
 func TestNewConfigComponent_WithOptions(t *testing.T) {

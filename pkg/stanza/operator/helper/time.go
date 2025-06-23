@@ -10,10 +10,11 @@ import (
 	"strings"
 	"time"
 
+	"go.opentelemetry.io/collector/confmap"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/timeutils"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	stanza_errors "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/errors"
-	"go.opentelemetry.io/collector/confmap"
 )
 
 // StrptimeKey is literally "strptime", and is the default layout type

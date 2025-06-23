@@ -17,11 +17,6 @@ import (
 	"time"
 
 	pkgconfigmodel "github.com/DataDog/datadog-agent/pkg/config/model"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/datadogextension/internal/componentchecker"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/datadogextension/internal/httpserver"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/datadogextension/internal/payload"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/agentcomponents"
-	datadogconfig "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/component"
@@ -30,6 +25,12 @@ import (
 	"go.opentelemetry.io/collector/confmap/provider/fileprovider"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/datadogextension/internal/componentchecker"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/datadogextension/internal/httpserver"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/datadogextension/internal/payload"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/agentcomponents"
+	datadogconfig "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/datadog/config"
 )
 
 func TestPopulateActiveComponentsIntegration(t *testing.T) {

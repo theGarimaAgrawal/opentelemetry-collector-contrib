@@ -9,12 +9,13 @@ import (
 	"fmt"
 
 	"github.com/expr-lang/expr/vm"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
-	stanza_errors "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/errors"
 	"go.opentelemetry.io/collector/component"
 	"go.uber.org/multierr"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
+	stanza_errors "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/errors"
 )
 
 // NewTransformerConfig creates a new transformer config with default values

@@ -6,8 +6,9 @@ import (
 	"fmt"
 	"testing"
 
-	recvErr "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awsxrayreceiver/internal/errors"
 	"github.com/stretchr/testify/assert"
+
+	recvErr "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awsxrayreceiver/internal/errors"
 )
 
 func TestSplitHeaderBodyWithSeparatorExists(t *testing.T) {

@@ -8,6 +8,7 @@ import (
 	"fmt"
 
 	"github.com/docker/docker/client"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/metadataproviders/internal"
 )
 

@@ -7,9 +7,10 @@ import (
 	"fmt"
 	"time"
 
+	"go.opentelemetry.io/collector/component"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/metadata"
-	"go.opentelemetry.io/collector/component"
 )
 
 // Config defines configuration for kubernetes cluster receiver.

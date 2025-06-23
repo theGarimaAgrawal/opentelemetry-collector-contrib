@@ -5,10 +5,11 @@ package azureeventhubreceiver // import "github.com/open-telemetry/opentelemetry
 
 import (
 	eventhub "github.com/Azure/azure-event-hubs-go/v3"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/azure"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/azure"
 )
 
 type azureTracesEventUnmarshaler struct {

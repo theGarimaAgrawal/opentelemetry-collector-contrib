@@ -7,9 +7,10 @@ import (
 	"context"
 	"errors"
 
+	"go.opentelemetry.io/collector/component"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	stanza_errors "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/errors"
-	"go.opentelemetry.io/collector/component"
 )
 
 // NewParserConfig creates a new parser config with default values

@@ -17,6 +17,7 @@ import (
 	armresourcesfake "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armresources/v2/fake"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armsubscriptions"
 	armsubscriptionsfake "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armsubscriptions/fake"
+
 	azmetricsfake "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/azuremonitorreceiver/fake"
 )
 

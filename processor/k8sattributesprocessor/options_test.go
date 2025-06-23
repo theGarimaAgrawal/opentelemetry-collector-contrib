@@ -7,12 +7,13 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor/internal/kube"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	conventions "go.opentelemetry.io/otel/semconv/v1.6.1"
 	"k8s.io/apimachinery/pkg/selection"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor/internal/kube"
 )
 
 func TestWithAPIConfig(t *testing.T) {

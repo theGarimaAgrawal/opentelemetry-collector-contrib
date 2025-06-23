@@ -6,9 +6,10 @@ package fileset // import "github.com/open-telemetry/opentelemetry-collector-con
 import (
 	"testing"
 
+	"github.com/stretchr/testify/require"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/fileconsumer/internal/fingerprint"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/fileconsumer/internal/reader"
-	"github.com/stretchr/testify/require"
 )
 
 type test[T Matchable] struct {

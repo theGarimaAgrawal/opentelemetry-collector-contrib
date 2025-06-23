@@ -8,6 +8,11 @@ package countconnector // import "github.com/open-telemetry/opentelemetry-collec
 import (
 	"context"
 
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/connector"
+	"go.opentelemetry.io/collector/connector/xconnector"
+	"go.opentelemetry.io/collector/consumer"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/countconnector/internal/metadata"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterottl"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
@@ -17,10 +22,6 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlprofile"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlspan"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlspanevent"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/connector"
-	"go.opentelemetry.io/collector/connector/xconnector"
-	"go.opentelemetry.io/collector/consumer"
 )
 
 // NewFactory returns a ConnectorFactory.

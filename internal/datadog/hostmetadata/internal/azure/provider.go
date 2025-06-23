@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes/source"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/hostmetadata/provider"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/metadataproviders/azure"
 )

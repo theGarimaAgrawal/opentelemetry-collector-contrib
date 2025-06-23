@@ -4,12 +4,13 @@
 package tcplogreceiver // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/tcplogreceiver"
 
 import (
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/receiver"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/adapter"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/input/tcp"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/tcplogreceiver/internal/metadata"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/receiver"
 )
 
 // NewFactory creates a factory for tcp receiver

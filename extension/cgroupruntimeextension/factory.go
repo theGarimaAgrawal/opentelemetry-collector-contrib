@@ -9,11 +9,12 @@ import (
 	"runtime/debug"
 
 	"github.com/KimMachineGun/automemlimit/memlimit"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/cgroupruntimeextension/internal/metadata"
 	gomaxecs "github.com/rdforte/gomaxecs/maxprocs"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
 	"go.uber.org/automaxprocs/maxprocs"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/cgroupruntimeextension/internal/metadata"
 )
 
 func NewFactory() extension.Factory {

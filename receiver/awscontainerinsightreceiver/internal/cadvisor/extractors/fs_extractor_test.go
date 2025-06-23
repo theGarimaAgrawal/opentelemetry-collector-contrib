@@ -9,9 +9,10 @@ import (
 	"testing"
 
 	cinfo "github.com/google/cadvisor/info/v1"
+	"github.com/stretchr/testify/assert"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/containerinsight"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver/internal/cadvisor/testutils"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestFSStats(t *testing.T) {

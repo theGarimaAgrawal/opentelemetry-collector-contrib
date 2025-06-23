@@ -6,9 +6,10 @@ package oidcauthextension // import "github.com/open-telemetry/opentelemetry-col
 import (
 	"context"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/oidcauthextension/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/oidcauthextension/internal/metadata"
 )
 
 const (

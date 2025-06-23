@@ -4,17 +4,6 @@
 package testbed // import "github.com/open-telemetry/opentelemetry-collector-contrib/testbed/testbed"
 
 import (
-	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/opencensusexporter"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/stefexporter"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/syslogexporter"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/zipkinexporter"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/stefreceiver"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/syslogreceiver"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver"
 	"go.opentelemetry.io/collector/connector"
 	"go.opentelemetry.io/collector/exporter"
 	"go.opentelemetry.io/collector/exporter/debugexporter"
@@ -29,6 +18,18 @@ import (
 	"go.opentelemetry.io/collector/receiver"
 	"go.opentelemetry.io/collector/receiver/otlpreceiver"
 	"go.uber.org/multierr"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/opencensusexporter"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/stefexporter"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/syslogexporter"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/zipkinexporter"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/stefreceiver"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/syslogreceiver"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver"
 )
 
 // Components returns the set of components for tests

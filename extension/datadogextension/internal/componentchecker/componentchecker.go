@@ -9,12 +9,13 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/datadogextension/internal/payload"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/confmap"
 	"go.opentelemetry.io/collector/otelcol"
 	"go.opentelemetry.io/collector/service"
 	"go.opentelemetry.io/collector/service/pipelines"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/datadogextension/internal/payload"
 )
 
 const (

@@ -188,7 +188,6 @@ func createLogAnnotations(event *alertmanagerLogEvent) model.LabelSet {
 	}
 	if event.traceID != "" {
 		labelMap["TraceID"] = model.LabelValue(event.traceID)
-
 	}
 	if event.spanID != "" {
 		labelMap["SpanID"] = model.LabelValue(event.spanID)
@@ -251,7 +250,7 @@ func (s *alertmanagerExporter) convertLogEventsToAlertPayload(events []*alertman
 		labels := s.createLogLabels(event)
 
 		alert := model.Alert{
-			StartsAt:     time.Now(), //by default, Alertmanager uses StartsAt as the time when the alert was created
+			StartsAt:     time.Now(), // by default, Alertmanager uses StartsAt as the time when the alert was created
 			Labels:       labels,
 			Annotations:  annotations,
 			GeneratorURL: s.generatorURL,

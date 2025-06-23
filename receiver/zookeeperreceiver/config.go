@@ -4,8 +4,9 @@
 package zookeeperreceiver // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zookeeperreceiver"
 
 import (
-	"github.com/open-telemetry/opentelemetry-collector-contrib/scraper/zookeeperscraper"
 	"go.opentelemetry.io/collector/scraper/scraperhelper"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/scraper/zookeeperscraper"
 )
 
 type Config struct {

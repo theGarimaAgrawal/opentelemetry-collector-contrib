@@ -6,9 +6,10 @@ package attributesprocessor // import "github.com/open-telemetry/opentelemetry-c
 import (
 	"errors"
 
+	"go.opentelemetry.io/collector/component"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/attraction"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterconfig"
-	"go.opentelemetry.io/collector/component"
 )
 
 // Config specifies the set of attributes to be inserted, updated, upserted and

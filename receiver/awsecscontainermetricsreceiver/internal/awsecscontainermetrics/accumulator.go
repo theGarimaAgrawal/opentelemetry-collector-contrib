@@ -6,10 +6,11 @@ package awsecscontainermetrics // import "github.com/open-telemetry/opentelemetr
 import (
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil"
 )
 
 // metricDataAccumulator defines the accumulator

@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/k8s/k8sutil"
 	"go.uber.org/zap"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -16,6 +15,8 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/cache"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/k8s/k8sutil"
 )
 
 const (

@@ -6,9 +6,10 @@ package pipeline // import "github.com/open-telemetry/opentelemetry-collector-co
 import (
 	"fmt"
 
+	"go.opentelemetry.io/collector/component"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/errors"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
-	"go.opentelemetry.io/collector/component"
 )
 
 // Config is the configuration of a pipeline.

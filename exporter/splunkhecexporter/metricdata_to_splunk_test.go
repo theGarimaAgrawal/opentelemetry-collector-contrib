@@ -11,12 +11,13 @@ import (
 	"time"
 
 	"github.com/goccy/go-json"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 )
 
 func Test_metricDataToSplunk(t *testing.T) {

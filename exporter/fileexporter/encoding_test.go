@@ -10,8 +10,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/fileexporter/internal/metadata"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/otlpencodingextension"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componenttest"
@@ -23,6 +21,9 @@ import (
 	"go.opentelemetry.io/collector/pdata/pmetric"
 	"go.opentelemetry.io/collector/pdata/pprofile"
 	"go.opentelemetry.io/collector/pdata/ptrace"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/fileexporter/internal/metadata"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/otlpencodingextension"
 )
 
 type hostWithEncoding struct {

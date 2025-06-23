@@ -15,8 +15,6 @@ import (
 	agentmetricspb "github.com/census-instrumentation/opencensus-proto/gen-go/agent/metrics/v1"
 	agenttracepb "github.com/census-instrumentation/opencensus-proto/gen-go/agent/trace/v1"
 	gatewayruntime "github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver/internal/ocmetrics"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver/internal/octrace"
 	"github.com/rs/cors"
 	"github.com/soheilhy/cmux"
 	"go.opentelemetry.io/collector/component"
@@ -26,6 +24,9 @@ import (
 	"go.opentelemetry.io/collector/receiver"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver/internal/ocmetrics"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver/internal/octrace"
 )
 
 // ocReceiver is the type that exposes Trace and Metrics reception.

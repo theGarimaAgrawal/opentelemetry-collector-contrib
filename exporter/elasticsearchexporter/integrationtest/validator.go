@@ -6,8 +6,9 @@ package integrationtest // import "github.com/open-telemetry/opentelemetry-colle
 import (
 	"testing"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/testbed/testbed"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/testbed/testbed"
 )
 
 // countValidator provides a testbed validator that only asserts for counts.

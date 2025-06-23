@@ -10,9 +10,10 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 	"go.opentelemetry.io/collector/consumer/consumererror"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 )
 
 type hecWorker interface {

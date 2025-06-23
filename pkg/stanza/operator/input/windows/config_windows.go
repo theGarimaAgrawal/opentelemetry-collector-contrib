@@ -8,8 +8,9 @@ package windows // import "github.com/open-telemetry/opentelemetry-collector-con
 import (
 	"errors"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"go.opentelemetry.io/collector/component"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 )
 
 func init() {

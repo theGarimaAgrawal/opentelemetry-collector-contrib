@@ -7,10 +7,11 @@ import (
 	"context"
 	stdjson "encoding/json"
 
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/plog"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding"
 )
 
 var _ encoding.LogsUnmarshalerExtension = (*ext)(nil)

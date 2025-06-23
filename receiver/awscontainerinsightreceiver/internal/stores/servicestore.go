@@ -8,9 +8,10 @@ import (
 	"errors"
 	"time"
 
+	"go.uber.org/zap"
+
 	ci "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/containerinsight"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/k8s/k8sclient"
-	"go.uber.org/zap"
 )
 
 const (

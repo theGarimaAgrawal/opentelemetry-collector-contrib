@@ -13,9 +13,6 @@ import (
 	"time"
 
 	"github.com/distribution/reference"
-	dcommon "github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/docker"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/otel/attribute"
 	conventions "go.opentelemetry.io/otel/semconv/v1.6.1"
@@ -28,6 +25,10 @@ import (
 	"k8s.io/apimachinery/pkg/selection"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/cache"
+
+	dcommon "github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/docker"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor/internal/metadata"
 )
 
 const (

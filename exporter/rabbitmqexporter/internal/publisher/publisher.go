@@ -9,9 +9,10 @@ import (
 	"fmt"
 	"time"
 
-	otelrabbitmq "github.com/open-telemetry/opentelemetry-collector-contrib/internal/rabbitmq"
 	amqp "github.com/rabbitmq/amqp091-go"
 	"go.uber.org/zap"
+
+	otelrabbitmq "github.com/open-telemetry/opentelemetry-collector-contrib/internal/rabbitmq"
 )
 
 type DialConfig struct {

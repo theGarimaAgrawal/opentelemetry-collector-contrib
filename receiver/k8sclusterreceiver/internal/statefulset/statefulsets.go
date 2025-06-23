@@ -4,11 +4,12 @@
 package statefulset // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/statefulset"
 
 import (
+	"go.opentelemetry.io/collector/pdata/pcommon"
+	appsv1 "k8s.io/api/apps/v1"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/experimentalmetricmetadata"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/constants"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/metadata"
-	"go.opentelemetry.io/collector/pdata/pcommon"
-	appsv1 "k8s.io/api/apps/v1"
 )
 
 const (

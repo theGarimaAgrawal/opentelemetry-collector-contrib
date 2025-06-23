@@ -6,9 +6,10 @@ package filtermatcher // import "github.com/open-telemetry/opentelemetry-collect
 import (
 	"fmt"
 
+	"go.opentelemetry.io/collector/pdata/pcommon"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterconfig"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterset"
-	"go.opentelemetry.io/collector/pdata/pcommon"
 )
 
 type instrumentationLibraryMatcher struct {

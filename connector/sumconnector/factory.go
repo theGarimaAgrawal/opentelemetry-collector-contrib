@@ -8,6 +8,10 @@ package sumconnector // import "github.com/open-telemetry/opentelemetry-collecto
 import (
 	"context"
 
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/connector"
+	"go.opentelemetry.io/collector/consumer"
+
 	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/sumconnector/internal/metadata"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterottl"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
@@ -16,9 +20,6 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlmetric"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlspan"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlspanevent"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/connector"
-	"go.opentelemetry.io/collector/consumer"
 )
 
 // NewFactory returns a ConnectorFactory.
