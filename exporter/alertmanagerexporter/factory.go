@@ -6,7 +6,6 @@ package alertmanagerexporter // import "github.com/open-telemetry/opentelemetry-
 import (
 	"context"
 	"errors"
-	"fmt"
 	"time"
 
 	"go.opentelemetry.io/collector/component"
@@ -59,7 +58,7 @@ func createLogsExporter(ctx context.Context, set exporter.Settings, config compo
 	cfg := config.(*Config)
 
 	if cfg.Endpoint == "" {
-		return nil, fmt.Errorf(
+		return nil, errors.New(
 			"exporter config requires a non-empty \"endpoint\"")
 	}
 	return newLogsExporter(ctx, cfg, set)

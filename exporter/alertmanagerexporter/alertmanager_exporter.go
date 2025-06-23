@@ -85,14 +85,14 @@ func (s *alertmanagerExporter) convertSpanEventSliceToArray(eventSlice ptrace.Sp
 func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordSlice) []*alertmanagerLogEvent {
 	if logs.Len() > 0 {
 		events := make([]*alertmanagerLogEvent, logs.Len())
-		var severity, traceId, spanid string
+		var severity, traceID, spanid string
 		for i := range logs.Len() {
 			logRecords := logs.At(i)
 
 			if logRecords.TraceID().IsEmpty() { // Logs don't have trace/ span IDs unless embedded
-				traceId = ""
+				traceID = ""
 			} else {
-				traceId = logRecords.TraceID().String()
+				traceID = logRecords.TraceID().String()
 			}
 			if logRecords.SpanID().IsEmpty() {
 				spanid = ""
@@ -108,7 +108,7 @@ func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordS
 
 			event := alertmanagerLogEvent{
 				LogRecord: logRecords,
-				traceID:   traceId,
+				traceID:   traceID,
 				spanID:    spanid,
 				severity:  severity,
 			}

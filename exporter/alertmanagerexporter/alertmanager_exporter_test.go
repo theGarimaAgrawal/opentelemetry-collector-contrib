@@ -19,7 +19,6 @@ import (
 	"go.opentelemetry.io/collector/config/confighttp"
 	"go.opentelemetry.io/collector/config/configopaque"
 	"go.opentelemetry.io/collector/config/configtls"
-	"go.opentelemetry.io/collector/exporter"
 	"go.opentelemetry.io/collector/exporter/exportertest"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/plog"
@@ -548,15 +547,15 @@ func TestConvertLogRecordSliceToArray(t *testing.T) {
 
 	// Check the second event (log 2)
 	event2 := events[1]
-	assert.Equal(t, "", event2.traceID) // empty TraceID
-	assert.Equal(t, "", event2.spanID)  // empty SpanID
+	assert.Empty(t, event2.traceID, "TraceID should be empty")
+	assert.Empty(t, event2.spanID, "SpanID should be empty")
 	assert.Equal(t, "warning", event2.severity)
 	assert.Equal(t, "Log 2", event2.LogRecord.Body().Str())
 
 	// Check the third event (log 3)
 	event3 := events[2]
-	assert.Equal(t, "", event3.traceID)      // empty TraceID
-	assert.Equal(t, "", event3.spanID)       // empty SpanID
+	assert.Empty(t, event3.traceID, "TraceID should be empty")
+	assert.Empty(t, event3.spanID, "SpanID should be empty")
 	assert.Equal(t, "info", event3.severity) // Default severity
 	assert.Equal(t, "Log 3", event3.LogRecord.Body().Str())
 }
@@ -706,8 +705,4 @@ func TestNewLogsExporter(t *testing.T) {
 	// Assertions
 	require.NoError(t, err, "expected no error creating exporter")
 	require.NotNil(t, exp, "exporter should not be nil")
-
-	// Optionally check if it implements exporter.Logs
-	_, ok := exp.(exporter.Logs)
-	require.True(t, ok, "exporter should implement exporter.Logs")
 }
