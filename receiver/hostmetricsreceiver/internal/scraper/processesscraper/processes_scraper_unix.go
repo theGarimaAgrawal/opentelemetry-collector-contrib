@@ -9,9 +9,8 @@ import (
 	"context"
 	"runtime"
 
-	"github.com/shirou/gopsutil/v4/process"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/processesscraper/internal/metadata"
+	"github.com/shirou/gopsutil/v4/process"
 )
 
 const (

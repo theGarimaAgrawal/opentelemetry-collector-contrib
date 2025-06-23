@@ -12,10 +12,9 @@ import (
 	"os"
 	"testing"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/internal/filetest"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/featuregate"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/internal/filetest"
 )
 
 func TestNewDoesNotModifyOffset(t *testing.T) {

@@ -11,10 +11,9 @@ import (
 	"strings"
 
 	"github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes/source"
-	"go.opentelemetry.io/collector/component"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil/endpoints"
+	"go.opentelemetry.io/collector/component"
 )
 
 var ErrNotOnECSFargate = errors.New("not running on ECS Fargate")

@@ -6,9 +6,8 @@ package metricstransformprocessor
 import (
 	"regexp"
 
-	"go.opentelemetry.io/collector/pdata/pmetric"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/aggregateutil"
+	"go.opentelemetry.io/collector/pdata/pmetric"
 )
 
 type metricsTransformTest struct {

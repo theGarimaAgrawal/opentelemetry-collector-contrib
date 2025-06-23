@@ -15,10 +15,9 @@ import (
 	"path/filepath"
 	"regexp"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/gopsutilenv"
 	"golang.org/x/net/context"
 	"golang.org/x/sys/unix"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/gopsutilenv"
 )
 
 // syscallUname maps to the golib system call, but can be modified for testing

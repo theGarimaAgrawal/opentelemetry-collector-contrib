@@ -8,11 +8,10 @@ import (
 	"fmt"
 
 	"github.com/logicmonitor/lm-data-sdk-go/utils"
+	traces "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/logicmonitorexporter/internal/traces"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/exporter"
 	"go.opentelemetry.io/collector/pdata/ptrace"
-
-	traces "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/logicmonitorexporter/internal/traces"
 )
 
 type tracesExporter struct {

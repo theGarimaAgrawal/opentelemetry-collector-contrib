@@ -6,10 +6,9 @@ package filterfactory // import "github.com/open-telemetry/opentelemetry-collect
 import (
 	"errors"
 
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver/internal/filter"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver/internal/metadata"
+	"go.uber.org/zap"
 )
 
 type filterBuilder struct {

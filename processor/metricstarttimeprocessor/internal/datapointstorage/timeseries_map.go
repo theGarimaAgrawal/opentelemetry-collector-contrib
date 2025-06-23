@@ -6,10 +6,9 @@ package datapointstorage // import "github.com/open-telemetry/opentelemetry-coll
 import (
 	"sync"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatautil"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatautil"
 )
 
 // AttributeHash is used to store a hash of attributes for a metric. See pdatautil.MapHash for more details.

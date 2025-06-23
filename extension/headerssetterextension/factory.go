@@ -6,10 +6,9 @@ package headerssetterextension // import "github.com/open-telemetry/opentelemetr
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/headerssetterextension/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/headerssetterextension/internal/metadata"
 )
 
 // NewFactory creates a factory for the headers setter extension.

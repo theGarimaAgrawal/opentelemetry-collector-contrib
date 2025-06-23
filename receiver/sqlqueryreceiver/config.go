@@ -6,10 +6,9 @@ package sqlqueryreceiver // import "github.com/open-telemetry/opentelemetry-coll
 import (
 	"time"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/sqlquery"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/scraper/scraperhelper"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/sqlquery"
 )
 
 type Config struct {

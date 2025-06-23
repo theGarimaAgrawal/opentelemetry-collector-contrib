@@ -5,10 +5,9 @@ package aggregator // import "github.com/open-telemetry/opentelemetry-collector-
 import (
 	"time"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/signaltometricsconnector/internal/model"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/signaltometricsconnector/internal/model"
 )
 
 // valueCountDP is a wrapper DP to aggregate all datapoints that record

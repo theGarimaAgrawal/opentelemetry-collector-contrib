@@ -8,7 +8,6 @@ import (
 	"context"
 
 	"github.com/jaegertracing/jaeger-idl/proto-gen/api_v2"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling/internal/source"
 )
 

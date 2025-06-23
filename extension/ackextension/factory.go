@@ -6,10 +6,9 @@ package ackextension // import "github.com/open-telemetry/opentelemetry-collecto
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/ackextension/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/ackextension/internal/metadata"
 )
 
 var defaultStorageType = (*component.ID)(nil)

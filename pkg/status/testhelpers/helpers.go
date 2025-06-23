@@ -4,11 +4,10 @@
 package testhelpers // import "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/status/testhelpers"
 
 import (
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/status"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componentstatus"
 	"go.opentelemetry.io/collector/pipeline"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/status"
 )
 
 // PipelineMetadata groups together component and instance IDs for a hypothetical pipeline used

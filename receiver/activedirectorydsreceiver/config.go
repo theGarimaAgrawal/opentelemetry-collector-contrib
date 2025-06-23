@@ -4,9 +4,8 @@
 package activedirectorydsreceiver // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/activedirectorydsreceiver"
 
 import (
-	"go.opentelemetry.io/collector/scraper/scraperhelper"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/activedirectorydsreceiver/internal/metadata"
+	"go.opentelemetry.io/collector/scraper/scraperhelper"
 )
 
 type Config struct {

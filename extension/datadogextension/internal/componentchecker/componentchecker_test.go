@@ -6,13 +6,12 @@ package componentchecker // import "github.com/open-telemetry/opentelemetry-coll
 import (
 	"testing"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/datadogextension/internal/payload"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/confmap"
 	"go.opentelemetry.io/collector/service"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/datadogextension/internal/payload"
 )
 
 func TestDataToFlattenedJSONString(t *testing.T) {

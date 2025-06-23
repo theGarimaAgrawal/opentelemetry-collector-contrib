@@ -9,9 +9,8 @@ import (
 	"fmt"
 
 	"github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes/source"
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/datadog/hostmetadata/provider"
+	"go.uber.org/zap"
 )
 
 var _ source.Provider = (*Provider)(nil)

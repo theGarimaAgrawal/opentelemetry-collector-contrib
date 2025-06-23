@@ -10,10 +10,9 @@ import (
 	"time"
 
 	"github.com/lightstep/go-expohisto/structure"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/statsdreceiver/protocol"
 	"go.opentelemetry.io/collector/config/confignet"
 	"go.uber.org/multierr"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/statsdreceiver/protocol"
 )
 
 // Config defines configuration for StatsD receiver.

@@ -8,9 +8,8 @@ package hostmetricsreceiver
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/gopsutilenv"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestRootPathNotAllowedOnOS(t *testing.T) {

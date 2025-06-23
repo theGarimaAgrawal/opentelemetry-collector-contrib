@@ -7,9 +7,8 @@ import (
 	"errors"
 	"time"
 
-	"go.opentelemetry.io/collector/confmap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/docker"
+	"go.opentelemetry.io/collector/confmap"
 )
 
 // Config defines configuration for docker observer

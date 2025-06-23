@@ -9,9 +9,8 @@ import (
 	"time"
 
 	"github.com/IBM/sarama"
-	"go.opentelemetry.io/collector/config/configcompression"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
+	"go.opentelemetry.io/collector/config/configcompression"
 )
 
 var saramaCompressionCodecs = map[string]sarama.CompressionCodec{

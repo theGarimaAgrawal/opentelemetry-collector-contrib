@@ -13,6 +13,8 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sumologicexporter/internal/metadata"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componenttest"
 	"go.opentelemetry.io/collector/consumer/consumererror"
@@ -24,9 +26,6 @@ import (
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	"go.opentelemetry.io/collector/pipeline"
 	"go.uber.org/zap"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sumologicexporter/internal/metadata"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension"
 )
 
 const (

@@ -6,9 +6,8 @@ package prometheus // import "github.com/open-telemetry/opentelemetry-collector-
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/testutil"
+	"github.com/stretchr/testify/require"
 )
 
 func TestSanitize(t *testing.T) {

@@ -4,9 +4,8 @@
 package transformer // import "github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/transformer"
 
 import (
-	"go.opentelemetry.io/collector/pdata/ptrace"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/migrate"
+	"go.opentelemetry.io/collector/pdata/ptrace"
 )
 
 // SpanEventConditionalAttributes is an transformer that powers the [Span Event's rename_attributes] change.

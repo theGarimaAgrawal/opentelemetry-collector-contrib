@@ -12,10 +12,9 @@ import (
 	"net/http"
 	"net/url"
 
+	dm "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/nsxtreceiver/internal/model"
 	"go.opentelemetry.io/collector/component"
 	"go.uber.org/zap"
-
-	dm "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/nsxtreceiver/internal/model"
 )
 
 var _ (Client) = &nsxClient{}

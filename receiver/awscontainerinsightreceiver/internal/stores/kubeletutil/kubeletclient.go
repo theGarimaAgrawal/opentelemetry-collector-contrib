@@ -7,11 +7,10 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"go.uber.org/zap"
-	corev1 "k8s.io/api/core/v1"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/kubelet"
+	"go.uber.org/zap"
+	corev1 "k8s.io/api/core/v1"
 )
 
 type KubeletClient struct {

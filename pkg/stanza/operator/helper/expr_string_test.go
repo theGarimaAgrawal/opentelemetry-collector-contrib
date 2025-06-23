@@ -7,9 +7,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
+	"github.com/stretchr/testify/require"
 )
 
 func TestExprString(t *testing.T) {

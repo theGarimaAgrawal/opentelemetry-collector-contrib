@@ -6,12 +6,11 @@ package translation // import "github.com/open-telemetry/opentelemetry-collector
 import (
 	"fmt"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 	sfxpb "github.com/signalfx/com_signalfx_metrics_protobuf/model"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/plog"
 	"go.uber.org/zap"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 )
 
 func LogRecordSliceToSignalFxV2(

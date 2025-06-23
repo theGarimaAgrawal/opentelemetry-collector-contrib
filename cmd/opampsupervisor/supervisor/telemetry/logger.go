@@ -4,9 +4,8 @@
 package telemetry
 
 import (
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/cmd/opampsupervisor/supervisor/config"
+	"go.uber.org/zap"
 )
 
 func NewLogger(cfg config.Logs) (*zap.Logger, error) {

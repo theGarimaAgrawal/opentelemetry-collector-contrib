@@ -7,9 +7,8 @@ import (
 	"testing"
 
 	"github.com/alecthomas/participle/v2/lexer"
-	"github.com/stretchr/testify/require"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/ottltest"
+	"github.com/stretchr/testify/require"
 )
 
 func Test_getParsedStatementPaths(t *testing.T) {

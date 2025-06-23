@@ -9,10 +9,9 @@ import (
 	"math/big"
 
 	"github.com/expr-lang/expr/vm"
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
+	"go.uber.org/zap"
 )
 
 // Transformer is an operator that filters entries based on matching expressions

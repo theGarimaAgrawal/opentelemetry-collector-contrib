@@ -10,9 +10,8 @@ import (
 	"time"
 	"unicode"
 
-	"go.opentelemetry.io/collector/pdata/pcommon"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter/internal/elasticsearch"
+	"go.opentelemetry.io/collector/pdata/pcommon"
 )
 
 var receiverRegex = regexp.MustCompile(`/receiver/(\w*receiver)`)

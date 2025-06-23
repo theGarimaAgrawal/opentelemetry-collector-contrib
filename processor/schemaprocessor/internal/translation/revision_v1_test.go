@@ -6,13 +6,12 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	ast10 "go.opentelemetry.io/otel/schema/v1.0/ast"
-	"go.opentelemetry.io/otel/schema/v1.0/types"
-	ast11 "go.opentelemetry.io/otel/schema/v1.1/ast"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/changelist"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/migrate"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/transformer"
+	ast10 "go.opentelemetry.io/otel/schema/v1.0/ast"
+	"go.opentelemetry.io/otel/schema/v1.0/types"
+	ast11 "go.opentelemetry.io/otel/schema/v1.1/ast"
 )
 
 func TestNewRevisionV1(t *testing.T) {

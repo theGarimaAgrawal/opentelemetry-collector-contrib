@@ -4,12 +4,11 @@
 package cronjob // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/cronjob"
 
 import (
-	"go.opentelemetry.io/collector/pdata/pcommon"
-	batchv1 "k8s.io/api/batch/v1"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/experimentalmetricmetadata"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/constants"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/metadata"
+	"go.opentelemetry.io/collector/pdata/pcommon"
+	batchv1 "k8s.io/api/batch/v1"
 )
 
 const (

@@ -8,12 +8,11 @@ import (
 	"fmt"
 	"net/url"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 	sapmclient "github.com/signalfx/sapm-proto/client"
 	"go.opentelemetry.io/collector/config/configopaque"
 	"go.opentelemetry.io/collector/config/configretry"
 	"go.opentelemetry.io/collector/exporter/exporterhelper"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
 )
 
 const (

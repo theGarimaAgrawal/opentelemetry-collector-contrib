@@ -7,14 +7,13 @@ import (
 	"context"
 	"testing"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componenttest"
 	"go.opentelemetry.io/collector/config/configauth"
 	"go.opentelemetry.io/collector/extension/extensiontest"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension"
 )
 
 func TestBearerToken(t *testing.T) {

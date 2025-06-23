@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/expr-lang/expr/vm"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
 )

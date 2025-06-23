@@ -4,10 +4,9 @@
 package awsecscontainermetrics // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awsecscontainermetricsreceiver/internal/awsecscontainermetrics"
 
 import (
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil"
 	"go.opentelemetry.io/collector/pdata/pmetric"
 	"go.uber.org/zap"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil"
 )
 
 // MetricsData generates OTLP metrics from endpoint raw data

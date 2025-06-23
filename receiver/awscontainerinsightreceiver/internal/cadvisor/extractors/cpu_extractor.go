@@ -5,10 +5,9 @@ package extractors // import "github.com/open-telemetry/opentelemetry-collector-
 
 import (
 	cInfo "github.com/google/cadvisor/info/v1"
-	"go.uber.org/zap"
-
 	ci "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/containerinsight"
 	awsmetrics "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/metrics"
+	"go.uber.org/zap"
 )
 
 const (

@@ -6,9 +6,8 @@ package logstransformprocessor // import "github.com/open-telemetry/opentelemetr
 import (
 	"errors"
 
-	"go.opentelemetry.io/collector/component"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/adapter"
+	"go.opentelemetry.io/collector/component"
 )
 
 // Config defines configuration for Resource processor.

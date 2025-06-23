@@ -7,11 +7,10 @@ import (
 	"bytes"
 	"time"
 
-	"go.opentelemetry.io/collector/pdata/pcommon"
-	"go.opentelemetry.io/collector/pdata/pprofile"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/internal"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatautil"
+	"go.opentelemetry.io/collector/pdata/pcommon"
+	"go.opentelemetry.io/collector/pdata/pprofile"
 )
 
 // CompareProfilesOption can be used to mutate expected and/or actual profiles before comparing.

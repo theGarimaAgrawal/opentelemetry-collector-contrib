@@ -9,11 +9,10 @@ import (
 	"context"
 
 	"github.com/cenkalti/backoff/v4"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/extension"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension/credentials"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension/internal/metadata"
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/extension"
 )
 
 const (

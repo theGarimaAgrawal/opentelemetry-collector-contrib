@@ -14,13 +14,12 @@ import (
 	"strings"
 
 	"github.com/Showmax/go-fqdn"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/metadataproviders/internal"
 	"github.com/shirou/gopsutil/v4/cpu"
 	"github.com/shirou/gopsutil/v4/host"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/sdk/resource"
 	conventions "go.opentelemetry.io/otel/semconv/v1.27.0"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/metadataproviders/internal"
 )
 
 // nameInfoProvider abstracts domain name resolution so it can be swapped for

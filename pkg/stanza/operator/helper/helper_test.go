@@ -3,9 +3,8 @@
 package helper
 
 import (
-	"go.opentelemetry.io/collector/component"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
+	"go.opentelemetry.io/collector/component"
 )
 
 const helpersTestType = "helpers_test"

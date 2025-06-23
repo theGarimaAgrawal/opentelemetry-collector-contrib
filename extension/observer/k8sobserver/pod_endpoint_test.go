@@ -6,9 +6,8 @@ package k8sobserver // import "github.com/open-telemetry/opentelemetry-collector
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
+	"github.com/stretchr/testify/require"
 )
 
 func TestPodObjectToPortEndpoint(t *testing.T) {

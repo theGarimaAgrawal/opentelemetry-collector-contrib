@@ -11,15 +11,14 @@ import (
 
 	ctypes "github.com/docker/docker/api/types/container"
 	"github.com/docker/go-connections/nat"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/extension"
-	"go.uber.org/zap"
-	"golang.org/x/sync/errgroup"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer/endpointswatcher"
 	dcommon "github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/docker"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/docker"
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/extension"
+	"go.uber.org/zap"
+	"golang.org/x/sync/errgroup"
 )
 
 var (

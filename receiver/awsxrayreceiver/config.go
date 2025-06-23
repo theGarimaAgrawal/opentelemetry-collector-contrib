@@ -4,9 +4,8 @@
 package awsxrayreceiver // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awsxrayreceiver"
 
 import (
-	"go.opentelemetry.io/collector/config/confignet"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/proxy"
+	"go.opentelemetry.io/collector/config/confignet"
 )
 
 // Config defines the configurations for an AWS X-Ray receiver.

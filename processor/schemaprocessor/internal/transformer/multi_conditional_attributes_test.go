@@ -6,9 +6,8 @@ package transformer
 import (
 	"testing"
 
-	"go.opentelemetry.io/collector/pdata/ptrace"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/migrate"
+	"go.opentelemetry.io/collector/pdata/ptrace"
 )
 
 func TestSpanEventConditionalAttributeTransformer(t *testing.T) {

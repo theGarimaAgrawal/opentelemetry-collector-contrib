@@ -6,9 +6,8 @@ package failoverconnector // import "github.com/open-telemetry/opentelemetry-col
 import (
 	"errors"
 
-	"go.opentelemetry.io/collector/pipeline"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/failoverconnector/internal/state"
+	"go.opentelemetry.io/collector/pipeline"
 )
 
 var (

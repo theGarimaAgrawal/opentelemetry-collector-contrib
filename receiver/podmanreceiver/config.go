@@ -6,11 +6,10 @@ package podmanreceiver // import "github.com/open-telemetry/opentelemetry-collec
 import (
 	"errors"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/podmanreceiver/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/config/configopaque"
 	"go.opentelemetry.io/collector/scraper/scraperhelper"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/podmanreceiver/internal/metadata"
 )
 
 var _ component.Config = (*Config)(nil)

@@ -7,11 +7,10 @@ import (
 	"context"
 	"fmt"
 
-	"go.opentelemetry.io/collector/featuregate"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/parseutils"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
+	"go.opentelemetry.io/collector/featuregate"
 )
 
 const semconvCompliantFeatureGateID = "parser.uri.ecscompliant"

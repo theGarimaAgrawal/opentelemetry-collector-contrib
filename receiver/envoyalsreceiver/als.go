@@ -9,6 +9,7 @@ import (
 	"fmt"
 
 	alsv3 "github.com/envoyproxy/go-control-plane/envoy/service/accesslog/v3"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/envoyalsreceiver/internal/als"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componentstatus"
 	"go.opentelemetry.io/collector/consumer"
@@ -16,8 +17,6 @@ import (
 	"go.opentelemetry.io/collector/receiver/receiverhelper"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/envoyalsreceiver/internal/als"
 )
 
 type alsReceiver struct {

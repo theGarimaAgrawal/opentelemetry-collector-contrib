@@ -11,13 +11,12 @@ import (
 	"time"
 
 	faroTypes "github.com/grafana/faro/pkg/go"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/golden"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/plog"
 	"go.opentelemetry.io/collector/pdata/ptrace"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/golden"
 )
 
 func TestTranslateFromLogs(t *testing.T) {

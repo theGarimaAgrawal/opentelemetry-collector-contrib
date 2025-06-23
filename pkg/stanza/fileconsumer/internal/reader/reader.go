@@ -12,10 +12,6 @@ import (
 	"os"
 	"sync"
 
-	"go.opentelemetry.io/collector/component"
-	"go.uber.org/zap"
-	"golang.org/x/text/encoding"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/textutils"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/fileconsumer/emit"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/fileconsumer/internal/fingerprint"
@@ -23,6 +19,9 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/fileconsumer/internal/scanner"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/flush"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/tokenlen"
+	"go.opentelemetry.io/collector/component"
+	"go.uber.org/zap"
+	"golang.org/x/text/encoding"
 )
 
 const gzipExtension = ".gz"

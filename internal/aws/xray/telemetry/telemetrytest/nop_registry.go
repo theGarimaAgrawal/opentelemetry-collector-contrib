@@ -4,10 +4,9 @@
 package telemetrytest // import "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray/telemetry/telemetrytest"
 
 import (
-	"go.opentelemetry.io/collector/component"
-
 	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray/telemetry"
+	"go.opentelemetry.io/collector/component"
 )
 
 func NewNopRegistry() telemetry.Registry {

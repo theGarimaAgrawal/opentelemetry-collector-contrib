@@ -6,11 +6,10 @@ package kafkametricsreceiver // import "github.com/open-telemetry/opentelemetry-
 import (
 	"time"
 
-	"go.opentelemetry.io/collector/confmap"
-	"go.opentelemetry.io/collector/scraper/scraperhelper"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkametricsreceiver/internal/metadata"
+	"go.opentelemetry.io/collector/confmap"
+	"go.opentelemetry.io/collector/scraper/scraperhelper"
 )
 
 // Config represents user settings for kafkametrics receiver

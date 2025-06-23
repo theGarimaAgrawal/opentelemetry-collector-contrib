@@ -6,10 +6,9 @@ package haproxyreceiver // import "github.com/open-telemetry/opentelemetry-colle
 import (
 	"errors"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/haproxyreceiver/internal/metadata"
 	"go.opentelemetry.io/collector/config/confighttp"
 	"go.opentelemetry.io/collector/scraper/scraperhelper"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/haproxyreceiver/internal/metadata"
 )
 
 type Config struct {

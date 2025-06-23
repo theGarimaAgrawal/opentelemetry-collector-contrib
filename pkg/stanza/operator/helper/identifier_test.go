@@ -6,9 +6,8 @@ package helper
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
+	"github.com/stretchr/testify/require"
 )
 
 func TestIdentifier(t *testing.T) {

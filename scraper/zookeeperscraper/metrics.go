@@ -6,10 +6,9 @@ package zookeeperscraper // import "github.com/open-telemetry/opentelemetry-coll
 import (
 	"fmt"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/scraper/zookeeperscraper/internal/metadata"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.uber.org/zap"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/scraper/zookeeperscraper/internal/metadata"
 )
 
 // Constants to define entries in the output of "mntr" command.

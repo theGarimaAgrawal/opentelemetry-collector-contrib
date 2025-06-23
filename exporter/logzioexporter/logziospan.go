@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 
 	"github.com/jaegertracing/jaeger-idl/model/v1"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/logzioexporter/internal/dbmodel"
 )
 

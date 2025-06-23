@@ -4,10 +4,9 @@
 package servicegraphconnector // import "github.com/open-telemetry/opentelemetry-collector-contrib/connector/servicegraphconnector"
 
 import (
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/pdatautil"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	semconv "go.opentelemetry.io/otel/semconv/v1.25.0"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/pdatautil"
 )
 
 func findServiceName(attributes pcommon.Map) (string, bool) {

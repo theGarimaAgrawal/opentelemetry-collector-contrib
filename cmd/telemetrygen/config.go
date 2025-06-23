@@ -9,11 +9,10 @@ package main // import "github.com/open-telemetry/opentelemetry-collector-contri
 import (
 	"os"
 
-	"github.com/spf13/cobra"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/cmd/telemetrygen/pkg/logs"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/cmd/telemetrygen/pkg/metrics"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/cmd/telemetrygen/pkg/traces"
+	"github.com/spf13/cobra"
 )
 
 var (

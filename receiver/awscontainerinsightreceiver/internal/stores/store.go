@@ -9,10 +9,9 @@ import (
 	"os"
 	"time"
 
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver/internal/cadvisor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver/internal/cadvisor/extractors"
+	"go.uber.org/zap"
 )
 
 var _ cadvisor.Decorator = &K8sDecorator{}

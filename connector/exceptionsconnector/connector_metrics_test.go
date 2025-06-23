@@ -9,6 +9,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/pdatautil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/component/componenttest"
@@ -20,8 +21,6 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zaptest"
 	"google.golang.org/grpc/metadata"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/pdatautil"
 )
 
 // metricID represents the minimum attributes that uniquely identifies a metric in our tests.

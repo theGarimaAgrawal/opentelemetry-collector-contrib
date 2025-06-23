@@ -8,9 +8,8 @@ package activedirectorydsreceiver // import "github.com/open-telemetry/opentelem
 import (
 	"fmt"
 
-	"go.uber.org/multierr"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/winperfcounters"
+	"go.uber.org/multierr"
 )
 
 const (

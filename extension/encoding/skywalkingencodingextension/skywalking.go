@@ -4,11 +4,10 @@
 package skywalkingencodingextension // import "github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/skywalkingencodingextension"
 
 import (
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/skywalking"
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	"google.golang.org/protobuf/proto"
 	agentV3 "skywalking.apache.org/repo/goapi/collect/language/agent/v3"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/skywalking"
 )
 
 type skywalkingProtobufTrace struct{}

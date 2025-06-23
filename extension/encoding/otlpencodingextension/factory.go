@@ -6,10 +6,9 @@ package otlpencodingextension // import "github.com/open-telemetry/opentelemetry
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/otlpencodingextension/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/otlpencodingextension/internal/metadata"
 )
 
 func NewFactory() extension.Factory {

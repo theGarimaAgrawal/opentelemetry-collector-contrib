@@ -9,10 +9,9 @@ import (
 	"time"
 
 	cInfo "github.com/google/cadvisor/info/v1"
-	"go.uber.org/zap"
-
 	ci "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/containerinsight"
 	awsmetrics "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/metrics"
+	"go.uber.org/zap"
 )
 
 type DiskIOMetricExtractor struct {

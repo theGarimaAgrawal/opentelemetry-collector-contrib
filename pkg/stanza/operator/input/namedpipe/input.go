@@ -13,12 +13,11 @@ import (
 	"sync"
 	"time"
 
-	"go.uber.org/zap"
-	"golang.org/x/sys/unix"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/trim"
+	"go.uber.org/zap"
+	"golang.org/x/sys/unix"
 )
 
 const ReadTimeout = 2 * time.Second

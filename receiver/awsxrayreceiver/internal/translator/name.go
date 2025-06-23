@@ -6,9 +6,8 @@ package translator // import "github.com/open-telemetry/opentelemetry-collector-
 import (
 	"fmt"
 
-	"go.opentelemetry.io/collector/pdata/ptrace"
-
 	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
+	"go.opentelemetry.io/collector/pdata/ptrace"
 )
 
 const (

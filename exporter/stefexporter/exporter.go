@@ -7,14 +7,13 @@ import (
 	"context"
 	"time"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/stefexporter/internal"
 	stefpdatametrics "github.com/splunk/stef/go/pdata/metrics"
 	stefpkg "github.com/splunk/stef/go/pkg"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/pdata/pmetric"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/stefexporter/internal"
 )
 
 // stefExporter implements sending metrics over STEF/gRPC stream.

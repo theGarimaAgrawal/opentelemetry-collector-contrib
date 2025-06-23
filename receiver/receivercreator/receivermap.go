@@ -4,9 +4,8 @@
 package receivercreator // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/receivercreator"
 
 import (
-	"go.opentelemetry.io/collector/component"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
+	"go.opentelemetry.io/collector/component"
 )
 
 // receiverMap is a multimap for mapping one id to many receivers. It does

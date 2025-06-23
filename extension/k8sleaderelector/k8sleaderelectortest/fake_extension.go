@@ -6,10 +6,9 @@ package k8sleaderelectortest // import "github.com/open-telemetry/opentelemetry-
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/k8sleaderelector"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/pipeline"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/k8sleaderelector"
 )
 
 type FakeHost struct {

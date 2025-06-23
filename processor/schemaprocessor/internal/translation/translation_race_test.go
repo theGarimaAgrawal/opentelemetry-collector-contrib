@@ -6,10 +6,9 @@ package translation
 import (
 	"testing"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/fixture"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/fixture"
 )
 
 func TestRaceTranslationSpanChanges(t *testing.T) {

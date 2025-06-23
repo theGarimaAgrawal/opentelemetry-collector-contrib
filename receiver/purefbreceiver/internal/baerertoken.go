@@ -8,10 +8,9 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/config/configauth"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension"
 )
 
 func RetrieveBearerToken(authCfg configauth.Config, extensions map[component.ID]component.Component) (string, error) {

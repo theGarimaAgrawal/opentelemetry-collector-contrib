@@ -8,14 +8,13 @@ import (
 	"fmt"
 	"strconv"
 
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/extension"
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer/endpointswatcher"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil"
 	dcommon "github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/docker"
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/extension"
+	"go.uber.org/zap"
 )
 
 const runningStatus = "RUNNING"

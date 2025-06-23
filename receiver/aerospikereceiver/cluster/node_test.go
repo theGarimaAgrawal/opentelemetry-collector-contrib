@@ -8,9 +8,8 @@ import (
 	"time"
 
 	as "github.com/aerospike/aerospike-client-go/v8"
-	"github.com/stretchr/testify/require"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/aerospikereceiver/cluster/mocks"
+	"github.com/stretchr/testify/require"
 )
 
 func TestNode_NewConnNode(t *testing.T) {

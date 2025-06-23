@@ -7,10 +7,9 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/race"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/race"
 )
 
 // ParallelRaceCompute starts `count` number of go routines that calls the provided function `fn`

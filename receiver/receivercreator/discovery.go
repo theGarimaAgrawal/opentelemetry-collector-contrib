@@ -10,10 +10,9 @@ import (
 	"strings"
 
 	"github.com/go-viper/mapstructure/v2"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 	"go.uber.org/zap"
 	"gopkg.in/yaml.v3"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
 )
 
 const (

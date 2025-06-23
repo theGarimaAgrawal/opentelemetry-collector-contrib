@@ -15,11 +15,10 @@ import (
 	elasticsearchv8 "github.com/elastic/go-elasticsearch/v8"
 	"github.com/elastic/go-elasticsearch/v8/esapi"
 	"github.com/klauspost/compress/gzip"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/sanitize"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componentstatus"
 	"go.uber.org/zap"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/sanitize"
 )
 
 // clientLogger implements the estransport.Logger interface

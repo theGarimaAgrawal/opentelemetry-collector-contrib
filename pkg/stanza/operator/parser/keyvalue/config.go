@@ -6,10 +6,9 @@ package keyvalue // import "github.com/open-telemetry/opentelemetry-collector-co
 import (
 	"errors"
 
-	"go.opentelemetry.io/collector/component"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
+	"go.opentelemetry.io/collector/component"
 )
 
 const operatorType = "key_value_parser"

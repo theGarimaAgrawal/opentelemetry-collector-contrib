@@ -13,12 +13,11 @@ import (
 	"os"
 	"strings"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/sanitize"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
 	"go.uber.org/zap"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/transport"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/sanitize"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
 )
 
 const (

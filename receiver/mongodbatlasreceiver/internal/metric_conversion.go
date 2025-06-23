@@ -6,10 +6,9 @@ package internal // import "github.com/open-telemetry/opentelemetry-collector-co
 import (
 	"fmt"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/mongodbatlasreceiver/internal/metadata"
 	"go.mongodb.org/atlas/mongodbatlas"
 	"go.uber.org/multierr"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/mongodbatlasreceiver/internal/metadata"
 )
 
 func processMeasurements(

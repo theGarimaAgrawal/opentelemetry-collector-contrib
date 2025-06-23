@@ -6,10 +6,9 @@ package bmchelixexporter
 import (
 	"testing"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/bmchelixexporter/internal/metadata"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/collector/exporter/exportertest"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/bmchelixexporter/internal/metadata"
 )
 
 func TestNewMetricsExporterWithNilConfig(t *testing.T) {

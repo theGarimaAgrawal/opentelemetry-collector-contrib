@@ -13,9 +13,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/winperfcounters"
+	"github.com/stretchr/testify/require"
 )
 
 func TestGetWatchers(t *testing.T) {

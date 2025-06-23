@@ -12,11 +12,10 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/klauspost/compress/gzip"
-	"github.com/stretchr/testify/require"
-	"go.opentelemetry.io/collector/component"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/golden"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/plogtest"
+	"github.com/stretchr/testify/require"
+	"go.opentelemetry.io/collector/component"
 )
 
 func TestValidateLog(t *testing.T) {

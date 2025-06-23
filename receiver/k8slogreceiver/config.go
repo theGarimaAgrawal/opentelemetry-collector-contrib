@@ -6,9 +6,8 @@ package k8slogreceiver // import "github.com/open-telemetry/opentelemetry-collec
 import (
 	"fmt"
 
-	"go.uber.org/multierr"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
+	"go.uber.org/multierr"
 )
 
 const (

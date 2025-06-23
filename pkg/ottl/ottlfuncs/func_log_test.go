@@ -8,9 +8,8 @@ import (
 	"math"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_Log(t *testing.T) {

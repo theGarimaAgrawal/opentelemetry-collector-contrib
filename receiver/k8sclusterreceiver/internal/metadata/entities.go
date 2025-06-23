@@ -6,9 +6,8 @@ package metadata // import "github.com/open-telemetry/opentelemetry-collector-co
 import (
 	"time"
 
-	"go.opentelemetry.io/collector/pdata/pcommon"
-
 	metadataPkg "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/experimentalmetricmetadata"
+	"go.opentelemetry.io/collector/pdata/pcommon"
 )
 
 // GetEntityEvents processes metadata updates and returns entity events that describe the metadata changes.

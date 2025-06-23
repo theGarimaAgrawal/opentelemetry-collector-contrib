@@ -6,10 +6,9 @@ package data // import "github.com/open-telemetry/opentelemetry-collector-contri
 import (
 	"math"
 
-	"go.opentelemetry.io/collector/pdata/pmetric"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data/expo"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/putil/pslice"
+	"go.opentelemetry.io/collector/pdata/pmetric"
 )
 
 // Aggregator performs an operation on two datapoints.

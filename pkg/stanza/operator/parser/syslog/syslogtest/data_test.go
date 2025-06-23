@@ -6,9 +6,8 @@ package syslogtest
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/parser/syslog"
+	"github.com/stretchr/testify/require"
 )
 
 func TestCreateCases(t *testing.T) {

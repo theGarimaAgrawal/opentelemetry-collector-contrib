@@ -6,10 +6,9 @@ package jaegerencodingextension // import "github.com/open-telemetry/opentelemet
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/jaegerencodingextension/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/jaegerencodingextension/internal/metadata"
 )
 
 func NewFactory() extension.Factory {

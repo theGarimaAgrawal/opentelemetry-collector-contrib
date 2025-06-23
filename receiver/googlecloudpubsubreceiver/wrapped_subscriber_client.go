@@ -8,11 +8,10 @@ import (
 	"fmt"
 
 	pubsub "cloud.google.com/go/pubsub/apiv1"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudpubsubreceiver/internal"
 	"google.golang.org/api/option"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudpubsubreceiver/internal"
 )
 
 // wrappedSubscriberClient allows to override the close function

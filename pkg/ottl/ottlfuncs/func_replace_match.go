@@ -9,7 +9,6 @@ import (
 	"fmt"
 
 	"github.com/gobwas/glob"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 )
 

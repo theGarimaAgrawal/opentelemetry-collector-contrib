@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"reflect"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/internal"
 	"go.opentelemetry.io/collector/pdata/plog"
 	"go.uber.org/multierr"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest/internal"
 )
 
 // CompareLogs compares each part of two given Logs and returns

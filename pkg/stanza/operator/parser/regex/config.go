@@ -8,12 +8,11 @@ import (
 	"fmt"
 	"regexp"
 
-	"go.opentelemetry.io/collector/component"
-	"go.uber.org/zap"
-
 	stanza_errors "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/errors"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
+	"go.opentelemetry.io/collector/component"
+	"go.uber.org/zap"
 )
 
 const operatorType = "regex_parser"

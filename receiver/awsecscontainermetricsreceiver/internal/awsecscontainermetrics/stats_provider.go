@@ -7,9 +7,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil"
+	"go.uber.org/zap"
 )
 
 // StatsProvider wraps a RestClient, returning an unmarshaled metadata and docker stats

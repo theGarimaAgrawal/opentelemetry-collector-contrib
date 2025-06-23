@@ -12,12 +12,11 @@ import (
 	"strconv"
 	"sync"
 
-	"go.uber.org/zap"
-	"golang.org/x/text/encoding"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/textutils"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
+	"go.uber.org/zap"
+	"golang.org/x/text/encoding"
 )
 
 // Input is an operator that listens to a socket for log entries.

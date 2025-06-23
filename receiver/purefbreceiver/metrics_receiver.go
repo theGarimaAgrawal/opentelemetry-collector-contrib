@@ -6,14 +6,13 @@ package purefbreceiver // import "github.com/open-telemetry/opentelemetry-collec
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/purefbreceiver/internal"
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/config"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/receiver"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/purefbreceiver/internal"
 )
 
 var _ receiver.Metrics = (*purefbMetricsReceiver)(nil)

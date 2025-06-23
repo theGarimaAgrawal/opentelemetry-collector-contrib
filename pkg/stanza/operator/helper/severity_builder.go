@@ -9,9 +9,8 @@ import (
 	"strconv"
 	"strings"
 
-	"go.opentelemetry.io/collector/component"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
+	"go.opentelemetry.io/collector/component"
 )
 
 // map[string or int input]sev-level

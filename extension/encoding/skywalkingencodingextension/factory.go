@@ -6,10 +6,9 @@ package skywalkingencodingextension // import "github.com/open-telemetry/opentel
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/skywalkingencodingextension/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/skywalkingencodingextension/internal/metadata"
 )
 
 func NewFactory() extension.Factory {

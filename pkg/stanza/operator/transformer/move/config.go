@@ -6,11 +6,10 @@ package move // import "github.com/open-telemetry/opentelemetry-collector-contri
 import (
 	"errors"
 
-	"go.opentelemetry.io/collector/component"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
+	"go.opentelemetry.io/collector/component"
 )
 
 const operatorType = "move"

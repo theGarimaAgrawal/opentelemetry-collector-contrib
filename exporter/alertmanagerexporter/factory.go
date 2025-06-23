@@ -6,9 +6,8 @@ package alertmanagerexporter // import "github.com/open-telemetry/opentelemetry-
 import (
 	"context"
 	"errors"
-	"time"
-
 	"fmt"
+	"time"
 
 	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/alertmanagerexporter/internal/metadata"
 	"go.opentelemetry.io/collector/component"

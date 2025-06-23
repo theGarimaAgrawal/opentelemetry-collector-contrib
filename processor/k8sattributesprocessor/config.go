@@ -9,11 +9,10 @@ import (
 	"regexp"
 	"time"
 
-	"go.opentelemetry.io/collector/featuregate"
-	conventions "go.opentelemetry.io/otel/semconv/v1.6.1"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor/internal/kube"
+	"go.opentelemetry.io/collector/featuregate"
+	conventions "go.opentelemetry.io/otel/semconv/v1.6.1"
 )
 
 //nolint:unused

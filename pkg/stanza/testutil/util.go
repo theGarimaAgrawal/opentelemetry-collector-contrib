@@ -8,9 +8,8 @@ import (
 	"strings"
 	"sync"
 
-	"go.opentelemetry.io/collector/extension/xextension/storage"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
+	"go.opentelemetry.io/collector/extension/xextension/storage"
 )
 
 type mockPersister struct {

@@ -7,9 +7,8 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/stretchr/testify/assert"
-
 	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestConvertStackFramesToStackTraceStr(t *testing.T) {

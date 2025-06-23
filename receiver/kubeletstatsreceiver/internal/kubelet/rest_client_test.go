@@ -6,9 +6,8 @@ package kubelet
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	kube "github.com/open-telemetry/opentelemetry-collector-contrib/internal/kubelet"
+	"github.com/stretchr/testify/require"
 )
 
 func TestRestClient(t *testing.T) {

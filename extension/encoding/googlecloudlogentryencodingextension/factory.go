@@ -6,10 +6,9 @@ package googlecloudlogentryencodingextension // import "github.com/open-telemetr
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/googlecloudlogentryencodingextension/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/encoding/googlecloudlogentryencodingextension/internal/metadata"
 )
 
 func NewFactory() extension.Factory {

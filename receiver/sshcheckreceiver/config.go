@@ -8,11 +8,10 @@ import (
 	"net"
 	"strings"
 
-	"go.opentelemetry.io/collector/scraper/scraperhelper"
-	"go.uber.org/multierr"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/sshcheckreceiver/internal/configssh"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/sshcheckreceiver/internal/metadata"
+	"go.opentelemetry.io/collector/scraper/scraperhelper"
+	"go.uber.org/multierr"
 )
 
 // Predefined error responses for configuration validation failures

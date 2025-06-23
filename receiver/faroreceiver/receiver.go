@@ -14,6 +14,7 @@ import (
 	"sync"
 
 	faro "github.com/grafana/faro/pkg/go"
+	farotranslator "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/faro"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componentstatus"
 	"go.opentelemetry.io/collector/config/confighttp"
@@ -21,8 +22,6 @@ import (
 	"go.opentelemetry.io/collector/receiver"
 	"go.opentelemetry.io/collector/receiver/receiverhelper"
 	"go.uber.org/zap"
-
-	farotranslator "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/faro"
 )
 
 const faroPath = "/"

@@ -8,9 +8,8 @@ import (
 	"errors"
 	"fmt"
 
-	"go.opentelemetry.io/collector/pdata/pprofile"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
+	"go.opentelemetry.io/collector/pdata/pprofile"
 )
 
 type ProfileIDArguments[K any] struct {

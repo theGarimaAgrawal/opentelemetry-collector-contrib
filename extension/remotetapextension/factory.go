@@ -6,10 +6,9 @@ package remotetapextension // import "github.com/open-telemetry/opentelemetry-co
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/remotetapextension/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/remotetapextension/internal/metadata"
 )
 
 func NewFactory() extension.Factory {

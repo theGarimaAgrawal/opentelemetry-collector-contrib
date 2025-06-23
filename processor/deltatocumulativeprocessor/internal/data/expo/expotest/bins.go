@@ -7,9 +7,8 @@ import (
 	"fmt"
 	"math"
 
-	"go.opentelemetry.io/collector/pdata/pmetric"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/data/expo"
+	"go.opentelemetry.io/collector/pdata/pmetric"
 )
 
 const (

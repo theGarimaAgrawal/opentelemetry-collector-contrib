@@ -18,12 +18,11 @@ import (
 	"sync"
 	"time"
 
-	"go.opentelemetry.io/collector/config/configopaque"
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter/internal/translation"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter/internal/translation/dpfilters"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/sanitize"
+	"go.opentelemetry.io/collector/config/configopaque"
+	"go.uber.org/zap"
 )
 
 // DimensionClient sends updates to dimensions to the SignalFx API

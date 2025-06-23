@@ -4,9 +4,8 @@
 package redisreceiver // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/redisreceiver"
 
 import (
-	"go.opentelemetry.io/collector/pdata/pcommon"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/redisreceiver/internal/metadata"
+	"go.opentelemetry.io/collector/pdata/pcommon"
 )
 
 // dataPointRecorders is called once at startup. Returns recorders for all metrics (except keyspace)

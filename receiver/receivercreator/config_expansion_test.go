@@ -6,9 +6,8 @@ package receivercreator
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_expandConfigValue(t *testing.T) {

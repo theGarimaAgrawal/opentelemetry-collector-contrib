@@ -4,9 +4,8 @@
 package osqueryreceiver // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/osqueryreceiver"
 
 import (
-	"go.opentelemetry.io/collector/receiver"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/osqueryreceiver/internal/metadata"
+	"go.opentelemetry.io/collector/receiver"
 )
 
 func NewFactory() receiver.Factory {

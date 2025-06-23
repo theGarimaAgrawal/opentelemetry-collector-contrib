@@ -4,10 +4,9 @@
 package proxy // import "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/proxy"
 
 import (
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/testutil"
 	"go.opentelemetry.io/collector/config/confignet"
 	"go.opentelemetry.io/collector/config/configtls"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/testutil"
 )
 
 // Config is the configuration for the local TCP proxy server.

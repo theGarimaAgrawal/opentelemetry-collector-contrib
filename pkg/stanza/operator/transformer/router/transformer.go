@@ -9,12 +9,11 @@ import (
 	"fmt"
 
 	"github.com/expr-lang/expr/vm"
-	"go.uber.org/multierr"
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
+	"go.uber.org/multierr"
+	"go.uber.org/zap"
 )
 
 // Transformer is an operator that routes entries based on matching expressions

@@ -6,10 +6,9 @@ package metrics
 import (
 	"errors"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/cmd/telemetrygen/internal/common"
 	"github.com/spf13/pflag"
 	"go.opentelemetry.io/otel/sdk/metric/metricdata"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/cmd/telemetrygen/internal/common"
 )
 
 // Config describes the test scenario.

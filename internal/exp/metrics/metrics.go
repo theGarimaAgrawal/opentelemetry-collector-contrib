@@ -4,10 +4,9 @@
 package metrics // import "github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics"
 
 import (
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics/identity"
 )
 
 // Merge will merge the metrics data in mdB into mdA, then return mdA.

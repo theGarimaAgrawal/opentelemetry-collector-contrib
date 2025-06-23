@@ -12,11 +12,10 @@ import (
 	"net"
 	"time"
 
-	"github.com/tinylib/msgp/msgp"
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/fluentforwardreceiver/internal"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/fluentforwardreceiver/internal/metadata"
+	"github.com/tinylib/msgp/msgp"
+	"go.uber.org/zap"
 )
 
 // The initial size of the read buffer. Messages can come in that are bigger

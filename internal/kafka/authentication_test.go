@@ -8,9 +8,8 @@ import (
 	"testing"
 
 	"github.com/IBM/sarama"
-	"github.com/stretchr/testify/assert"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/kafka/configkafka"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestAuthentication(t *testing.T) {

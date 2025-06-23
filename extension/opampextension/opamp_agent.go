@@ -20,6 +20,8 @@ import (
 	"github.com/open-telemetry/opamp-go/client"
 	"github.com/open-telemetry/opamp-go/client/types"
 	"github.com/open-telemetry/opamp-go/protobufs"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/opampcustommessages"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/status"
 	"github.com/shirou/gopsutil/v4/host"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componentstatus"
@@ -34,9 +36,6 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 	"gopkg.in/yaml.v3"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/opampcustommessages"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/status"
 )
 
 type statusAggregator interface {

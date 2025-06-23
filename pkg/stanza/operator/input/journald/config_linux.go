@@ -14,9 +14,8 @@ import (
 	"time"
 
 	jsoniter "github.com/json-iterator/go"
-	"go.opentelemetry.io/collector/component"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator"
+	"go.opentelemetry.io/collector/component"
 )
 
 const waitDuration = 1 * time.Second

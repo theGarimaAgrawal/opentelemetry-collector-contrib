@@ -8,9 +8,8 @@ import (
 	"fmt"
 	"math"
 
-	"go.opentelemetry.io/collector/component"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/sampling"
+	"go.opentelemetry.io/collector/component"
 )
 
 type AttributeSource string

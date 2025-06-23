@@ -18,9 +18,8 @@ import (
 	"time"
 
 	"github.com/jaegertracing/jaeger-idl/proto-gen/api_v2"
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling/internal/source"
+	"go.uber.org/zap"
 )
 
 // null represents "null" JSON value and

@@ -8,11 +8,10 @@ import (
 	"encoding/json"
 	"sync"
 
-	"go.uber.org/multierr"
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/entry"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/operator/helper"
+	"go.uber.org/multierr"
+	"go.uber.org/zap"
 )
 
 // Output is an operator that logs entries using stdout.

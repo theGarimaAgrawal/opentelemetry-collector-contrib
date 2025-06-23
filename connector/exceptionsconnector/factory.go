@@ -8,11 +8,10 @@ package exceptionsconnector // import "github.com/open-telemetry/opentelemetry-c
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/exceptionsconnector/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/connector"
 	"go.opentelemetry.io/collector/consumer"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/connector/exceptionsconnector/internal/metadata"
 )
 
 // NewFactory creates a factory for the exceptions connector.

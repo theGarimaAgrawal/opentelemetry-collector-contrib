@@ -6,9 +6,8 @@ package zookeeperscraper // import "github.com/open-telemetry/opentelemetry-coll
 import (
 	"net"
 
-	"go.opentelemetry.io/collector/config/confignet"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/scraper/zookeeperscraper/internal/metadata"
+	"go.opentelemetry.io/collector/config/confignet"
 )
 
 type Config struct {

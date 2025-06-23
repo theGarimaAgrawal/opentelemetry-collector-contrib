@@ -8,9 +8,8 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/kinesis/types"
-	"go.opentelemetry.io/collector/consumer/consumererror"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awskinesisexporter/internal/compress"
+	"go.opentelemetry.io/collector/consumer/consumererror"
 )
 
 const (

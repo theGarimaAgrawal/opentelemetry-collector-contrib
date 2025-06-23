@@ -8,11 +8,10 @@ import (
 	"time"
 
 	"github.com/docker/docker/client"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/extension"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer/dockerobserver/internal/metadata"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/docker"
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/extension"
 )
 
 // NewFactory should be called to create a factory with default values.

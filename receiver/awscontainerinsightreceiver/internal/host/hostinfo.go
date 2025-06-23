@@ -9,9 +9,8 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/awsutil"
+	"go.uber.org/zap"
 )
 
 // Info contains information about a host

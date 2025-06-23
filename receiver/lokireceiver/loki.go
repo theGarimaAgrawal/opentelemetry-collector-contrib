@@ -12,6 +12,9 @@ import (
 	"sync"
 
 	"github.com/grafana/loki/pkg/push"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/errorutil"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/loki"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/lokireceiver/internal"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componentstatus"
 	"go.opentelemetry.io/collector/config/confighttp"
@@ -20,10 +23,6 @@ import (
 	"go.opentelemetry.io/collector/receiver/receiverhelper"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/errorutil"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/loki"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/lokireceiver/internal"
 )
 
 const (

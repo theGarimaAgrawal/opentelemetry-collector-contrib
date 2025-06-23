@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"cloud.google.com/go/spanner"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver/internal/datasource"
 )
 

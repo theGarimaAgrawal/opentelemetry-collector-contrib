@@ -9,9 +9,8 @@ import (
 	"context"
 	"sync"
 
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/fileconsumer/internal/reader"
+	"go.uber.org/zap"
 )
 
 // Take care of files which disappeared from the pattern since the last poll cycle

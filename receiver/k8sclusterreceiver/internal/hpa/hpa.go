@@ -4,11 +4,10 @@
 package hpa // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/hpa"
 
 import (
-	"go.opentelemetry.io/collector/pdata/pcommon"
-	autoscalingv2 "k8s.io/api/autoscaling/v2"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/experimentalmetricmetadata"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/metadata"
+	"go.opentelemetry.io/collector/pdata/pcommon"
+	autoscalingv2 "k8s.io/api/autoscaling/v2"
 )
 
 func RecordMetrics(mb *metadata.MetricsBuilder, hpa *autoscalingv2.HorizontalPodAutoscaler, ts pcommon.Timestamp) {

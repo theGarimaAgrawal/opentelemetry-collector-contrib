@@ -6,12 +6,11 @@ package awsecscontainermetrics // import "github.com/open-telemetry/opentelemetr
 import (
 	"strings"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/docker"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	conventions "go.opentelemetry.io/otel/semconv/v1.21.0"
 	"go.uber.org/zap"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/docker"
 )
 
 func containerResource(cm ecsutil.ContainerMetadata, logger *zap.Logger) pcommon.Resource {

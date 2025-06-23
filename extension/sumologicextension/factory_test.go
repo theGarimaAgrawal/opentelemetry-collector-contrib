@@ -10,13 +10,12 @@ import (
 	"testing"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension/credentials"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/component/componenttest"
 	"go.opentelemetry.io/collector/confmap/xconfmap"
 	"go.opentelemetry.io/collector/extension"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension/credentials"
 )
 
 func TestFactory_CreateDefaultConfig(t *testing.T) {

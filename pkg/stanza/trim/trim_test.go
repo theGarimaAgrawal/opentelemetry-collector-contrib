@@ -7,9 +7,8 @@ import (
 	"bufio"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/split/splittest"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestTrim(t *testing.T) {

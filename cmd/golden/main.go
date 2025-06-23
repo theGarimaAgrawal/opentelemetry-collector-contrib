@@ -10,6 +10,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/cmd/golden/internal"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componenttest"
 	"go.opentelemetry.io/collector/config/configoptional"
@@ -19,8 +20,6 @@ import (
 	noopmetric "go.opentelemetry.io/otel/metric/noop"
 	nooptrace "go.opentelemetry.io/otel/trace/noop"
 	"go.uber.org/zap"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/cmd/golden/internal"
 )
 
 // insertDefault is a helper function to insert a default value for a configoptional.Optional type.

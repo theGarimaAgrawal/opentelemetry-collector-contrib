@@ -8,10 +8,9 @@ package alibabacloudlogserviceexporter // import "github.com/open-telemetry/open
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/alibabacloudlogserviceexporter/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/exporter"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/alibabacloudlogserviceexporter/internal/metadata"
 )
 
 // NewFactory creates a factory for AlibabaCloud LogService exporter.

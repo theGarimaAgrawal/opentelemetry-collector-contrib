@@ -6,9 +6,8 @@ package translator // import "github.com/open-telemetry/opentelemetry-collector-
 import (
 	"encoding/json"
 
-	"go.opentelemetry.io/collector/pdata/pcommon"
-
 	awsxray "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray"
+	"go.opentelemetry.io/collector/pdata/pcommon"
 )
 
 func addMetadata(meta map[string]map[string]any, attrs pcommon.Map) error {

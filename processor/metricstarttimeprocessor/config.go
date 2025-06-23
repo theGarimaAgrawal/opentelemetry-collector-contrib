@@ -8,10 +8,9 @@ import (
 	"fmt"
 	"time"
 
-	"go.opentelemetry.io/collector/component"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstarttimeprocessor/internal/subtractinitial"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstarttimeprocessor/internal/truereset"
+	"go.opentelemetry.io/collector/component"
 )
 
 // Config holds configuration of the metric start time processor.

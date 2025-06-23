@@ -6,12 +6,11 @@ package awsemfexporter // import "github.com/open-telemetry/opentelemetry-collec
 import (
 	"strings"
 
-	"go.opentelemetry.io/collector/component"
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/awsutil"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/cwlogs"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourcetotelemetry"
+	"go.opentelemetry.io/collector/component"
+	"go.uber.org/zap"
 )
 
 // eMFSupportedUnits contains the unit collection supported by CloudWatch backend service.

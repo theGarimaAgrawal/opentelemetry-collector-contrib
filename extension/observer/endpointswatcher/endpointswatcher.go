@@ -9,9 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"go.uber.org/zap"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
+	"go.uber.org/zap"
 )
 
 var _ observer.Observable = (*EndpointsWatcher)(nil)

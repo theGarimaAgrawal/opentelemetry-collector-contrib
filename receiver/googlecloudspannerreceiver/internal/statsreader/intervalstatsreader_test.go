@@ -9,11 +9,10 @@ import (
 	"time"
 
 	"cloud.google.com/go/spanner"
-	"github.com/stretchr/testify/assert"
-	"go.uber.org/zap/zaptest"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver/internal/datasource"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver/internal/metadata"
+	"github.com/stretchr/testify/assert"
+	"go.uber.org/zap/zaptest"
 )
 
 func TestIntervalStatsReader_Name(t *testing.T) {

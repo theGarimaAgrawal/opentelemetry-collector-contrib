@@ -4,10 +4,9 @@
 package githubscraper // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/githubreceiver/internal/scraper/githubscraper"
 
 import (
-	"go.opentelemetry.io/collector/config/confighttp"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/githubreceiver/internal"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/githubreceiver/internal/metadata"
+	"go.opentelemetry.io/collector/config/confighttp"
 )
 
 // Config relating to GitHub Metric Scraper.

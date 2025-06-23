@@ -8,10 +8,9 @@ package dbstorage // import "github.com/open-telemetry/opentelemetry-collector-c
 import (
 	"context"
 
+	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/storage/dbstorage/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/extension/storage/dbstorage/internal/metadata"
 )
 
 // NewFactory creates a factory for DBStorage extension.

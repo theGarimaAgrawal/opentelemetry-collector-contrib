@@ -9,7 +9,6 @@ import (
 	"fmt"
 
 	"github.com/antchfx/xmlquery"
-
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 )
 
