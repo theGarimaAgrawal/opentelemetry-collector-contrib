@@ -120,7 +120,7 @@ func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordS
 	return nil
 }
 
-func (s *alertmanagerExporter) extractSpanEvents(td ptrace.Traces) []*alertmanagerEvent { // FIND AND RENAME ALL EVENTS TO SPAN EVENTS FOR DIFFERENTIATION FROM LOG RECORDS
+func (s *alertmanagerExporter) extractSpanEvents(td ptrace.Traces) []*alertmanagerEvent {
 	// Stitch parent trace ID and span ID
 	rss := td.ResourceSpans()
 	var events []*alertmanagerEvent
@@ -251,7 +251,7 @@ func (s *alertmanagerExporter) convertLogEventsToAlertPayload(events []*alertman
 		labels := s.createLogLabels(event)
 
 		alert := model.Alert{
-			StartsAt:     time.Now(),
+			StartsAt:     time.Now(), //by default, Alertmanager uses StartsAt as the time when the alert was created
 			Labels:       labels,
 			Annotations:  annotations,
 			GeneratorURL: s.generatorURL,
