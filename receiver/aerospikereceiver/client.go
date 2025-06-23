@@ -10,8 +10,9 @@ import (
 	"time"
 
 	as "github.com/aerospike/aerospike-client-go/v8"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/aerospikereceiver/cluster"
 	"go.uber.org/zap"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/aerospikereceiver/cluster"
 )
 
 var defaultNodeInfoCommands = []string{

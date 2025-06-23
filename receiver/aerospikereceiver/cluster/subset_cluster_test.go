@@ -8,8 +8,9 @@ import (
 	"testing"
 
 	as "github.com/aerospike/aerospike-client-go/v8"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/aerospikereceiver/cluster/mocks"
 	"github.com/stretchr/testify/require"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/aerospikereceiver/cluster/mocks"
 )
 
 func TestSubsetCluster_New(t *testing.T) {
