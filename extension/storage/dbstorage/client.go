@@ -15,6 +15,7 @@ import (
 	_ "github.com/jackc/pgx/v5/stdlib"
 	"go.opentelemetry.io/collector/extension/xextension/storage"
 	"go.uber.org/zap"
+
 	// SQLite driver
 	_ "modernc.org/sqlite"
 )
