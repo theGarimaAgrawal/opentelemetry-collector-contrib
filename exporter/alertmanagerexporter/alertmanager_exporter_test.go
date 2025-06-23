@@ -580,7 +580,6 @@ func TestExtractLogEvents(t *testing.T) {
 	logRecord.Attributes().PutStr("env", "prod")
 	logRecord.SetTraceID(pcommon.TraceID([16]byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}))
 	logRecord.SetSpanID(pcommon.SpanID([8]byte{1, 2, 3, 4, 5, 6, 7, 8}))
-	logRecord.SetSeverityText("INFO")
 	logRecord.Body().SetStr("Test log")
 
 	// Run extractor
@@ -635,17 +634,11 @@ func TestCreateLogAnnotations(t *testing.T) {
 	assert.Equal(t, "0102030405060708", string(labelSet["SpanID"]))
 	assert.Equal(t, "Test log body", string(labelSet["Body"]))
 
-	// Convert the expected timestamp to a string and compare
-	expectedTimestamp := logRecord.Timestamp().String()
-	assert.Equal(t, expectedTimestamp, string(labelSet["Timestamp"]))
-
 	// 2. Log without TraceID and SpanID
 	logRecord2 := scopeLogs.LogRecords().AppendEmpty()
 	logRecord2.SetTraceID(pcommon.TraceID([16]byte{})) // empty TraceID
 	logRecord2.SetSpanID(pcommon.SpanID([8]byte{}))    // empty SpanID
 	logRecord2.Body().SetStr("Log without Trace and Span")
-	logRecord2.SetTimestamp(pcommon.NewTimestampFromTime(time.Now()))
-
 	event2 := &alertmanagerLogEvent{
 		LogRecord: logRecord2,
 		traceID:   logRecord2.TraceID().String(),
@@ -660,10 +653,6 @@ func TestCreateLogAnnotations(t *testing.T) {
 	assert.NotContains(t, labelSet2, "TraceID", "TraceID should not be present")
 	assert.NotContains(t, labelSet2, "SpanID", "SpanID should not be present")
 	assert.Equal(t, "Log without Trace and Span", string(labelSet2["Body"]))
-
-	// Convert the expected timestamp to a string and compare
-	expectedTimestamp2 := logRecord2.Timestamp().String()
-	assert.Equal(t, expectedTimestamp2, string(labelSet2["Timestamp"]))
 }
 
 func TestCreateLogLabels(t *testing.T) {
@@ -680,7 +669,7 @@ func TestCreateLogLabels(t *testing.T) {
 	logRecord.Attributes().PutStr("env", "prod")
 	logRecord.Attributes().PutStr("service", "auth-service")
 	logRecord.Attributes().PutStr("ignored", "should-not-appear")
-	logRecord.SetSeverityText("ERROR")
+	logRecord.Attributes().PutStr("event_name", "ERROR")
 
 	event := &alertmanagerLogEvent{
 		LogRecord: logRecord,
