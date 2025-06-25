@@ -57,7 +57,7 @@ func (s *alertmanagerExporter) convertSpanEventSliceToArray(eventSlice ptrace.Sp
 	if eventSlice.Len() > 0 {
 		events := make([]*alertmanagerEvent, eventSlice.Len())
 
-		for i := 0; i < eventSlice.Len(); i++ {
+		for i := range eventSlice.Len() {
 			var severity string
 			severityAttrValue, ok := eventSlice.At(i).Attributes().Get(s.severityAttribute)
 			if ok {
@@ -85,14 +85,14 @@ func (s *alertmanagerExporter) convertSpanEventSliceToArray(eventSlice ptrace.Sp
 func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordSlice) []*alertmanagerLogEvent {
 	if logs.Len() > 0 {
 		events := make([]*alertmanagerLogEvent, logs.Len())
-		var severity, traceId, spanid string
+		var severity, traceID, spanid string
 		for i := range logs.Len() {
 			logRecords := logs.At(i)
 
 			if logRecords.TraceID().IsEmpty() { // Logs don't have trace/ span IDs unless embedded
-				traceId = ""
+				traceID = ""
 			} else {
-				traceId = logRecords.TraceID().String()
+				traceID = logRecords.TraceID().String()
 			}
 			if logRecords.SpanID().IsEmpty() {
 				spanid = ""
@@ -108,7 +108,7 @@ func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordS
 
 			event := alertmanagerLogEvent{
 				LogRecord: logRecords,
-				traceID:   traceId,
+				traceID:   traceID,
 				spanID:    spanid,
 				severity:  severity,
 			}
@@ -120,7 +120,7 @@ func (s *alertmanagerExporter) convertLogRecordSliceToArray(logs plog.LogRecordS
 	return nil
 }
 
-func (s *alertmanagerExporter) extractSpanEvents(td ptrace.Traces) []*alertmanagerEvent { // FIND AND RENAME ALL EVENTS TO SPAN EVENTS FOR DIFFERENTIATION FROM LOG RECORDS
+func (s *alertmanagerExporter) extractSpanEvents(td ptrace.Traces) []*alertmanagerEvent {
 	// Stitch parent trace ID and span ID
 	rss := td.ResourceSpans()
 	var events []*alertmanagerEvent
@@ -188,14 +188,11 @@ func createLogAnnotations(event *alertmanagerLogEvent) model.LabelSet {
 	}
 	if event.traceID != "" {
 		labelMap["TraceID"] = model.LabelValue(event.traceID)
-
 	}
 	if event.spanID != "" {
 		labelMap["SpanID"] = model.LabelValue(event.spanID)
 	}
-	labelMap["Body"] = model.LabelValue(event.LogRecord.Body().AsString())         // RECHECK
-	labelMap["Timestamp"] = model.LabelValue(event.LogRecord.Timestamp().String()) // SHOULDNT BE A LABEL
-
+	labelMap["Body"] = model.LabelValue(event.LogRecord.Body().AsString())
 	return labelMap
 }
 
@@ -219,7 +216,9 @@ func (s *alertmanagerExporter) createLogLabels(event *alertmanagerLogEvent) mode
 		}
 	}
 	labelMap["severity"] = model.LabelValue(event.severity)
-	labelMap["event_name"] = model.LabelValue(event.LogRecord.SeverityText())
+	if attr, ok := event.LogRecord.Attributes().Get("event_name"); ok {
+		labelMap["event_name"] = model.LabelValue(attr.AsString())
+	}
 
 	return labelMap
 }
@@ -251,10 +250,10 @@ func (s *alertmanagerExporter) convertLogEventsToAlertPayload(events []*alertman
 		labels := s.createLogLabels(event)
 
 		alert := model.Alert{
-			StartsAt:     time.Now(),
+			StartsAt:     time.Now(), // by default, Alertmanager uses StartsAt as the time when the alert was created
 			Labels:       labels,
 			Annotations:  annotations,
-			GeneratorURL: s.generatorURL, // IDENTIFY HOW TO ADD MESSAGE BODY OF LOG RECORD
+			GeneratorURL: s.generatorURL,
 		}
 
 		payload[i] = alert

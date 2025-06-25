@@ -8,14 +8,13 @@ import (
 	"errors"
 	"time"
 
-	"fmt"
-
-	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/alertmanagerexporter/internal/metadata"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/config/confighttp"
 	"go.opentelemetry.io/collector/config/configretry"
 	"go.opentelemetry.io/collector/exporter"
 	"go.opentelemetry.io/collector/exporter/exporterhelper"
+
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/alertmanagerexporter/internal/metadata"
 )
 
 // NewFactory creates a factory for Alertmanager exporter
@@ -59,7 +58,7 @@ func createLogsExporter(ctx context.Context, set exporter.Settings, config compo
 	cfg := config.(*Config)
 
 	if cfg.Endpoint == "" {
-		return nil, fmt.Errorf(
+		return nil, errors.New(
 			"exporter config requires a non-empty \"endpoint\"")
 	}
 	return newLogsExporter(ctx, cfg, set)
