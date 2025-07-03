@@ -17,6 +17,7 @@
   <a href="https://goreportcard.com/report/github.com/open-telemetry/opentelemetry-collector-contrib">
     <img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/open-telemetry/opentelemetry-collector-contrib?style=for-the-badge">
   </a>
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2FtheGarimaAgrawal%2Fopentelemetry-collector-contrib?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FtheGarimaAgrawal%2Fopentelemetry-collector-contrib.svg?type=shield"/></a>
   <a href="https://codecov.io/gh/open-telemetry/opentelemetry-collector-contrib/branch/main/">
     <img alt="Codecov Status" src="https://img.shields.io/codecov/c/github/open-telemetry/opentelemetry-collector-contrib?style=for-the-badge">
   </a>
@@ -163,3 +164,7 @@ The facilitator is not required to perform a thorough review, but they are encou
 enforce Collector best practices and consistency across the codebase and component
 behavior. The facilitators will typically rely on codeowner's detailed review of the code
 when making the final approval decision. 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FtheGarimaAgrawal%2Fopentelemetry-collector-contrib.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FtheGarimaAgrawal%2Fopentelemetry-collector-contrib?ref=badge_large)
